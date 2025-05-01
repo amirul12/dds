@@ -83,7 +83,13 @@ We will run the following command from the root of our project.
   yarn setup
 ```
 
-and finally you can run `yarn dev` in the root of our project.
+And to seed the data.
+
+``` bash
+  yarn seed
+```
+
+Finally you can run `yarn dev` in the root of our project.
 
 This will start both our `backend` and `frontend`.
 
