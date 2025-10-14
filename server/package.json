@@ -17,11 +17,11 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.12.7",
+    "@strapi/plugin-cloud": "5.27.0",
     "@strapi/plugin-seo": "^2.0.5",
-    "@strapi/plugin-users-permissions": "5.12.7",
-    "@strapi/strapi": "5.12.7",
-    "better-sqlite3": "9.4.3",
+    "@strapi/plugin-users-permissions": "5.27.0",
+    "@strapi/strapi": "5.27.0",
+    "better-sqlite3": "^11.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
@@ -35,7 +35,7 @@
     "uuid": "0ed328b8-5ec8-4297-a829-addd80414c09"
   },
   "engines": {
-    "node": ">=18.0.0 <=20.x.x",
+    "node": ">=18.0.0 <=22.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"
