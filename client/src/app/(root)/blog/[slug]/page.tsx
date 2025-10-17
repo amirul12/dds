@@ -57,7 +57,8 @@ export default async function SinglePost({ params }: PageProps) {
             {post.title}
           </h1>
           <p className="text-muted-foreground">
-            Posted on {formatDate(post.publishedAt)} - {post.category.text}
+            Posted on {formatDate(post.publishedAt)}
+            {post?.category?.text && ` - ${post?.category?.text}`}
           </p>
           <StrapiImage
             src={post.image.url}

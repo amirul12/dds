@@ -148,7 +148,6 @@ export async function getBlogPostBySlug(slug: string, status: string) {
   return post;
 }
 
-// TODO: FIX THE SEARCH QUERY
 export async function getBlogPosts(
   page: number,
   queryString: string,
