@@ -164,33 +164,13 @@ export async function getBlogPosts(
       },
     },
 
-    // _q: queryString,
-
-    // filters: {
-    //   $or: [
-    //     { title: { $containsi: queryString } },
-    //     { description: { $containsi: queryString } },
-    //     { content: { $containsi: queryString } },
-    //   ],
-    //   ...(category && { category: { text: { $eq: category } } }),
-    // },
-
     filters: {
-      title: { $containsi: queryString },
-      ...(category && { category: { text: { $eq: category } } }),
+      $or: [
+        { title: { $containsi: queryString } },
+        { description: { $containsi: queryString } },
+        { category: { text: { $containsi: queryString || category } } },
+      ],
     },
-    // filters: {
-    //   category: category.length !== 0 ? { text: { $eq: category } } : {},
-    //   ...(queryString.length !== 0 ? { title: { $containsi: queryString } } : {}),
-
-    //   $or: [
-    //     { text: { $eq: category } },
-    //     { title: { $containsi: queryString } },
-    //     { description: { $containsi: queryString } },
-    //     { content: { $containsi: queryString } },
-    //   ],
-
-    // },
 
     pagination: {
       pageSize: PAGE_SIZE,
