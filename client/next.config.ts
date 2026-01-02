@@ -1,21 +1,29 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  cacheComponents: true,
   images: {
+    ...(process.env.NODE_ENV === 'development' && {
+      unoptimized: true,
+    }),
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "1337",
-        pathname: "/uploads/**/*",
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1337',
+        pathname: '/uploads/**',
       },
       {
-        protocol: "https",
-        hostname: "motivated-health-e41c7505c5.media.strapiapp.com",
+        protocol: 'https',
+        hostname: '*.strapi.io',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.strapiapp.com',
       },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
