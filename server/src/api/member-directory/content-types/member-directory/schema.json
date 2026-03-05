@@ -45,6 +45,16 @@
         "location": {
             "type": "string"
         },
+        "presentJob": {
+            "type": "string"
+        },
+        "photo": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images"
+            ]
+        },
         "role": {
             "type": "string"
         },

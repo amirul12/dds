@@ -296,6 +296,11 @@ export async function getMemberDirectory(query = "", union = "", page = 1) {
 
   const members = await sdk.collection("member-directories").find({
     filters,
+    populate: {
+      photo: {
+        fields: ["url", "alternativeText"],
+      },
+    },
     pagination: {
       pageSize: 20,
       page: page,

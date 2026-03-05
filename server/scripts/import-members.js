@@ -37,6 +37,7 @@ module.exports = async ({ strapi }) => {
             phone: member.phone,
             serialNumber: member.serialNumber,
             location: member.location,
+            presentJob: member.company,
             role: member.role,
             isVerified: true
           },

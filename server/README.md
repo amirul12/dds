@@ -55,3 +55,43 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 ---
 
 <sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+
+
+cd server && yarn add xlsx multer
+
+
+
+[
+  {
+    "serialNumber": "1",
+    "name": "মোঃ আব্দুল কাদের",
+    "fatherName": "মোঃ আব্দুল গাফফার",
+    "location": "ভাতশালা",
+    "union": "Debhata",
+    "company": "এস এম সোর্সিং",
+    "role": "সিনিয়র মার্চেন্ডাইজার",
+    "phone": "01912406634"
+  }
+]
+
+
+Visit /admin-tools/import-members
+       ↓
+  No session token?
+       ↓ YES
+ → Redirect to /admin-tools/login
+       ↓
+  Enter Strapi admin credentials
+  (same email/password as http://localhost:1337/admin)
+       ↓
+  Strapi validates → returns token
+       ↓
+  Token saved to sessionStorage
+  (auto-expires when browser tab closes)
+       ↓
+  Redirected back to import page ✓
+Pages:
+URL	Description
+http://localhost:3000/admin-tools/login	Login page
+http://localhost:3000/admin-tools/import-members	Protected import tool (redirects to login if not authenticated)
+

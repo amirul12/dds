@@ -22,12 +22,14 @@
     "@strapi/plugin-users-permissions": "5.31.2",
     "@strapi/strapi": "5.31.2",
     "better-sqlite3": "^11.0.0",
+    "multer": "^2.1.1",
     "mysql2": "^3.18.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "strapi-plugin-yt-clips": "0.0.2",
-    "styled-components": "^6.0.0"
+    "styled-components": "^6.0.0",
+    "xlsx": "^0.18.5"
   },
   "author": {
     "name": "A Strapi developer"
