@@ -13,9 +13,8 @@ export default async function RootLayout({
   const data = await getGlobalPageData();
   const urgentNotices = await getUrgentNotices();
 
-  if (!data) notFound();
-
-  const { topNav, footer } = data.data;
+  const topNav = data?.data?.topNav || {};
+  const footer = data?.data?.footer || {};
 
   // Flatten notices for ticker
   const tickerNotices = urgentNotices.data.map((n: any) => ({

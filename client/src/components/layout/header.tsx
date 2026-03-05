@@ -13,8 +13,18 @@ interface HeaderProps {
 }
 
 export function Header({ data }: Readonly<HeaderProps>) {  
-  if (!data) return null;
-  const { logoText, navItems, cta } = data;
+  // Use organization defaults if Strapi data is not yet configured or generic
+  const logoText = data?.logoText || "ঢাকাস্থ দেবহাটা উপজেলা সমিতি";
+  const navItems = data?.navItems?.length ? data.navItems : [
+    { text: "হোম", href: "/", isExternal: false },
+    { text: "সদস্য তালিকা", href: "/directory", isExternal: false },
+    { text: "বিজ্ঞপ্তি", href: "/notices", isExternal: false },
+    { text: "ইভেন্ট", href: "/events", isExternal: false },
+    { text: "কমিটি", href: "/committee", isExternal: false },
+    { text: "স্মরণিকা", href: "/smaranika", isExternal: false },
+    { text: "যোগাযোগ", href: "/contact", isExternal: false },
+  ];
+  const cta = data?.cta || { text: "সদস্য আবেদন", href: "/contact#form", isExternal: false };
   
   return (
     <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-primary/10 shadow-sm">

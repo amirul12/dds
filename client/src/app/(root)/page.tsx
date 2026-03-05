@@ -1,5 +1,5 @@
 import { getNotices, getEvents } from "@/data/loaders";
-import { Hero } from "@/components/sections/Hero";
+import { HeroSlider } from "@/components/sections/HeroSlider";
 import { Stats } from "@/components/sections/Stats";
 import { QuickActions } from "@/components/sections/QuickActions";
 import { LatestNotices } from "@/components/sections/LatestNotices";
@@ -7,13 +7,10 @@ import { LatestNotices } from "@/components/sections/LatestNotices";
 export default async function Home() {
   const noticesResponse = await getNotices(3);
   const notices = noticesResponse?.data || [];
-  
-  // Use a beautiful representative image for the Samiti
-  const heroImage = "https://images.unsplash.com/photo-1584974232704-514467d9341b?auto=format&fit=crop&q=80&w=2000";
 
   return (
     <div className="flex flex-col w-full">
-      <Hero bannerImage={heroImage} />
+      <HeroSlider />
       <Stats />
       <QuickActions />
       <LatestNotices notices={notices} />

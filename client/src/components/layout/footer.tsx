@@ -14,8 +14,11 @@ interface FooterProps {
 }
 
 export function Footer({ data }: Readonly<FooterProps>) {
-  if (!data) return null;
-  const { text, socialLinks } = data;
+  const text = data?.text || "ঢাকাস্থ দেবহাটা উপজেলা সমিতি";
+  const socialLinks = data?.socialLinks?.length ? data.socialLinks : [
+    { text: "facebook", href: "https://facebook.com" },
+    { text: "youtube", href: "https://youtube.com" },
+  ];
 
   return (
     <footer className="bg-primary text-white pt-20 pb-10">
