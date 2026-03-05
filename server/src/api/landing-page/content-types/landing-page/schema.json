@@ -27,7 +27,8 @@
         "layout.section-heading",
         "layout.content-with-image",
         "layout.quick-actions",
-        "layout.stats"
+        "layout.stats",
+        "layout.spotlight"
       ]
     }
   }

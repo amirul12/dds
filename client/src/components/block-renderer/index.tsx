@@ -11,6 +11,7 @@ import { Text } from "@/components/block-renderer/blocks/text";
 import { HeroSlider } from "@/components/sections/HeroSlider";
 import { Stats } from "@/components/sections/Stats";
 import { QuickActions } from "@/components/sections/QuickActions";
+import { Spotlight } from "@/components/block-renderer/layout/spotlight";
 
 function blockRenderer(block: Block, index: number) {
   switch (block.__component) {
@@ -33,6 +34,8 @@ function blockRenderer(block: Block, index: number) {
       return <Stats key={index} {...block} />;
     case "layout.quick-actions":
       return <QuickActions key={index} {...block} />;
+    case "layout.spotlight":
+      return <Spotlight key={index} {...block} />;
     default:
       return null;
   }

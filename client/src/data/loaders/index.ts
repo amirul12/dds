@@ -71,6 +71,13 @@ export async function getLandingPage() {
               },
             },
           },
+          "layout.spotlight": {
+            populate: {
+              image: {
+                fields: ["url", "alternativeText", "name"],
+              },
+            },
+          },
         },
       },
     },

@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_layout_spotlights",
+  "info": {
+    "displayName": "Spotlight",
+    "description": "Featured section with image and glassmorphism effect for highlighting special activities"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "subHeading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "ctaText": {
+      "type": "string"
+    },
+    "ctaHref": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "dark"
+      ],
+      "default": "primary"
+    },
+    "reverse": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
