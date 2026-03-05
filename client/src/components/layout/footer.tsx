@@ -1,83 +1,115 @@
 import Link from "next/link";
-interface Link {
+import Image from "next/image";
+
+interface SocialLink {
   href: string;
   text: string;
-  isExternal: boolean;
-  isPrimary: boolean;
 }
 
 interface FooterProps {
   data: {
     text: string;
-    socialLinks: Link[];
+    socialLinks: SocialLink[];
   };
-}
-
-const YouTubeIcon = () => (
-  <svg viewBox="0 0 28.57 20" className="size-5">
-    <g>
-      <path
-        fill="currentColor"
-        d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z"
-      />
-      <path
-        fill="currentColor"
-        d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z"
-        className="text-background"
-      />
-    </g>
-  </svg>
-);
-
-const TwitterIcon = () => (
-  <svg viewBox="0 0 248 204" className="size-5">
-    <path
-      fill="currentColor"
-      d="M221.95 51.29c.15 2.17.15 4.34.15 6.53 0 66.73-50.8 143.69-143.69 143.69v-.04c-27.44.04-54.31-7.82-77.41-22.64 3.99.48 8 .72 12.02.73 22.74.02 44.83-7.61 62.72-21.66-21.61-.41-40.56-14.5-47.18-35.07 7.57 1.46 15.37 1.16 22.8-.87-23.56-4.76-40.51-25.46-40.51-49.5v-.64c7.02 3.91 14.88 6.08 22.92 6.32C11.58 63.31 4.74 33.79 18.14 10.71c25.64 31.55 63.47 50.73 104.08 52.76-4.07-17.54 1.49-35.92 14.61-48.25 20.34-19.12 52.33-18.14 71.45 2.19 11.31-2.23 22.15-6.38 32.07-12.26-3.77 11.69-11.66 21.62-22.2 27.93 10.01-1.18 19.79-3.86 29-7.95-6.78 10.16-15.32 19.01-25.2 26.16z"
-    />
-  </svg>
-);
-
-const GitHubIcon = () => (
-  <svg viewBox="0 0 438.549 438.549" className="size-5">
-    <path
-      fill="currentColor"
-      d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z"
-    />
-  </svg>
-);
-
-function renderIcon(text: string) {
-  switch (text) {
-    case "twitter":
-      return <TwitterIcon />;
-    case "github":
-      return <GitHubIcon />;
-    case "youtube":
-      return <YouTubeIcon />;
-    default:
-      return null;
-  }
 }
 
 export function Footer({ data }: Readonly<FooterProps>) {
   if (!data) return null;
   const { text, socialLinks } = data;
+
   return (
-    <footer className="container flex flex-col items-center justify-between gap-6 py-10 sm:flex-row">
-      <p className="text-center text-sm">&copy; {new Date().getFullYear()} {text}</p>
-      <div className="flex items-center gap-5">
-        {socialLinks &&
-          socialLinks.map((link) => (
-            <Link
-              href={link.href}
-              className="text-muted-foreground hover:text-foreground"
-              key={link.text}
-              target="_blank"
-            >
-              {renderIcon(link.text.toLowerCase())}
+    <footer className="bg-primary text-white pt-20 pb-10">
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Brand Column */}
+          <div className="space-y-6">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="size-12 bg-white rounded-full flex items-center justify-center p-2">
+                <svg viewBox="0 0 238 238" fill="none" className="text-primary size-full">
+                  <path d="M236.738 121.995C236.743 125.448 236.415 128.865 235.749 132.25C235.077 135.635 234.082 138.922 232.764 142.109C231.441 145.297 229.822 148.328 227.9 151.193C225.978 154.063 223.796 156.708 221.348 159.146L162.816 217.651C161.816 216.88 160.874 216.052 159.978 215.161L211.41 119.203L159.988 67.7656C160.712 24.3125 161.655 25.151 162.546 26.0469L221.348 84.849C223.796 87.2813 227.905 92.7969 236.738 121.995Z" fill="currentColor" />
+                </svg>
+              </div>
+              <span className="text-2xl font-serif font-bold tracking-tight">ঢাকাস্থ দেবহাটা <br/>উপজেলা সমিতি</span>
             </Link>
-          ))}
+            <p className="text-white/70 leading-relaxed text-sm">
+              ঢাকাস্থ দেবহাটা উপজেলা সমিতি একটি অলাভজনক ও সেবামূলক সংগঠন। আমাদের মূল লক্ষ্য ঢাকাস্থ দেবহাটা প্রবাসীদের মধ্যে ভ্রাতৃত্বের বন্ধন সুদৃঢ় করা।
+            </p>
+            <div className="flex gap-4">
+              {socialLinks?.map((link) => (
+                <a 
+                  key={link.text} 
+                  href={link.href} 
+                  target="_blank" 
+                  className="size-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-all"
+                >
+                  <span className="sr-only">{link.text}</span>
+                  {/* Icon based on text, fallback to a generic social icon */}
+                  <svg className="size-5" fill="currentColor" viewBox="0 0 24 24">
+                     <path d="M12 2C6.477 2 2 6.477 2 12c0 4.411 2.865 8.146 6.839 9.465.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.341-3.369-1.341-.454-1.152-1.11-1.459-1.11-1.459-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.003.07s1.3 1.03 1.3 1.03c.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.639.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.579.688.481C19.137 20.141 22 16.409 22 12c0-5.523-4.477-10-10-10z" />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Useful Links */}
+          <div className="space-y-6 lg:ml-12">
+            <h4 className="text-xl font-bold font-serif border-b-2 border-secondary inline-block pb-1">গুরুত্বপূর্ণ লিঙ্ক</h4>
+            <ul className="space-y-3 text-sm">
+              <li><Link href="/directory" className="hover:text-secondary hover:pl-2 transition-all">সদস্য ডিরেক্টরি</Link></li>
+              <li><Link href="/notices" className="hover:text-secondary hover:pl-2 transition-all">বিজ্ঞপ্তি বোর্ড</Link></li>
+              <li><Link href="/events" className="hover:text-secondary hover:pl-2 transition-all">আসন্ন ইভেন্ট</Link></li>
+              <li><Link href="/committee" className="hover:text-secondary hover:pl-2 transition-all">কার্যনির্বাহী কমিটি</Link></li>
+              <li><Link href="/smaranika" className="hover:text-secondary hover:pl-2 transition-all">স্মরণিকা প্রকল্প</Link></li>
+            </ul>
+          </div>
+
+          {/* Quick Links */}
+          <div className="space-y-6 lg:ml-8">
+             <h4 className="text-xl font-bold font-serif border-b-2 border-secondary inline-block pb-1">সহযোগিতা</h4>
+             <ul className="space-y-3 text-sm">
+               <li><Link href="/contact" className="hover:text-secondary hover:pl-2 transition-all">যোগাযোগ করুন</Link></li>
+               <li><Link href="/contact#faq" className="hover:text-secondary hover:pl-2 transition-all">সাধারণ জিজ্ঞাসা</Link></li>
+               <li><Link href="/directory?type=correction" className="hover:text-secondary hover:pl-2 transition-all">তথ্য সংশোধন</Link></li>
+               <li><a href="#" className="hover:text-secondary hover:pl-2 transition-all">ডাউনলোড ফরম</a></li>
+             </ul>
+          </div>
+
+          {/* Contact Column */}
+          <div className="space-y-6">
+            <h4 className="text-xl font-bold font-serif border-b-2 border-secondary inline-block pb-1">সরাসরি যোগাযোগ</h4>
+            <div className="space-y-4 text-sm">
+              <div className="flex gap-3">
+                 <svg className="size-5 text-secondary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                 </svg>
+                 <span>হাউস #১০, রোড #০৫, ব্লক #এ, বনশ্রী, রামপুরা, ঢাকা-১২১৯।</span>
+              </div>
+              <div className="flex gap-3">
+                 <svg className="size-5 text-secondary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                 </svg>
+                 <span>01711-000000, 01711-111111</span>
+              </div>
+              <div className="flex gap-3">
+                 <svg className="size-5 text-secondary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                 </svg>
+                 <span>info@debhatasamiti.org</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/50">
+          <p>&copy; {new Date().getFullYear()} {text}. অল রাইটস রিজার্ভড।</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-white transition-colors">প্রাইভেসি পলিসি</a>
+            <a href="#" className="hover:text-white transition-colors">টার্মস এন্ড কন্ডিশন</a>
+          </div>
+          <p>Created with ❤️ for Debhata</p>
+        </div>
       </div>
     </footer>
   );
