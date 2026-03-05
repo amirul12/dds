@@ -1,0 +1,54 @@
+{
+    "kind": "collectionType",
+    "collectionName": "committee_members",
+    "info": {
+        "singularName": "committee-member",
+        "pluralName": "committee-members",
+        "displayName": "Committee Member",
+        "description": "Members of various committees"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "designation": {
+            "type": "string",
+            "required": true
+        },
+        "photo": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "committeeType": {
+            "type": "enumeration",
+            "enum": [
+                "Executive",
+                "Smaranika",
+                "Advisory",
+                "Ad-hoc"
+            ],
+            "default": "Executive"
+        },
+        "phone": {
+            "type": "string"
+        },
+        "order": {
+            "type": "integer",
+            "default": 0
+        },
+        "union": {
+            "type": "string"
+        },
+        "facebookUrl": {
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "kind": "collectionType",
+    "collectionName": "correction_requests",
+    "info": {
+        "singularName": "correction-request",
+        "pluralName": "correction-requests",
+        "displayName": "Correction Request",
+        "description": "Requests from members to correct their directory information"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "member": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::member-directory.member-directory",
+            "inversedBy": "correction_requests"
+        },
+        "submittedBy": {
+            "type": "string",
+            "required": true
+        },
+        "phone": {
+            "type": "string",
+            "required": true
+        },
+        "wrongInfo": {
+            "type": "text"
+        },
+        "correctInfo": {
+            "type": "text"
+        },
+        "proof": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images",
+                "files"
+            ]
+        },
+        "status": {
+            "type": "enumeration",
+            "enum": [
+                "Pending",
+                "Resolved",
+                "Rejected"
+            ],
+            "default": "Pending"
+        },
+        "adminComment": {
+            "type": "text"
+        }
+    }
+}

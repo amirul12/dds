@@ -1,0 +1,58 @@
+{
+    "kind": "collectionType",
+    "collectionName": "events",
+    "info": {
+        "singularName": "event",
+        "pluralName": "events",
+        "displayName": "Event",
+        "description": "Samiti events and gatherings"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "slug": {
+            "type": "uid",
+            "targetField": "title"
+        },
+        "dateTime": {
+            "type": "datetime",
+            "required": true
+        },
+        "location": {
+            "type": "string",
+            "required": true
+        },
+        "mapLink": {
+            "type": "string"
+        },
+        "rsvpDeadline": {
+            "type": "datetime"
+        },
+        "description": {
+            "type": "richtext"
+        },
+        "image": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "isActive": {
+            "type": "boolean",
+            "default": true
+        },
+        "registrations": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::event-registration.event-registration",
+            "mappedBy": "event"
+        }
+    }
+}

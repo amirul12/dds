@@ -178,3 +178,104 @@ export async function getBlogPosts(
   });
   return posts;
 }
+
+export async function getNotices(limit = 10) {
+  const notices = await sdk.collection("notices").find({
+    populate: {
+      attachment: {
+        fields: ["url", "alternativeText", "name"],
+      },
+    },
+    filters: {
+      isActive: true,
+    },
+    sort: ["publishedAt:desc"],
+    pagination: {
+      pageSize: limit,
+    },
+  });
+  return notices;
+}
+
+export async function getUrgentNotices() {
+  const notices = await sdk.collection("notices").find({
+    filters: {
+      isActive: true,
+      isUrgent: true,
+    },
+    sort: ["publishedAt:desc"],
+    pagination: {
+      pageSize: 5,
+    },
+  });
+  return notices;
+}
+
+export async function getNoticeBySlug(slug: string) {
+  const notice = await sdk.collection("notices").find({
+    filters: {
+      slug: slug,
+    },
+    populate: {
+      attachment: {
+        fields: ["url", "alternativeText", "name"],
+      },
+    },
+  });
+  return notice;
+}
+
+export async function getCommitteeMembers(type?: string) {
+  const filters: any = {};
+  if (type) filters.committeeType = type;
+
+  const members = await sdk.collection("committee-members").find({
+    filters,
+    populate: {
+      photo: {
+        fields: ["url", "alternativeText"],
+      },
+    },
+    sort: ["order:asc"],
+  });
+  return members;
+}
+
+export async function getEvents() {
+  const events = await sdk.collection("events").find({
+    filters: {
+      isActive: true,
+    },
+    populate: {
+      image: {
+        fields: ["url", "alternativeText"],
+      },
+    },
+    sort: ["dateTime:asc"],
+  });
+  return events;
+}
+
+export async function getMemberDirectory(query = "", union = "", page = 1) {
+  const filters: any = {};
+  if (query) {
+    filters.$or = [
+      { name: { $containsi: query } },
+      { fatherName: { $containsi: query } },
+      { serialNumber: { $containsi: query } },
+    ];
+  }
+  if (union) {
+    filters.union = union;
+  }
+
+  const members = await sdk.collection("member-directories").find({
+    filters,
+    pagination: {
+      pageSize: 20,
+      page: page,
+    },
+    sort: ["serialNumber:asc"],
+  });
+  return members;
+}

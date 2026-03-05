@@ -1,0 +1,58 @@
+{
+    "kind": "collectionType",
+    "collectionName": "member_directories",
+    "info": {
+        "singularName": "member-directory",
+        "pluralName": "member-directories",
+        "displayName": "Member Directory",
+        "description": "Directory of all members of the Samiti"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "fatherName": {
+            "type": "string"
+        },
+        "union": {
+            "type": "enumeration",
+            "enum": [
+                "Debhata",
+                "Kulya",
+                "Parulia",
+                "Sakhra",
+                "Nalta",
+                "Debhata Sadar"
+            ],
+            "required": true
+        },
+        "phone": {
+            "type": "string"
+        },
+        "serialNumber": {
+            "type": "string",
+            "unique": true
+        },
+        "isVerified": {
+            "type": "boolean",
+            "default": false
+        },
+        "location": {
+            "type": "string"
+        },
+        "role": {
+            "type": "string"
+        },
+        "correction_requests": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::correction-request.correction-request",
+            "mappedBy": "member"
+        }
+    }
+}

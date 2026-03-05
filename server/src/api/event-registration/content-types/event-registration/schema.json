@@ -1,0 +1,59 @@
+{
+    "kind": "collectionType",
+    "collectionName": "event_registrations",
+    "info": {
+        "singularName": "event-registration",
+        "pluralName": "event-registrations",
+        "displayName": "Event Registration",
+        "description": "RSVP submissions for events"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "event": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::event.event",
+            "inversedBy": "registrations"
+        },
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "phone": {
+            "type": "string",
+            "required": true
+        },
+        "union": {
+            "type": "string"
+        },
+        "guestCount": {
+            "type": "integer",
+            "default": 1
+        },
+        "foodPreference": {
+            "type": "enumeration",
+            "enum": [
+                "Iftar",
+                "Dinner",
+                "None"
+            ],
+            "default": "None"
+        },
+        "status": {
+            "type": "enumeration",
+            "enum": [
+                "Confirmed",
+                "Pending",
+                "Cancelled"
+            ],
+            "default": "Pending"
+        },
+        "referenceId": {
+            "type": "string",
+            "unique": true
+        }
+    }
+}

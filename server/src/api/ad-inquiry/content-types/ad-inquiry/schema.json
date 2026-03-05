@@ -1,0 +1,55 @@
+{
+    "kind": "collectionType",
+    "collectionName": "ad_inquiries",
+    "info": {
+        "singularName": "ad-inquiry",
+        "pluralName": "ad-inquiries",
+        "displayName": "Ad Inquiry",
+        "description": "Inquiries for advertisements in Smaranika"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "orgName": {
+            "type": "string",
+            "required": true
+        },
+        "contactPerson": {
+            "type": "string",
+            "required": true
+        },
+        "phone": {
+            "type": "string",
+            "required": true
+        },
+        "adSize": {
+            "type": "enumeration",
+            "enum": [
+                "Full Page",
+                "Half Page",
+                "Quarter Page",
+                "Inside Cover",
+                "Back Cover"
+            ],
+            "default": "Full Page"
+        },
+        "status": {
+            "type": "enumeration",
+            "enum": [
+                "New",
+                "Contacted",
+                "Confirmed",
+                "Cancelled"
+            ],
+            "default": "New"
+        },
+        "message": {
+            "type": "text"
+        },
+        "submittedAt": {
+            "type": "datetime"
+        }
+    }
+}
