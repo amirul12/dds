@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_elements_quick_actions",
+  "info": {
+    "displayName": "Quick Action",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "text"
+    },
+    "href": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "users",
+        "bell",
+        "calendar",
+        "briefcase",
+        "book",
+        "phone"
+      ]
+    },
+    "color": {
+      "type": "string"
+    }
+  }
+}

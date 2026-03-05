@@ -13,6 +13,9 @@ type ComponentType =
   | "layout.section-heading"
   | "layout.content-with-image"   
   | "layout.price-grid"
+  | "layout.hero-slider"
+  | "layout.quick-actions"
+  | "layout.stats"
   | "blocks.video"
   | "blocks.text";
 
@@ -31,7 +34,7 @@ export interface NavLink {
   isPrimary: boolean;
 }
 
-export type Block = HeroProps | CardGridProps | SectionHeadingProps | ContentWithImageProps | PriceGridProps | VideoProps | TextProps;
+export type Block = HeroProps | CardGridProps | SectionHeadingProps | ContentWithImageProps | PriceGridProps | VideoProps | TextProps | HeroSliderProps | QuickActionsProps | StatsProps;
 
 export interface HeroProps extends Base<"layout.hero"> {
   heading: string;
@@ -101,4 +104,37 @@ export interface VideoProps extends Base<"blocks.video"> {
 
 export interface TextProps extends Base<"blocks.text"> {
   content: string;
+}
+
+export interface HeroSliderProps extends Base<"layout.hero-slider"> {
+  slides: {
+    id: string;
+    title: string;
+    subtitle: string;
+    desc: string;
+    cta: string;
+    href: string;
+    image: Image;
+  }[];
+}
+
+export interface QuickActionsProps extends Base<"layout.quick-actions"> {
+  title: string;
+  actions: {
+    id: string;
+    title: string;
+    desc: string;
+    href: string;
+    icon: string;
+    color: string;
+  }[];
+}
+
+export interface StatsProps extends Base<"layout.stats"> {
+  stats: {
+    id: string;
+    label: string;
+    value: string;
+    icon: string;
+  }[];
 }

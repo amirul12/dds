@@ -53,6 +53,31 @@ export async function getLandingPage() {
               },
             },
           },
+          "layout.hero-slider": {
+            populate: {
+              slides: {
+                populate: {
+                  image: {
+                    fields: ["url", "alternativeText", "name"],
+                  },
+                },
+              },
+            },
+          },
+          "layout.quick-actions": {
+            populate: {
+              actions: {
+                populate: "*",
+              },
+            },
+          },
+          "layout.stats": {
+            populate: {
+              stats: {
+                populate: "*",
+              },
+            },
+          },
         },
       },
     },
@@ -278,4 +303,19 @@ export async function getMemberDirectory(query = "", union = "", page = 1) {
     sort: ["serialNumber:asc"],
   });
   return members;
+}
+
+export async function getGalleries() {
+  const galleries = await sdk.collection("galleries").find({
+    filters: {
+      isActive: true,
+    },
+    populate: {
+      image: {
+        fields: ["url", "alternativeText", "name"],
+      },
+    },
+    sort: ["date:desc", "createdAt:desc"],
+  });
+  return galleries;
 }

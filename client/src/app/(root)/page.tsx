@@ -1,18 +1,22 @@
-import { getNotices, getEvents } from "@/data/loaders";
-import { HeroSlider } from "@/components/sections/HeroSlider";
-import { Stats } from "@/components/sections/Stats";
-import { QuickActions } from "@/components/sections/QuickActions";
+import { getNotices, getLandingPage } from "@/data/loaders";
 import { LatestNotices } from "@/components/sections/LatestNotices";
+import { BlockRenderer } from "@/components/block-renderer";
 
 export default async function Home() {
-  const noticesResponse = await getNotices(3);
+  const [noticesResponse, landingPageResponse] = await Promise.all([
+    getNotices(3),
+    getLandingPage()
+  ]);
+
   const notices = noticesResponse?.data || [];
+  const blocks = landingPageResponse?.data?.blocks || [];
 
   return (
     <div className="flex flex-col w-full">
-      <HeroSlider />
-      <Stats />
-      <QuickActions />
+      {/* Dynamic Strapi Blocks (Hero, Stats, Quick Actions, etc) */}
+      <BlockRenderer blocks={blocks} />
+
+      {/* Keeps the LatestNotices section pulling from Strapi notice collection directly */}
       <LatestNotices notices={notices} />
       
       {/* Footer-CTA Section */}

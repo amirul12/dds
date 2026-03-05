@@ -9,6 +9,10 @@ import { CardCarousel } from "@/components/block-renderer/layout/card-carousel";
 import { Video } from "@/components/block-renderer/blocks/video";
 import { Text } from "@/components/block-renderer/blocks/text";
 
+import { HeroSlider } from "@/components/sections/HeroSlider";
+import { Stats } from "@/components/sections/Stats";
+import { QuickActions } from "@/components/sections/QuickActions";
+
 function blockRenderer(block: Block, index: number) {
   switch (block.__component) {
     case "layout.hero":
@@ -25,6 +29,12 @@ function blockRenderer(block: Block, index: number) {
       return <Video key={index} {...block} />;
     case "blocks.text":
       return <Text key={index} {...block} />;
+    case "layout.hero-slider":
+      return <HeroSlider key={index} {...block} />;
+    case "layout.stats":
+      return <Stats key={index} {...block} />;
+    case "layout.quick-actions":
+      return <QuickActions key={index} {...block} />;
     default:
       return null;
   }

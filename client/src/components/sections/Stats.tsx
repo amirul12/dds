@@ -2,15 +2,12 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import type { StatsProps } from "@/types";
 
-const stats = [
-  { label: "নিবন্ধিত সদস্য", value: "৮৫০+", icon: "👥" },
-  { label: "উপকারভোগী পরিবার", value: "৪০০+", icon: "🏠" },
-  { label: "বাৎসরিক মিলনমেলা", value: "২৫+", icon: "🎉" },
-  { label: "সেবামূলক প্রকল্প", value: "১২+", icon: "❤️" },
-];
+export function Stats(data: Readonly<StatsProps>) {
+  if (!data) return null;
+  const { stats } = data;
 
-export function Stats() {
   return (
     <section className="py-16 relative bg-primary overflow-hidden">
       <div className="absolute top-0 right-0 size-96 bg-secondary/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
@@ -18,9 +15,9 @@ export function Stats() {
       
       <div className="container relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-          {stats.map((stat, idx) => (
+          {stats?.map((stat, idx) => (
             <motion.div 
-              key={idx}
+              key={stat.id || idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

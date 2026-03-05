@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_elements_slides",
+  "info": {
+    "displayName": "Slide",
+    "description": "Individual slide for a hero slider"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "text"
+    },
+    "cta": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

@@ -22,10 +22,13 @@
       "type": "dynamiczone",
       "components": [
         "layout.hero",
+        "layout.hero-slider",
         "layout.card-grid",
         "layout.section-heading",
         "layout.content-with-image",
-        "layout.price-grid"
+        "layout.price-grid",
+        "layout.quick-actions",
+        "layout.stats"
       ]
     }
   }

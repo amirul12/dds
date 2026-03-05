@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_layout_hero_sliders",
+  "info": {
+    "displayName": "Hero Slider",
+    "description": "A carousel of slides for the hero section"
+  },
+  "options": {},
+  "attributes": {
+    "slides": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.slide",
+      "required": true
+    }
+  }
+}

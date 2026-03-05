@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_layout_quick_actions",
+  "info": {
+    "displayName": "Quick Actions",
+    "description": "Grid of quick action buttons"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "দ্রুত সংযোগ"
+    },
+    "actions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.quick-action"
+    }
+  }
+}

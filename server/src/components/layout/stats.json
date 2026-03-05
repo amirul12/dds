@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_layout_stats_sections",
+  "info": {
+    "displayName": "Stats Section",
+    "description": "Grid of statistics"
+  },
+  "options": {},
+  "attributes": {
+    "stats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.stat"
+    }
+  }
+}
