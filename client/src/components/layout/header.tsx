@@ -21,6 +21,7 @@ export function Header({ data }: Readonly<HeaderProps>) {
     { text: "বিজ্ঞপ্তি", href: "/notices", isExternal: false },
     { text: "ইভেন্ট", href: "/events", isExternal: false },
     { text: "কমিটি", href: "/committee", isExternal: false },
+    { text: "গ্যালারি", href: "/gallery", isExternal: false },
     { text: "স্মরণিকা", href: "/smaranika", isExternal: false },
     { text: "যোগাযোগ", href: "/contact", isExternal: false },
   ];

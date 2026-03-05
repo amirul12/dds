@@ -28,8 +28,7 @@
         "layout.section-heading",
         "layout.hero",
         "layout.content-with-image",
-        "layout.card-grid",
-        "layout.price-grid"
+        "layout.card-grid"
       ]
     },
     "seo": {

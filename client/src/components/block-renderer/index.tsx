@@ -3,7 +3,6 @@ import type { Block } from "@/types";
 import { Hero } from "@/components/block-renderer/layout/hero";
 import { SectionHeading } from "@/components/block-renderer/layout/section-heading";
 import { ContentWithImage } from "@/components/block-renderer/layout/content-with-image";
-import { Pricing } from "@/components/block-renderer/layout/pricing";
 import { CardCarousel } from "@/components/block-renderer/layout/card-carousel";
 
 import { Video } from "@/components/block-renderer/blocks/video";
@@ -23,8 +22,7 @@ function blockRenderer(block: Block, index: number) {
       return <SectionHeading key={index} {...block} />;
     case "layout.content-with-image":
       return <ContentWithImage key={index} {...block} />;
-    case "layout.price-grid":
-      return <Pricing key={index} {...block} />;
+
     case "blocks.video":
       return <Video key={index} {...block} />;
     case "blocks.text":

@@ -46,13 +46,6 @@ export async function getLandingPage() {
               },
             },
           },
-          "layout.price-grid": {
-            populate: {
-              priceCard: {
-                populate: "*",
-              },
-            },
-          },
           "layout.hero-slider": {
             populate: {
               slides: {
