@@ -4,7 +4,12 @@ export default {
   register() {},
 
   async bootstrap({ strapi }: { strapi: any }) {
-    // Content update logic moved to separate script or performed via bootstrap once.
-    // Logic removed to prevent accidental overwrites on every restart.
+    try {
+      console.log("Bootstrap: Running Comprehensive Population Script...");
+      await require('../scripts/populate-landing-page.js')({ strapi });
+      console.log("Bootstrap: Population Complete.");
+    } catch (error) {
+      console.error("Bootstrap Error:", error);
+    }
   },
 };
