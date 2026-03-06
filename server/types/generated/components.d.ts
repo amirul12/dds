@@ -64,18 +64,15 @@ export interface ElementsQuickAction extends Struct.ComponentSchema {
     href: Schema.Attribute.String;
     icon: Schema.Attribute.Enumeration<
       [
-        'enum',
-        [
-          'users',
-          'bell',
-          'calendar',
-          'briefcase',
-          'book',
-          'phone',
-          'membership',
-          'userplus',
-          'shield',
-        ],
+        'users',
+        'bell',
+        'calendar',
+        'briefcase',
+        'book',
+        'phone',
+        'membership',
+        'userplus',
+        'shield',
       ]
     >;
     title: Schema.Attribute.String;
