@@ -29,10 +29,17 @@ export default function MemberDirectoryPage() {
     setLoading(true);
     try {
       const response = await getMemberDirectory(q, u === "all" ? "" : u, p);
-      setMembers(response.data);
-      setMeta(response.meta);
+      if (response && response.data) {
+        setMembers(response.data);
+        setMeta(response.meta || null);
+      } else {
+        setMembers([]);
+        setMeta(null);
+      }
     } catch (error) {
       console.error("Failed to fetch members", error);
+      setMembers([]);
+      setMeta(null);
     } finally {
       setLoading(false);
     }
@@ -49,14 +56,17 @@ export default function MemberDirectoryPage() {
   };
 
   const handleCorrectionSubmit = async (data: any) => {
-    // In a real app, you'd call an API action here
-    console.log("Submitting correction:", data);
-    const response = await fetch("/api/correction-request", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data }),
-    });
-    if (!response.ok) throw new Error("Submission failed");
+    try {
+      const response = await fetch("/api/correction-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data }),
+      });
+      if (!response.ok) throw new Error("Submission failed");
+    } catch (error) {
+      console.error("Correction submission failed", error);
+      throw error;
+    }
   };
 
   return (
@@ -68,7 +78,6 @@ export default function MemberDirectoryPage() {
         </p>
       </div>
 
-      {/* Filters */}
       <div className="bg-muted p-6 rounded-xl mb-10 shadow-inner">
         <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
@@ -95,7 +104,6 @@ export default function MemberDirectoryPage() {
         </form>
       </div>
 
-      {/* Grid */}
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(6)].map((_, i) => (
@@ -104,7 +112,7 @@ export default function MemberDirectoryPage() {
         </div>
       ) : (
         <>
-          {members.length > 0 ? (
+          {members && members.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {members.map((member) => (
                 <MemberCard 
@@ -120,8 +128,7 @@ export default function MemberDirectoryPage() {
             </div>
           )}
 
-          {/* Pagination */}
-          {meta && meta.pagination.pageCount > 1 && (
+          {meta && meta.pagination && meta.pagination.pageCount > 1 && (
             <div className="mt-10 flex justify-center gap-2">
               <Button 
                 variant="outline" 
@@ -145,7 +152,6 @@ export default function MemberDirectoryPage() {
         </>
       )}
 
-      {/* Modal */}
       {selectedMember && (
         <CorrectionModal 
           memberId={selectedMember.id}
