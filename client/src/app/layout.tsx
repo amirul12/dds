@@ -19,7 +19,17 @@ const fontSerif = Noto_Serif_Bengali({
 
 export const metadata: Metadata = {
   title: "ঢাকাস্থ দেবহাটা উপজেলা সমিতি",
-  description: "ঢাকাস্থ দেবহাটা উপজেলা সমিতির অফিসিয়াল ওয়েবসাইট",
+  description: "ঢাকাস্থ দেবহাটা উপজেলা সমিতির অফিসিয়াল ওয়েবসাইট",
+  icons: {
+    icon: "/images/logo.png",
+    apple: "/images/apple-touch-icon.png",
+  },
+  openGraph: {
+    title: "ঢাকাস্থ দেবহাটা উপজেলা সমিতি",
+    description: "ঢাকাস্থ দেবহাটা উপজেলা সমিতির অফিসিয়াল ওয়েবসাইট",
+    images: ["/images/logo.png"],
+    type: "website",
+  },
 };
 
 export default async function RootLayout({

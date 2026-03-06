@@ -1,5 +1,6 @@
 import type { NavLink } from "@/types";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { MobileNavbar } from "@/components/custom/mobile-navbar";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
@@ -31,16 +32,14 @@ export function Header({ data }: Readonly<HeaderProps>) {
     <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-primary/10 shadow-sm">
       <div className="container flex items-center justify-between gap-10 py-4">
         <Link href="/" className="flex items-center gap-3">
-          <svg viewBox="0 0 238 238" fill="none" className="size-8 text-primary">
-            <path
-              d="M236.738 121.995C236.743 125.448 236.415 128.865 235.749 132.25C235.077 135.635 234.082 138.922 232.764 142.109C231.441 145.297 229.822 148.328 227.9 151.193L162.816 217.651L211.41 119.203L159.988 67.7656L221.348 84.849C227.905 92.7969 236.738 101.88 236.738 121.995Z"
-              fill="currentColor"
-            />
-            <path
-              d="M2.13501 116.621C2.12459 113.173 3.12459 106.366L76.0517 20.9648L27.4631 119.418L78.8798 170.855L17.5204 153.767C10.9683 145.819 2.13501 136.736 2.13501 116.621Z"
-              fill="currentColor"
-            />
-          </svg>
+          <Image
+            src="/images/logo.png"
+            alt="দেবহাটা উপজেলা সমিতি লোগো"
+            width={44}
+            height={44}
+            className="rounded-full"
+            priority
+          />
           <span className="font-heading text-xl font-bold text-primary">{logoText}</span>
         </Link>
         <div className="flex items-center gap-10">

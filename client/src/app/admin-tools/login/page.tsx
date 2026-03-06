@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Lock, Loader2, Eye, EyeOff, Shield } from "lucide-react";
+import { Lock, Loader2, Eye, EyeOff } from "lucide-react";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 
@@ -63,9 +63,9 @@ export default function AdminLoginPage() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="inline-flex items-center justify-center w-20 h-20 bg-indigo-500/20 border border-indigo-500/30 rounded-3xl mb-4"
+            className="inline-flex items-center justify-center w-24 h-24 bg-white/10 border border-white/20 rounded-full mb-4 overflow-hidden"
           >
-            <Shield className="w-10 h-10 text-indigo-400" />
+            <img src="/images/logo.png" alt="দেবহাটা উপজেলা সমিতি লোগো" className="w-20 h-20 rounded-full object-contain" />
           </motion.div>
           <h1 className="text-3xl font-bold text-white">অ্যাডমিন প্যানেল</h1>
           <p className="text-slate-400 mt-2 text-sm">ঢাকাস্থ দেবহাটা উপজেলা সমিতি</p>

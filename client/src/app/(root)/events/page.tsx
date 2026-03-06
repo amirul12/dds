@@ -3,6 +3,7 @@ import { getEvents } from "@/data/loaders";
 import { RSVPForm } from "@/components/custom/RSVPForm";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { MarkdownText } from "@/components/custom/markdown-text";
 
 export default async function EventsPage() {
   const response = await getEvents();
@@ -21,7 +22,7 @@ export default async function EventsPage() {
       </div>
 
       {mainEvent ? (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className={`grid grid-cols-1 ${mainEvent.showRegistration ? 'lg:grid-cols-2' : ''} gap-12 items-start`}>
           <div className="space-y-8">
             {mainEvent.image && (
               <div className="relative h-[300px] md:h-[400px] w-full rounded-2xl overflow-hidden shadow-xl">
@@ -50,8 +51,8 @@ export default async function EventsPage() {
                   <span>{mainEvent.location}</span>
                 </div>
               </div>
-              <div className="rich-text prose prose-indigo max-w-none">
-                {mainEvent.description}
+              <div className="rich-text prose prose-indigo dark:prose-invert max-w-none">
+                <MarkdownText content={mainEvent.description || ""} />
               </div>
               {mainEvent.mapLink && (
                 <div className="mt-8">
@@ -63,9 +64,11 @@ export default async function EventsPage() {
             </div>
           </div>
 
-          <div>
-            <RSVPForm eventId={mainEvent.id} eventTitle={mainEvent.title} />
-          </div>
+          {mainEvent.showRegistration && (
+            <div>
+              <RSVPForm eventId={mainEvent.id} eventTitle={mainEvent.title} />
+            </div>
+          )}
         </div>
       ) : (
         <div className="text-center py-20 bg-muted rounded-2xl border-2 border-dashed">

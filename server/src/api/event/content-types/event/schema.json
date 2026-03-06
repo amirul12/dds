@@ -48,6 +48,10 @@
             "type": "boolean",
             "default": true
         },
+        "showRegistration": {
+            "type": "boolean",
+            "default": false
+        },
         "registrations": {
             "type": "relation",
             "relation": "oneToMany",

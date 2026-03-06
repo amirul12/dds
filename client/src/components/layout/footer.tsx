@@ -27,11 +27,13 @@ export function Footer({ data }: Readonly<FooterProps>) {
           {/* Brand Column */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center gap-3">
-              <div className="size-12 bg-white rounded-full flex items-center justify-center p-2">
-                <svg viewBox="0 0 238 238" fill="none" className="text-primary size-full">
-                  <path d="M236.738 121.995C236.743 125.448 236.415 128.865 235.749 132.25C235.077 135.635 234.082 138.922 232.764 142.109C231.441 145.297 229.822 148.328 227.9 151.193C225.978 154.063 223.796 156.708 221.348 159.146L162.816 217.651C161.816 216.88 160.874 216.052 159.978 215.161L211.41 119.203L159.988 67.7656C160.712 24.3125 161.655 25.151 162.546 26.0469L221.348 84.849C223.796 87.2813 227.905 92.7969 236.738 121.995Z" fill="currentColor" />
-                </svg>
-              </div>
+              <Image
+                src="/images/logo.png"
+                alt="দেবহাটা উপজেলা সমিতি লোগো"
+                width={56}
+                height={56}
+                className="rounded-full bg-white p-1"
+              />
               <span className="text-2xl font-serif font-bold tracking-tight">ঢাকাস্থ দেবহাটা <br/>উপজেলা সমিতি</span>
             </Link>
             <p className="text-white/70 leading-relaxed text-sm">

@@ -194,9 +194,7 @@ export default function ImportMembersPage() {
       <div className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-3xl mx-auto px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 bg-indigo-500/20 rounded-lg">
-              <Users className="w-4 h-4 text-indigo-400" />
-            </div>
+            <img src="/images/logo.png" alt="লোগো" className="w-8 h-8 rounded-full" />
             <span className="text-white font-semibold text-sm">অ্যাডমিন প্যানেল</span>
           </div>
           <div className="flex items-center gap-3">
