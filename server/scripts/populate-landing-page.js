@@ -85,8 +85,8 @@ module.exports = async ({ strapi }) => {
       // 3. Section Heading
       {
         __component: "layout.section-heading",
-        title: "আমাদের অর্জন ও কার্যক্রম",
-        subtitle: "দেবহাটা উপজেলা সমিতির অগ্রযাত্রা"
+        heading: "আমাদের অর্জন ও কার্যক্রম",
+        subHeading: "দেবহাটা উপজেলা সমিতির অগ্রযাত্রা"
       },
       // 4. Stats
       {
