@@ -28,7 +28,10 @@
         "layout.content-with-image",
         "layout.quick-actions",
         "layout.stats",
-        "layout.spotlight"
+        "layout.spotlight",
+        "layout.objectives",
+        "blocks.text",
+        "blocks.video"
       ]
     }
   }

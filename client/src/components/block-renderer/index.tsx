@@ -12,6 +12,7 @@ import { HeroSlider } from "@/components/sections/HeroSlider";
 import { Stats } from "@/components/sections/Stats";
 import { QuickActions } from "@/components/sections/QuickActions";
 import { Spotlight } from "@/components/block-renderer/layout/spotlight";
+import { Objectives } from "@/components/block-renderer/layout/objectives";
 
 function blockRenderer(block: Block, index: number) {
   switch (block.__component) {
@@ -23,6 +24,8 @@ function blockRenderer(block: Block, index: number) {
       return <SectionHeading key={index} {...block} />;
     case "layout.content-with-image":
       return <ContentWithImage key={index} {...block} />;
+    case "layout.objectives":
+      return <Objectives key={index} {...block} />;
 
     case "blocks.video":
       return <Video key={index} {...block} />;

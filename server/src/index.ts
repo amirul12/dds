@@ -5,7 +5,6 @@ export default {
   register() {},
 
   async bootstrap({ strapi }: { strapi: any }) {
-    /*
     try {
       console.log("Bootstrap: Running Comprehensive Population Script...");
       const scriptPath = path.join(process.cwd(), 'scripts', 'populate-landing-page.js');
@@ -14,7 +13,6 @@ export default {
     } catch (error) {
       console.error("Bootstrap Error:", error);
     }
-    */
 
     /*
     try {

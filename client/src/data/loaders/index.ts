@@ -78,6 +78,19 @@ export async function getLandingPage() {
               },
             },
           },
+          "layout.objectives": {
+            populate: "*",
+          },
+          "blocks.text": {
+            populate: "*",
+          },
+          "blocks.video": {
+            populate: {
+              image: {
+                fields: ["url", "alternativeText", "name"],
+              },
+            },
+          },
         },
       },
     },

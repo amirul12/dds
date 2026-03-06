@@ -16,6 +16,7 @@ type ComponentType =
   | "layout.quick-actions"
   | "layout.stats"
   | "layout.spotlight"
+  | "layout.objectives"
   | "blocks.video"
   | "blocks.text";
 
@@ -34,7 +35,7 @@ export interface NavLink {
   isPrimary: boolean;
 }
 
-export type Block = HeroProps | CardGridProps | SectionHeadingProps | ContentWithImageProps | VideoProps | TextProps | HeroSliderProps | QuickActionsProps | StatsProps | SpotlightProps;
+export type Block = HeroProps | CardGridProps | SectionHeadingProps | ContentWithImageProps | VideoProps | TextProps | HeroSliderProps | QuickActionsProps | StatsProps | SpotlightProps | ObjectivesProps;
 
 export interface HeroProps extends Base<"layout.hero"> {
   heading: string;
@@ -151,4 +152,11 @@ export interface GalleryItem {
     name: string;
   };
   isActive: boolean;
+}
+export interface ObjectivesProps extends Base<"layout.objectives"> {
+  title: string;
+  items: {
+    id: number;
+    content: string;
+  }[];
 }
