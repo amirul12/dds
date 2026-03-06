@@ -155,8 +155,5 @@ export interface GalleryItem {
 }
 export interface ObjectivesProps extends Base<"layout.objectives"> {
   title: string;
-  items: {
-    id: number;
-    content: string;
-  }[];
+  content: string;
 }

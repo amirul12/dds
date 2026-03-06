@@ -1,19 +1,13 @@
 import React from "react";
-import { cn } from "@/lib/utils";
 import { MarkdownText } from "../../custom/markdown-text";
-
-interface ObjectiveItem {
-  id: number;
-  content: string;
-}
 
 interface ObjectivesProps {
   title?: string;
-  items: ObjectiveItem[];
+  content: string;
 }
 
-export function Objectives({ title, items }: Readonly<ObjectivesProps>) {
-  if (!items || items.length === 0) return null;
+export function Objectives({ title, content }: Readonly<ObjectivesProps>) {
+  if (!content) return null;
 
   return (
     <section className="py-20 bg-slate-50 dark:bg-slate-900/50">
@@ -28,22 +22,10 @@ export function Objectives({ title, items }: Readonly<ObjectivesProps>) {
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {items.map((item, index) => (
-              <div 
-                key={item.id} 
-                className="bg-background p-6 rounded-2xl border border-primary/10 shadow-sm hover:shadow-md transition-shadow flex gap-4"
-              >
-                <div className="size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold flex-shrink-0 mt-1">
-                  {String.fromCharCode(2433 + index)} {/* Bengali characters 0-based offset 2433 = 'ক' in some fonts, or just use index */}
-                  {/* Better: use a helper or just index in Bengali */}
-                  {["ক", "খ", "গ", "ঘ", "ঙ", "চ", "ছ", "জ", "ঝ", "ঞ", "ট", "ঠ", "ড", "ঢ", "ণ"][index] || (index + 1)}
-                </div>
-                <div className="flex-1 text-muted-foreground prose prose-slate max-w-none prose-p:leading-relaxed prose-p:m-0">
-                  <MarkdownText content={item.content} />
-                </div>
-              </div>
-            ))}
+          <div className="bg-background p-8 md:p-12 rounded-3xl border border-primary/10 shadow-sm transition-shadow">
+            <div className="prose prose-slate dark:prose-invert max-w-none prose-p:leading-loose prose-p:text-lg text-muted-foreground">
+              <MarkdownText content={content} />
+            </div>
           </div>
         </div>
       </div>

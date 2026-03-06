@@ -34,6 +34,10 @@ export interface AdminApiToken extends Struct.CollectionTypeSchema {
         minLength: 1;
       }> &
       Schema.Attribute.DefaultTo<''>;
+    encryptedKey: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     expiresAt: Schema.Attribute.DateTime;
     lastUsedAt: Schema.Attribute.DateTime;
     lifespan: Schema.Attribute.BigInteger;
@@ -196,6 +200,63 @@ export interface AdminRole extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     users: Schema.Attribute.Relation<'manyToMany', 'admin::user'>;
+  };
+}
+
+export interface AdminSession extends Struct.CollectionTypeSchema {
+  collectionName: 'strapi_sessions';
+  info: {
+    description: 'Session Manager storage';
+    displayName: 'Session';
+    name: 'Session';
+    pluralName: 'sessions';
+    singularName: 'session';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+    i18n: {
+      localized: false;
+    };
+  };
+  attributes: {
+    absoluteExpiresAt: Schema.Attribute.DateTime & Schema.Attribute.Private;
+    childId: Schema.Attribute.String & Schema.Attribute.Private;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    deviceId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Private;
+    expiresAt: Schema.Attribute.DateTime &
+      Schema.Attribute.Required &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'admin::session'> &
+      Schema.Attribute.Private;
+    origin: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    sessionId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Private &
+      Schema.Attribute.Unique;
+    status: Schema.Attribute.String & Schema.Attribute.Private;
+    type: Schema.Attribute.String & Schema.Attribute.Private;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    userId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Private;
   };
 }
 
@@ -369,6 +430,47 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAdInquiryAdInquiry extends Struct.CollectionTypeSchema {
+  collectionName: 'ad_inquiries';
+  info: {
+    description: 'Inquiries for advertisements in Smaranika';
+    displayName: 'Ad Inquiry';
+    pluralName: 'ad-inquiries';
+    singularName: 'ad-inquiry';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    adSize: Schema.Attribute.Enumeration<
+      ['Full Page', 'Half Page', 'Quarter Page', 'Inside Cover', 'Back Cover']
+    > &
+      Schema.Attribute.DefaultTo<'Full Page'>;
+    contactPerson: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ad-inquiry.ad-inquiry'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    orgName: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Enumeration<
+      ['New', 'Contacted', 'Confirmed', 'Cancelled']
+    > &
+      Schema.Attribute.DefaultTo<'New'>;
+    submittedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -392,6 +494,201 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     text: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCommitteeMemberCommitteeMember
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'committee_members';
+  info: {
+    description: 'Members of various committees';
+    displayName: 'Committee Member';
+    pluralName: 'committee-members';
+    singularName: 'committee-member';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    committeeType: Schema.Attribute.Enumeration<
+      ['Executive', 'Smaranika', 'Advisory', 'Ad-hoc']
+    > &
+      Schema.Attribute.DefaultTo<'Executive'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    designation: Schema.Attribute.String & Schema.Attribute.Required;
+    facebookUrl: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::committee-member.committee-member'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    phone: Schema.Attribute.String;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    union: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCorrectionRequestCorrectionRequest
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'correction_requests';
+  info: {
+    description: 'Requests from members to correct their directory information';
+    displayName: 'Correction Request';
+    pluralName: 'correction-requests';
+    singularName: 'correction-request';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    adminComment: Schema.Attribute.Text;
+    correctInfo: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::correction-request.correction-request'
+    > &
+      Schema.Attribute.Private;
+    member: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::member-directory.member-directory'
+    >;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    proof: Schema.Attribute.Media<'images' | 'files'>;
+    publishedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Enumeration<['Pending', 'Resolved', 'Rejected']> &
+      Schema.Attribute.DefaultTo<'Pending'>;
+    submittedBy: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    wrongInfo: Schema.Attribute.Text;
+  };
+}
+
+export interface ApiEventRegistrationEventRegistration
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'event_registrations';
+  info: {
+    description: 'RSVP submissions for events';
+    displayName: 'Event Registration';
+    pluralName: 'event-registrations';
+    singularName: 'event-registration';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    event: Schema.Attribute.Relation<'manyToOne', 'api::event.event'>;
+    foodPreference: Schema.Attribute.Enumeration<['Iftar', 'Dinner', 'None']> &
+      Schema.Attribute.DefaultTo<'None'>;
+    guestCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<1>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::event-registration.event-registration'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    referenceId: Schema.Attribute.String & Schema.Attribute.Unique;
+    status: Schema.Attribute.Enumeration<
+      ['Confirmed', 'Pending', 'Cancelled']
+    > &
+      Schema.Attribute.DefaultTo<'Pending'>;
+    union: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEventEvent extends Struct.CollectionTypeSchema {
+  collectionName: 'events';
+  info: {
+    description: 'Samiti events and gatherings';
+    displayName: 'Event';
+    pluralName: 'events';
+    singularName: 'event';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dateTime: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    description: Schema.Attribute.RichText;
+    image: Schema.Attribute.Media<'images'>;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    mapLink: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    registrations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::event-registration.event-registration'
+    >;
+    rsvpDeadline: Schema.Attribute.DateTime;
+    showRegistration: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGalleryGallery extends Struct.CollectionTypeSchema {
+  collectionName: 'galleries';
+  info: {
+    description: 'Photo gallery items';
+    displayName: 'Gallery';
+    pluralName: 'galleries';
+    singularName: 'gallery';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::gallery.gallery'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -445,10 +742,16 @@ export interface ApiLandingPageLandingPage extends Struct.SingleTypeSchema {
     blocks: Schema.Attribute.DynamicZone<
       [
         'layout.hero',
+        'layout.hero-slider',
         'layout.card-grid',
         'layout.section-heading',
         'layout.content-with-image',
-        'layout.price-grid',
+        'layout.quick-actions',
+        'layout.stats',
+        'layout.spotlight',
+        'layout.objectives',
+        'blocks.text',
+        'blocks.video',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -463,6 +766,139 @@ export interface ApiLandingPageLandingPage extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMemberDirectoryMemberDirectory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'member_directories';
+  info: {
+    description: 'Directory of all members of the Samiti';
+    displayName: 'Member Directory';
+    pluralName: 'member-directories';
+    singularName: 'member-directory';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    correction_requests: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::correction-request.correction-request'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fatherName: Schema.Attribute.String;
+    isVerified: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::member-directory.member-directory'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String;
+    photo: Schema.Attribute.Media<'images'>;
+    presentJob: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.String;
+    serialNumber: Schema.Attribute.String & Schema.Attribute.Unique;
+    union: Schema.Attribute.Enumeration<
+      ['Debhata', 'Kulya', 'Parulia', 'Sakhra', 'Nalta', 'Debhata Sadar']
+    > &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMembershipApplicationMembershipApplication
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'membership_applications';
+  info: {
+    description: 'Submissions for joining as Life/General members';
+    displayName: 'Membership Application';
+    pluralName: 'membership-applications';
+    singularName: 'membership-application';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    bloodGroup: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    designation: Schema.Attribute.String;
+    dob: Schema.Attribute.Date;
+    education: Schema.Attribute.String;
+    email: Schema.Attribute.Email;
+    fatherName: Schema.Attribute.String;
+    jobAddress: Schema.Attribute.Text;
+    jobName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::membership-application.membership-application'
+    > &
+      Schema.Attribute.Private;
+    membershipType: Schema.Attribute.Enumeration<['Life', 'General']> &
+      Schema.Attribute.Required;
+    motherName: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    nid: Schema.Attribute.String;
+    organizations: Schema.Attribute.Text;
+    permanentAddress: Schema.Attribute.Text;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    presentAddress: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Enumeration<['Pending', 'Approved', 'Rejected']> &
+      Schema.Attribute.DefaultTo<'Pending'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNoticeNotice extends Struct.CollectionTypeSchema {
+  collectionName: 'notices';
+  info: {
+    description: 'Official notices and announcements';
+    displayName: 'Notice';
+    pluralName: 'notices';
+    singularName: 'notice';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    attachment: Schema.Attribute.Media<'images' | 'files' | 'videos', true>;
+    category: Schema.Attribute.Enumeration<
+      ['General', 'Smaranika', 'Meeting', 'Urgent']
+    > &
+      Schema.Attribute.DefaultTo<'General'>;
+    content: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    expiresAt: Schema.Attribute.DateTime;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    isUrgent: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::notice.notice'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -487,7 +923,6 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'layout.hero',
         'layout.content-with-image',
         'layout.card-grid',
-        'layout.price-grid',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -498,6 +933,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -518,6 +954,7 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    blocks: Schema.Attribute.DynamicZone<['blocks.video', 'blocks.text']>;
     category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
     content: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
@@ -529,6 +966,7 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::post.post'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -1043,12 +1481,22 @@ declare module '@strapi/strapi' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::permission': AdminPermission;
       'admin::role': AdminRole;
+      'admin::session': AdminSession;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::ad-inquiry.ad-inquiry': ApiAdInquiryAdInquiry;
       'api::category.category': ApiCategoryCategory;
+      'api::committee-member.committee-member': ApiCommitteeMemberCommitteeMember;
+      'api::correction-request.correction-request': ApiCorrectionRequestCorrectionRequest;
+      'api::event-registration.event-registration': ApiEventRegistrationEventRegistration;
+      'api::event.event': ApiEventEvent;
+      'api::gallery.gallery': ApiGalleryGallery;
       'api::global.global': ApiGlobalGlobal;
       'api::landing-page.landing-page': ApiLandingPageLandingPage;
+      'api::member-directory.member-directory': ApiMemberDirectoryMemberDirectory;
+      'api::membership-application.membership-application': ApiMembershipApplicationMembershipApplication;
+      'api::notice.notice': ApiNoticeNotice;
       'api::page.page': ApiPagePage;
       'api::post.post': ApiPostPost;
       'plugin::content-releases.release': PluginContentReleasesRelease;

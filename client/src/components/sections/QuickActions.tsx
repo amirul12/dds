@@ -3,18 +3,33 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Users, Bell, Calendar, Briefcase, Book, Phone } from "lucide-react";
+import { Users, Bell, Calendar, Briefcase, Book, Phone, UserPlus } from "lucide-react";
 import type { QuickActionsProps } from "@/types";
 
 function getIcon(iconName: string, className: string) {
-  switch (iconName) {
+  const name = iconName.toLowerCase();
+  switch (name) {
     case "users": return <Users className={className} />;
     case "bell": return <Bell className={className} />;
     case "calendar": return <Calendar className={className} />;
     case "briefcase": return <Briefcase className={className} />;
     case "book": return <Book className={className} />;
     case "phone": return <Phone className={className} />;
+    case "membership": case "userplus": return <UserPlus className={className} />;
     default: return <Users className={className} />;
+  }
+}
+
+function getColor(colorName: string) {
+  const name = colorName?.toLowerCase() || "primary";
+  switch (name) {
+    case "blue": return "bg-blue-100 text-blue-600";
+    case "amber": return "bg-amber-100 text-amber-600";
+    case "green": return "bg-emerald-100 text-emerald-600";
+    case "rose": return "bg-rose-100 text-rose-600";
+    case "purple": return "bg-purple-100 text-purple-600";
+    case "emerald": return "bg-teal-100 text-teal-600";
+    default: return "bg-primary/10 text-primary";
   }
 }
 
@@ -43,7 +58,7 @@ export function QuickActions(data: Readonly<QuickActionsProps>) {
                 href={action.href}
                 className="group flex flex-col p-8 rounded-2xl border bg-card hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all h-full"
               >
-                <div className={`size-16 ${action.color || "bg-primary/10 text-primary"} rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 group-hover:rotate-3`}>
+                <div className={`size-16 ${getColor(action.color)} rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 group-hover:rotate-3`}>
                   {getIcon(action.icon, "size-8")}
                 </div>
                 <h3 className="text-2xl font-bold mb-3 font-serif group-hover:text-primary transition-colors">{action.title}</h3>

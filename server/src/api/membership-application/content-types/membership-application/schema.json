@@ -1,0 +1,80 @@
+{
+  "kind": "collectionType",
+  "collectionName": "membership_applications",
+  "info": {
+    "singularName": "membership-application",
+    "pluralName": "membership-applications",
+    "displayName": "Membership Application",
+    "description": "Submissions for joining as Life/General members"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "membershipType": {
+      "type": "enumeration",
+      "enum": [
+        "Life",
+        "General"
+      ],
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "dob": {
+      "type": "date"
+    },
+    "fatherName": {
+      "type": "string"
+    },
+    "motherName": {
+      "type": "string"
+    },
+    "permanentAddress": {
+      "type": "text"
+    },
+    "presentAddress": {
+      "type": "text"
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email"
+    },
+    "education": {
+      "type": "string"
+    },
+    "bloodGroup": {
+      "type": "string"
+    },
+    "nid": {
+      "type": "string"
+    },
+    "jobName": {
+      "type": "string"
+    },
+    "designation": {
+      "type": "string"
+    },
+    "jobAddress": {
+      "type": "text"
+    },
+    "organizations": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Pending",
+        "Approved",
+        "Rejected"
+      ],
+      "default": "Pending"
+    }
+  }
+}

@@ -2,6 +2,8 @@ import { getNotices, getLandingPage } from "@/data/loaders";
 import { LatestNotices } from "@/components/sections/LatestNotices";
 import { BlockRenderer } from "@/components/block-renderer";
 
+import Link from "next/link";
+
 export default async function Home() {
   const [noticesResponse, landingPageResponse] = await Promise.all([
     getNotices(3),
@@ -28,8 +30,12 @@ export default async function Home() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold">আপনি কি এখনও সমিতির সদস্য হননি?</h2>
           <p className="text-xl opacity-80 max-w-2xl mx-auto">সাতক্ষীরা জেলার আমাদের দেবহাটা উপজেলার প্রিয় মানুষদের সাথে যুক্ত হতে আজই নিবন্ধন করুন।</p>
           <div className="flex justify-center gap-4">
-            <button className="px-8 py-4 bg-secondary text-secondary-foreground font-bold rounded-full hover:scale-105 transition-transform shadow-xl">সদস্য আবেদন ফর্ম</button>
-            <button className="px-8 py-4 border border-white/30 rounded-full hover:bg-white/10 transition-all font-bold">পরিচালনা পর্ষদ</button>
+            <Link href="/membership-application">
+              <button className="px-8 py-4 bg-secondary text-secondary-foreground font-bold rounded-full hover:scale-105 transition-transform shadow-xl">সদস্য আবেদন ফর্ম</button>
+            </Link>
+            <Link href="/committee">
+              <button className="px-8 py-4 border border-white/30 rounded-full hover:bg-white/10 transition-all font-bold">পরিচালনা পর্ষদ</button>
+            </Link>
           </div>
         </div>
       </section>

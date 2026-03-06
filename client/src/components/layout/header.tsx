@@ -24,9 +24,10 @@ export function Header({ data }: Readonly<HeaderProps>) {
     { text: "কমিটি", href: "/committee", isExternal: false },
     { text: "গ্যালারি", href: "/gallery", isExternal: false },
     { text: "স্মরণিকা", href: "/smaranika", isExternal: false },
+    { text: "সদস্য আবেদন", href: "/membership-application", isExternal: false },
     { text: "যোগাযোগ", href: "/contact", isExternal: false },
   ];
-  const cta = data?.cta || { text: "সদস্য আবেদন", href: "/contact#form", isExternal: false };
+  const cta = data?.cta || { text: "সদস্য আবেদন", href: "/membership-application", isExternal: false };
   
   return (
     <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-primary/10 shadow-sm">

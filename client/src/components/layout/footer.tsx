@@ -65,6 +65,7 @@ export function Footer({ data }: Readonly<FooterProps>) {
               <li><Link href="/notices" className="hover:text-secondary hover:pl-2 transition-all">বিজ্ঞপ্তি বোর্ড</Link></li>
               <li><Link href="/events" className="hover:text-secondary hover:pl-2 transition-all">আসন্ন ইভেন্ট</Link></li>
               <li><Link href="/committee" className="hover:text-secondary hover:pl-2 transition-all">কার্যনির্বাহী কমিটি</Link></li>
+              <li><Link href="/membership-application" className="hover:text-secondary hover:pl-2 transition-all">সদস্য আবেদন ফরম</Link></li>
               <li><Link href="/smaranika" className="hover:text-secondary hover:pl-2 transition-all">স্মরণিকা প্রকল্প</Link></li>
             </ul>
           </div>

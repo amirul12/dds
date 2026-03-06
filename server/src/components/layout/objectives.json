@@ -2,7 +2,7 @@
   "collectionName": "components_layout_objectives",
   "info": {
     "displayName": "Objectives",
-    "description": "List of mission and objectives"
+    "description": "Simple markdown objectives section"
   },
   "options": {},
   "attributes": {
@@ -10,10 +10,8 @@
       "type": "string",
       "default": "সমিতির লক্ষ্য ও উদ্দেশ্য"
     },
-    "items": {
-      "type": "component",
-      "repeatable": true,
-      "component": "blocks.text"
+    "content": {
+      "type": "richtext"
     }
   }
 }
