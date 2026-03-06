@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  cacheComponents: true,
+  // cacheComponents: true,
   images: {
     ...(process.env.NODE_ENV === 'development' && {
       unoptimized: true,
