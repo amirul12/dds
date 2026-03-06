@@ -23,7 +23,10 @@
         "calendar",
         "briefcase",
         "book",
-        "phone"
+        "phone",
+        "membership",
+        "userplus",
+        "shield"
       ]
     },
     "color": {

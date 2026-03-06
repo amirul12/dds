@@ -85,12 +85,12 @@ module.exports = async ({ strapi }) => {
       {
         __component: "layout.quick-actions",
         actions: [
-          { title: 'সদস্য তালিকা', icon: 'Users', href: '/directory', color: 'blue', desc: 'আমাদের সকল নিবন্ধিত সদস্যের তথ্য দেখুন।' },
+          { title: 'সদস্য তালিকা', icon: 'users', href: '/directory', color: 'blue', desc: 'আমাদের সকল নিবন্ধিত সদস্যের তথ্য দেখুন।' },
           { title: 'সদস্য আবেদন', icon: 'membership', href: '/membership-application', color: 'rose', desc: 'সমিতির সদস্য হওয়ার জন্য অনলাইনে আবেদন করুন।' },
-          { title: 'বিজ্ঞপ্তি', icon: 'Bell', href: '/notices', color: 'amber', desc: 'সমিতির সর্বশেষ সকল খবর ও নোটিশ।' },
-          { title: 'ইভেন্ট', icon: 'Calendar', href: '/events', color: 'green', desc: 'আসন্ন সকল অনুষ্ঠান ও মিলনমেলা।' },
+          { title: 'বিজ্ঞপ্তি', icon: 'bell', href: '/notices', color: 'amber', desc: 'সমিতির সর্বশেষ সকল খবর ও নোটিশ।' },
+          { title: 'ইভেন্ট', icon: 'calendar', href: '/events', color: 'green', desc: 'আসন্ন সকল অনুষ্ঠান ও মিলনমেলা।' },
           { title: 'গ্যালারি', icon: 'book', href: '/gallery', color: 'purple', desc: 'আমাদের বিগত দিনের সুন্দর মুহূর্তগুলো।' },
-          { title: 'যোগাযোগ', icon: 'Phone', href: '/contact', color: 'emerald', desc: 'যেকোনো প্রয়োজনে আমাদের সাথে কথা বলুন।' }
+          { title: 'যোগাযোগ', icon: 'phone', href: '/contact', color: 'emerald', desc: 'যেকোনো প্রয়োজনে আমাদের সাথে কথা বলুন।' }
         ]
       },
       // 3. Section Heading
