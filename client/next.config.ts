@@ -15,12 +15,8 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '*.strapi.io',
+        hostname: '**',  // Allows images from your production Strapi URL
         pathname: '/uploads/**',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.strapiapp.com',
       },
     ],
   },
