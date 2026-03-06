@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { MarkdownText } from "@/components/custom/markdown-text";
 
+import { getStrapiMedia } from "@/lib/utils";
+
 export default async function EventsPage() {
   const response = await getEvents();
   const events = response.data;
@@ -27,7 +29,7 @@ export default async function EventsPage() {
             {mainEvent.image && (
               <div className="relative h-[300px] md:h-[400px] w-full rounded-2xl overflow-hidden shadow-xl">
                 <Image 
-                  src={process.env.STRAPI_BASE_URL + mainEvent.image.url} 
+                  src={getStrapiMedia(mainEvent.image.url) || ""} 
                   alt={mainEvent.title}
                   fill
                   className="object-cover"

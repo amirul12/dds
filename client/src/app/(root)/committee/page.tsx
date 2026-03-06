@@ -1,5 +1,6 @@
 import React from "react";
 import { getCommitteeMembers } from "@/data/loaders";
+import { getStrapiMedia } from "@/lib/utils";
 import Image from "next/image";
 
 export default async function CommitteePage() {
@@ -39,7 +40,7 @@ export default async function CommitteePage() {
                     <div className="relative size-40 md:size-48 lg:size-56 mx-auto mb-6 overflow-hidden rounded-full ring-4 ring-offset-4 ring-primary/10 transition-all group-hover:ring-primary/40">
                       {member.photo ? (
                         <Image 
-                          src={process.env.STRAPI_BASE_URL + member.photo.url} 
+                          src={getStrapiMedia(member.photo.url) || ""} 
                           alt={member.name}
                           fill
                           className="object-cover"

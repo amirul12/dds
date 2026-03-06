@@ -4,7 +4,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { StrapiImage } from "@/components/custom/strapi-image";
 import { CheckCircle, Phone, MapPin, Briefcase, User } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getStrapiURL } from "@/lib/utils";
 
 interface Member {
   id: number;
@@ -21,8 +21,6 @@ interface Member {
 }
 
 export function MemberCard({ member, onCorrect }: { member: Member; onCorrect: (id: number) => void }) {
-  const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-
   return (
     <div className="group relative bg-card text-card-foreground rounded-2xl border border-border/60 shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300 overflow-hidden flex flex-col">
       

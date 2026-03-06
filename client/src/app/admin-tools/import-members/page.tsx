@@ -20,7 +20,9 @@ import {
 } from "lucide-react";
 import { useAdminAuth } from "@/hooks/use-admin-auth";
 
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+import { getStrapiURL } from "@/lib/utils";
+
+const STRAPI_URL = getStrapiURL();
 
 const JSON_TEMPLATE = JSON.stringify(
   [
@@ -501,7 +503,7 @@ export default function ImportMembersPage() {
                   আরও আমদানি করুন
                 </button>
                 <a
-                  href="http://localhost:1337/admin/content-manager/collection-types/api::member-directory.member-directory"
+                  href={`${STRAPI_URL}/admin/content-manager/collection-types/api::member-directory.member-directory`}
                   target="_blank"
                   className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors"
                 >

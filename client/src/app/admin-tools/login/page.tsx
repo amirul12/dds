@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Lock, Loader2, Eye, EyeOff } from "lucide-react";
 
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+import { getStrapiURL } from "@/lib/utils";
+
+const STRAPI_URL = getStrapiURL();
 
 export default function AdminLoginPage() {
   const router = useRouter();

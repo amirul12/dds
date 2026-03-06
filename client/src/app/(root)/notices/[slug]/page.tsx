@@ -1,9 +1,9 @@
-import React from "react";
 import { getNoticeBySlug } from "@/data/loaders";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
+import { getStrapiMedia } from "@/lib/utils";
 
 export default async function NoticeDetailPage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
@@ -47,7 +47,7 @@ export default async function NoticeDetailPage({ params }: { params: { slug: str
               <div key={file.id} className="flex items-center justify-between bg-background p-3 rounded border shadow-sm">
                 <span className="text-sm font-medium truncate max-w-[200px] md:max-w-md">{file.name}</span>
                 <Button variant="outline" size="sm" asChild>
-                  <a href={process.env.STRAPI_BASE_URL + file.url} target="_blank" rel="noopener noreferrer">
+                  <a href={getStrapiMedia(file.url) || "#"} target="_blank" rel="noopener noreferrer">
                     ডাউনলোড করুন
                   </a>
                 </Button>
