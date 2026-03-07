@@ -18,6 +18,7 @@ const fontSerif = Noto_Serif_Bengali({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://debhatasamity.bmhbd.org"),
   title: "ঢাকাস্থ দেবহাটা উপজেলা সমিতি",
   description: "ঢাকাস্থ দেবহাটা উপজেলা সমিতির অফিসিয়াল ওয়েবসাইট",
   icons: {
