@@ -68,7 +68,7 @@ export function HeroSlider(data: Readonly<HeroSliderProps>) {
                             {slide.subtitle}
                           </span>
                         )}
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-tight drop-shadow-2xl">
+                        <h1 className="text-3xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-tight drop-shadow-2xl">
                           {slide.title}
                         </h1>
                       </motion.div>
@@ -79,7 +79,7 @@ export function HeroSlider(data: Readonly<HeroSliderProps>) {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -20 }}
                           transition={{ duration: 0.5, delay: 0.3 }}
-                          className="text-lg md:text-2xl text-white/80 max-w-2xl font-light leading-relaxed font-serif italic"
+                          className="text-base md:text-2xl text-white/80 max-w-2xl font-light leading-relaxed font-serif italic"
                         >
                           {slide.desc}
                         </motion.p>

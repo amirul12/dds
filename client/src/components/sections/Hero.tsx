@@ -27,10 +27,10 @@ export function Hero({ bannerImage }: { bannerImage: string }) {
           <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/20 text-secondary text-sm font-bold tracking-widest uppercase mb-6 backdrop-blur-md border border-secondary/30">
             ঐতিহ্য ও ভ্রাতৃত্বের বন্ধন
           </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-tight drop-shadow-2xl">
+          <h1 className="text-3xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-tight drop-shadow-2xl">
             ঢাকাস্থ দেবহাটা উপজেলা সমিতি
           </h1>
-          <p className="max-w-3xl mx-auto text-lg md:text-2xl text-white/80 mt-6 font-light drop-shadow-md">
+          <p className="max-w-3xl mx-auto text-base md:text-2xl text-white/80 mt-6 font-light drop-shadow-md">
             সাতক্ষীরা জেলার দেবহাটা উপজেলার ঢাকাস্থ বাসিন্দাদের এক মিলনমেলার ঠিকানা। সম্প্রীতি ও সেবার লক্ষ্যে আমরা অবিচল।
           </p>
         </motion.div>

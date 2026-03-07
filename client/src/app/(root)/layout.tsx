@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { Header, Footer } from "@/components/layout";
 import { getGlobalPageData, getUrgentNotices } from "@/data/loaders";
 import { NoticeTicker } from "@/components/custom/NoticeTicker";
+import { MobileBottomBar } from "@/components/custom/MobileBottomBar";
+import ClarityAnalytics from "@/components/analytics/ClarityAnalytics";
 
 export default async function RootLayout({
   children,
@@ -24,13 +26,15 @@ export default async function RootLayout({
   }));
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen pb-24 md:pb-0">
+      <ClarityAnalytics />
       <NoticeTicker notices={tickerNotices} />
       <Header data={topNav} />
       <main className="flex-1">
         {children}
       </main>
       <Footer data={footer} />
+      <MobileBottomBar />
     </div>
   );
 }

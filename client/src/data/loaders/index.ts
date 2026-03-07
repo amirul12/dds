@@ -15,6 +15,20 @@ export async function getGlobalPageData() {
   return landingPage;
 }
 
+export async function getAboutPageData() {
+  const page = await sdk.single("about-page").find({
+    populate: {
+      image: {
+        fields: ["url", "alternativeText", "name"],
+      },
+      seo: {
+        populate: "*",
+      },
+    },
+  });
+  return page;
+}
+
 export async function getLandingPage() {
   const landingPage = await sdk.single("landing-page").find({
     populate: {

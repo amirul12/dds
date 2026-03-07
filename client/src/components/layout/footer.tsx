@@ -61,6 +61,7 @@ export function Footer({ data }: Readonly<FooterProps>) {
           <div className="space-y-6 lg:ml-12">
             <h4 className="text-xl font-bold font-serif border-b-2 border-secondary inline-block pb-1">গুরুত্বপূর্ণ লিঙ্ক</h4>
             <ul className="space-y-3 text-sm">
+              <li><Link href="/about" className="hover:text-secondary hover:pl-2 transition-all">সমিতি পরিচিতি</Link></li>
               <li><Link href="/directory" className="hover:text-secondary hover:pl-2 transition-all">সদস্য ডিরেক্টরি</Link></li>
               <li><Link href="/notices" className="hover:text-secondary hover:pl-2 transition-all">বিজ্ঞপ্তি বোর্ড</Link></li>
               <li><Link href="/events" className="hover:text-secondary hover:pl-2 transition-all">আসন্ন ইভেন্ট</Link></li>

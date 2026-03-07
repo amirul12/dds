@@ -430,6 +430,43 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
+  collectionName: 'about_pages';
+  info: {
+    description: 'About Us content';
+    displayName: 'About Page';
+    pluralName: 'about-pages';
+    singularName: 'about-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    establishedYear: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u09E8\u09E6\u09E8\u09E8'>;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::about-page.about-page'
+    > &
+      Schema.Attribute.Private;
+    officeLocation: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u09A2\u09BE\u0995\u09BE'>;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u09B8\u09AE\u09BF\u09A4\u09BF \u09AA\u09B0\u09BF\u099A\u09BF\u09A4\u09BF'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiAdInquiryAdInquiry extends Struct.CollectionTypeSchema {
   collectionName: 'ad_inquiries';
   info: {
@@ -1485,6 +1522,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::about-page.about-page': ApiAboutPageAboutPage;
       'api::ad-inquiry.ad-inquiry': ApiAdInquiryAdInquiry;
       'api::category.category': ApiCategoryCategory;
       'api::committee-member.committee-member': ApiCommitteeMemberCommitteeMember;
