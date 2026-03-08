@@ -40,6 +40,7 @@ $RECYCLE.BIN/
 *.iso
 *.jar
 *.rar
+*.tar.gz
 *.com
 *.class
 *.dll
@@ -53,6 +54,7 @@ $RECYCLE.BIN/
 *.swm
 *.out
 *.pid
+seed-data.tar.gz
 
 ############################
 # Logs and databases
