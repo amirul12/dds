@@ -355,6 +355,35 @@ export async function getMemberById(documentId: string) {
   }
 }
 
+export async function getUnionStats(unions: string[]) {
+  try {
+    const stats: Record<string, number> = {};
+    let total = 0;
+    
+    // Fetch count for each union in parallel
+    const promises = unions.map(async (u) => {
+      const resp = await sdk.collection("member-directories").find({
+        filters: { union: u },
+        pagination: { pageSize: 1, page: 1 }
+      });
+      return { union: u, count: resp.meta?.pagination?.total || 0 };
+    });
+    
+    const results = await Promise.all(promises);
+    
+    for (const r of results) {
+      stats[r.union] = r.count;
+      total += r.count;
+    }
+    stats["all"] = total;
+    
+    return stats;
+  } catch (err) {
+    console.error("Failed to fetch union stats:", err);
+    return null;
+  }
+}
+
 export async function getGalleries() {
   const galleries = await sdk.collection("galleries").find({
     filters: {

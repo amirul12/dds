@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { getMemberDirectory } from "@/data/loaders";
+import { getMemberDirectory, getUnionStats } from "@/data/loaders";
 import { MemberCard } from "@/components/custom/MemberCard";
 import { CorrectionModal } from "@/components/custom/CorrectionModal";
 import { Input } from "@/components/ui/input";
@@ -24,6 +24,15 @@ export default function MemberDirectoryPage() {
   const [page, setPage] = useState(1);
   const [meta, setMeta] = useState<any>(null);
   const [selectedMember, setSelectedMember] = useState<any>(null);
+  const [unionStats, setUnionStats] = useState<Record<string, number> | null>(null);
+
+  useEffect(() => {
+    async function fetchStats() {
+      const stats = await getUnionStats(UNIONS.map(u => u.value));
+      setUnionStats(stats);
+    }
+    fetchStats();
+  }, []);
 
   const fetchMembers = async (q = "", u = "", p = 1) => {
     setLoading(true);
@@ -91,8 +100,36 @@ export default function MemberDirectoryPage() {
             </p>
           </div>
 
+          {/* Union Stats Decorations */}
+          {unionStats && (
+            <div className="mt-12 mb-4 flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+              <div 
+                onClick={() => setUnion("all")}
+                className={`flex items-center gap-2 px-4 py-2 rounded-2xl border cursor-pointer transition-all hover:-translate-y-1 ${union === "all" ? "bg-primary text-white border-primary shadow-lg shadow-primary/20" : "bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border-slate-200 dark:border-slate-700 hover:border-primary/50 text-slate-700 dark:text-slate-300"}`}
+              >
+                <Users className="size-4" />
+                <span className="font-bold text-sm">সর্বমোট</span>
+                <span className={`px-2 py-0.5 rounded-full text-xs font-black ${union === "all" ? "bg-white/20 text-white" : "bg-primary/10 text-primary"}`}>
+                  {unionStats["all"] || 0}
+                </span>
+              </div>
+              {UNIONS.map(u => (
+                <div 
+                  key={u.value}
+                  onClick={() => setUnion(u.value)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-2xl border cursor-pointer transition-all hover:-translate-y-1 ${union === u.value ? "bg-primary text-white border-primary shadow-lg shadow-primary/20" : "bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border-slate-200 dark:border-slate-700 hover:border-primary/50 text-slate-700 dark:text-slate-300"}`}
+                >
+                  <span className="font-bold text-sm">{u.bn}</span>
+                  <span className={`px-2 py-0.5 rounded-full text-xs font-black ${union === u.value ? "bg-white/20 text-white" : "bg-primary/10 text-primary"}`}>
+                    {unionStats[u.value] || 0}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Elegant Search Bar */}
-          <div className="mt-12 max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <div className="bg-white dark:bg-slate-800 p-3 rounded-[2rem] shadow-2xl border border-slate-200 dark:border-slate-700">
               <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-3">
                 <div className="flex-1 relative group">
@@ -146,18 +183,6 @@ export default function MemberDirectoryPage() {
           </div>
         ) : (
           <>
-            {/* Show Total Union Count */}
-            {meta && meta.pagination && (
-              <div className="flex justify-between items-center mb-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-3xl shadow-sm">
-                <div className="text-slate-600 dark:text-slate-400 font-bold text-lg flex items-center gap-2">
-                  <Users className="size-5 text-primary" />
-                  {union !== "all" 
-                    ? <><span className="text-primary">{UNIONS.find(u => u.value === union)?.bn || union}</span> ইউনিয়নের সর্বমোট </> 
-                    : "সর্বমোট "} 
-                  <span className="text-3xl text-slate-900 dark:text-white mx-1 font-black">{meta.pagination.total}</span> জন সদস্য
-                </div>
-              </div>
-            )}
             {members && members.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {members.map((member) => (
