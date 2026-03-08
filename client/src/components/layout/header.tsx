@@ -29,6 +29,9 @@ export function Header({ data }: Readonly<HeaderProps>) {
     { text: "যোগাযোগ", href: "/contact", isExternal: false },
   ];
   const cta = data?.cta || { text: "সদস্য আবেদন", href: "/membership-application", isExternal: false };
+  if (cta.href === "/contact#form" || cta.text === "সদস্য আবেদন") {
+    cta.href = "/membership-application";
+  }
   
   return (
     <header className="sticky top-0 z-[1000] w-full bg-background/80 backdrop-blur-md border-b border-primary/10 shadow-sm">
