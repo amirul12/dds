@@ -4,10 +4,12 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { StrapiImage } from "@/components/custom/strapi-image";
 import { CheckCircle, Phone, MapPin, Briefcase, User } from "lucide-react";
+import Link from "next/link";
 import { cn, getStrapiURL } from "@/lib/utils";
 
 interface Member {
   id: number;
+  documentId?: string;
   name: string;
   membershipType?: "Life" | "General";
   overallSerial?: string;
@@ -152,28 +154,25 @@ export function MemberCard({ member, onCorrect }: { member: Member; onCorrect: (
       </div>
 
       {/* Footer Actions */}
-      <div className="mt-6 p-6 pt-0 flex gap-3">
+      <div className="mt-6 p-6 pt-0 flex gap-3 relative z-20">
+        <Button
+          variant="default"
+          size="sm"
+          className="flex-1 rounded-xl font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform"
+          asChild
+        >
+          <Link href={`/directory/${member.documentId || member.id}`}>
+             প্রোফাইল দেখুন
+          </Link>
+        </Button>
         <Button
           variant="outline"
           size="sm"
-          className="flex-1 rounded-xl font-bold bg-white dark:bg-slate-900 border-primary/20 hover:border-primary hover:bg-primary/5 transition-all"
+          className="flex-1 rounded-xl font-bold bg-white dark:bg-slate-900 border-primary/20 hover:border-primary hover:bg-primary/5 transition-all text-sm px-2"
           onClick={() => onCorrect(member.id)}
         >
           সংশোধন করুন
         </Button>
-        {member.phone && (
-          <Button
-            variant="default"
-            size="sm"
-            className="flex-1 rounded-xl font-bold shadow-lg shadow-primary/20"
-            asChild
-          >
-            <a href={`tel:${member.phone}`} className="flex items-center gap-2">
-              <Phone className="w-3.5 h-3.5" />
-              কল করুন
-            </a>
-          </Button>
-        )}
       </div>
     </div>
   );

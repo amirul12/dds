@@ -339,6 +339,22 @@ export async function getMemberDirectory(query = "", union = "", page = 1) {
   return members;
 }
 
+export async function getMemberById(documentId: string) {
+  try {
+    const member = await sdk.collection("member-directories").findOne(documentId, {
+      populate: {
+        photo: {
+          fields: ["url", "alternativeText"],
+        },
+      },
+    });
+    return member;
+  } catch (error) {
+    console.error("Error fetching member by ID:", error);
+    return null;
+  }
+}
+
 export async function getGalleries() {
   const galleries = await sdk.collection("galleries").find({
     filters: {
