@@ -16,6 +16,13 @@
             "type": "string",
             "required": true
         },
+        "membershipType": {
+            "type": "enumeration",
+            "enum": [
+                "Life",
+                "General"
+            ]
+        },
         "overallSerial": {
             "type": "string",
             "unique": true

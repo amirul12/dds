@@ -842,6 +842,7 @@ export interface ApiMemberDirectoryMemberDirectory
       'api::member-directory.member-directory'
     > &
       Schema.Attribute.Private;
+    membershipType: Schema.Attribute.Enumeration<['Life', 'General']>;
     motherName: Schema.Attribute.String;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     nid: Schema.Attribute.String;

@@ -96,6 +96,14 @@ export default ({ strapi }: { strapi: any }) => ({
           const designation = String(getColValue(['বর্তমান চাকরির পদ', 'Present Job Designation', 'designation', 'role'])).replace(/\r\n|\n/g, '').trim();
           const organizations = String(getColValue(['অন্যান্য সামাজিক প্রতিষ্ঠান', 'Other Social Organizations', 'organizations'])).replace(/\r\n|\n/g, '').trim();
 
+          const membershipTypeRaw = String(getColValue(['সদস্য পদের ধরণ', 'সদস্যের ধরন', 'Membership Type', 'membershipType'])).replace(/\r\n|\n/g, '').trim();
+          let membershipType = undefined;
+          if (membershipTypeRaw.includes('আজীবন') || membershipTypeRaw.toLowerCase().includes('life')) {
+            membershipType = 'Life';
+          } else if (membershipTypeRaw.includes('সাধারণ') || membershipTypeRaw.toLowerCase().includes('general')) {
+            membershipType = 'General';
+          }
+
           // Map union name
           const union = UNION_MAP[unionRaw] || 'Debhata';
 
@@ -129,24 +137,25 @@ export default ({ strapi }: { strapi: any }) => ({
 
           const data = {
             name,
+            membershipType,
             overallSerial: overallSerial || undefined,
-            thanaSerial,
-            fatherName,
-            motherName,
-            dob,
-            village,
+            thanaSerial: thanaSerial || undefined,
+            fatherName: fatherName || undefined,
+            motherName: motherName || undefined,
+            dob: dob || undefined,
+            village: village || undefined,
             union,
-            permanentAddress,
-            presentAddress,
-            email,
-            phone,
-            education,
-            bloodGroup,
-            nid,
-            presentJob,
-            presentWorkplace,
-            designation,
-            organizations,
+            permanentAddress: permanentAddress || undefined,
+            presentAddress: presentAddress || undefined,
+            email: email || undefined,
+            phone: phone || undefined,
+            education: education || undefined,
+            bloodGroup: bloodGroup || undefined,
+            nid: nid || undefined,
+            presentJob: presentJob || undefined,
+            presentWorkplace: presentWorkplace || undefined,
+            designation: designation || undefined,
+            organizations: organizations || undefined,
           };
 
           if (existing) {
@@ -263,6 +272,7 @@ export default ({ strapi }: { strapi: any }) => ({
     const headers = [
       'সামগ্রিক ক্রমিক নং',
       'থানা ভিত্তিক ক্রমিক নং',
+      'সদস্য পদের ধরণ',
       'নাম',
       'পিতার নাম',
       'মাতার নাম',
@@ -283,7 +293,7 @@ export default ({ strapi }: { strapi: any }) => ({
     ];
 
     const sampleData = [
-      ['১', '১', 'মোঃ আব্দুল কাদের', 'মোঃ আব্দুল গাফফার', 'মোছাঃ আমেনা খাতুন', '1990-01-01', 'ভাতশালা', 'দেবহাটা ইউনিয়ন', 'ভাতশালা, দেবহাটা', 'উত্তরা, ঢাকা', 'test@example.com', '01912406634', 'মাঝার্স', 'B+', '1234567890', 'এস এম সোর্সিং', 'ঢাকা অফিস', 'সিনিয়র মার্চেন্ডাইজার', 'সদস্য, রোটারি ক্লাব'],
+      ['১', '১', 'আজীবন সদস্য', 'মোঃ আব্দুল কাদের', 'মোঃ আব্দুল গাফফার', 'মোছাঃ আমেনা খাতুন', '1990-01-01', 'ভাতশালা', 'দেবহাটা ইউনিয়ন', 'ভাতশালা, দেবহাটা', 'উত্তরা, ঢাকা', 'test@example.com', '01912406634', 'মাঝার্স', 'B+', '1234567890', 'এস এম সোর্সিং', 'ঢাকা অফিস', 'সিনিয়র মার্চেন্ডাইজার', 'সদস্য, রোটারি ক্লাব'],
     ];
 
     const wb = XLSX.utils.book_new();
@@ -299,5 +309,22 @@ export default ({ strapi }: { strapi: any }) => ({
     ctx.set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     ctx.set('Content-Disposition', 'attachment; filename="member-template.xlsx"');
     ctx.body = buffer;
+  },
+
+  async clean(ctx: any) {
+    try {
+      const members = await strapi.documents('api::member-directory.member-directory').findMany({ limit: 10000 });
+      let deletedCount = 0;
+      for (const m of members) {
+        if (m.documentId) {
+          await strapi.documents('api::member-directory.member-directory').delete({ documentId: m.documentId });
+          deletedCount++;
+        }
+      }
+      return ctx.send({ message: `Deleted ${deletedCount} members` });
+    } catch (e: any) {
+      console.error(e);
+      return ctx.badRequest('Failed to delete members', { details: e.message });
+    }
   },
 });

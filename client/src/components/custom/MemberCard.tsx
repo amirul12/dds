@@ -9,6 +9,7 @@ import { cn, getStrapiURL } from "@/lib/utils";
 interface Member {
   id: number;
   name: string;
+  membershipType?: "Life" | "General";
   overallSerial?: string;
   thanaSerial?: string;
   fatherName?: string;
@@ -67,8 +68,18 @@ export function MemberCard({ member, onCorrect }: { member: Member; onCorrect: (
         {/* Name block */}
         <div className="min-w-0 flex-1 pt-1">
           <div className="flex flex-wrap gap-1.5 mb-1.5">
+             {member.membershipType === "Life" && (
+               <span className="bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 text-[10px] uppercase font-black px-2 py-0.5 rounded-md border border-amber-200 dark:border-amber-800 tracking-wider shadow-sm">
+                 আজীবন সদস্য
+               </span>
+             )}
+             {member.membershipType === "General" && (
+               <span className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-400 text-[10px] uppercase font-black px-2 py-0.5 rounded-md border border-blue-200 dark:border-blue-800 tracking-wider shadow-sm">
+                 সাধারণ সদস্য
+               </span>
+             )}
              {member.overallSerial && (
-               <span className="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-md border border-primary/20">
+               <span className="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-md border border-primary/20 shadow-sm">
                  ID: {member.overallSerial}
                </span>
              )}

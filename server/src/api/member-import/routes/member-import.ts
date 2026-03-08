@@ -18,5 +18,11 @@ export default {
       handler: 'member-import.downloadTemplate',
       config: { policies: [], middlewares: [], auth: false },
     },
+    {
+      method: 'DELETE',
+      path: '/member-import/clean',
+      handler: 'member-import.clean',
+      config: { policies: [], middlewares: [], auth: false },
+    },
   ],
 };
