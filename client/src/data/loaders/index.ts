@@ -308,7 +308,7 @@ export async function getEvents() {
   return events;
 }
 
-export async function getMemberDirectory(query = "", union = "", page = 1) {
+export async function getMemberDirectory(query = "", union = "", page = 1, membershipType = "") {
   const filters: any = {};
   if (query) {
     filters.$or = [
@@ -317,10 +317,15 @@ export async function getMemberDirectory(query = "", union = "", page = 1) {
       { overallSerial: { $containsi: query } },
       { thanaSerial: { $containsi: query } },
       { phone: { $containsi: query } },
+      { village: { $containsi: query } },
+      { designation: { $containsi: query } },
     ];
   }
   if (union) {
     filters.union = union;
+  }
+  if (membershipType) {
+    filters.membershipType = membershipType;
   }
 
   const members = await sdk.collection("member-directories").find({

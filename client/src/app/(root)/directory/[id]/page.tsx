@@ -205,14 +205,14 @@ export default function MemberProfilePage() {
 
       {/* --- PRINT VIEW (ID CARD) --- */}
       {/* Hidden usually, display block only in @media print */}
-      <div className="hidden print:flex flex-col items-center justify-center w-[100vw] h-[100vh] bg-white m-0 p-0 absolute inset-0 z-50">
+      <div className="hidden print:flex flex-col items-center justify-center min-h-[100vh] w-full bg-white m-0 p-10 gap-10">
         
         {/* Front of ID Card */}
-        <div className="w-[86mm] h-[54mm] border-2 border-slate-200 rounded-xl overflow-hidden relative shadow-md bg-white flex flex-col page-break-after">
+        <div className="w-[86mm] h-[54mm] border-[0.5mm] border-slate-200 rounded-xl overflow-hidden relative shadow-md bg-white flex flex-col shrink-0">
             
             {/* Header */}
             <div className="bg-[#124b3a] text-white p-2 text-center flex flex-col items-center justify-center relative">
-               <h2 className="text-[12px] font-black leading-tight tracking-wide">ঢাকাস্থ দেবহাটা উপজেলা সমিতি</h2>
+               <h2 className="text-[11px] font-black leading-tight tracking-wide">ঢাকাস্থ দেবহাটা উপজেলা সমিতি</h2>
                <p className="text-[7px] text-white/80 uppercase tracking-widest mt-0.5">Dhaka Debhata Upazila Samiti</p>
             </div>
 
@@ -232,36 +232,81 @@ export default function MemberProfilePage() {
                 </div>
 
                 {/* Info Text */}
-                <div className="flex-1 z-10 space-y-1.5 flex flex-col justify-center">
-                   <h3 className="text-[13px] font-black text-[#124b3a] leading-tight font-serif">{member.name}</h3>
-                   {member.designation && <p className="text-[8px] font-bold text-slate-600 uppercase tracking-wide">{member.designation}</p>}
+                <div className="flex-1 z-10 space-y-1 flex flex-col justify-center">
+                   <h3 className="text-[12px] font-black text-[#124b3a] leading-tight font-serif line-clamp-1">{member.name}</h3>
+                   {member.designation && <p className="text-[7px] font-bold text-slate-600 uppercase tracking-wide line-clamp-1">{member.designation}</p>}
                    
                    <div className="space-y-0.5 mt-2">
                      <div className="text-[7.5px] text-slate-700 flex">
-                        <span className="font-bold w-12 flex-shrink-0">Member ID</span> 
+                        <span className="font-bold w-12 flex-shrink-0 text-slate-500 uppercase">M. ID</span> 
                         <span>: <span className="font-black text-rose-600">{member.overallSerial || "N/A"}</span></span>
                      </div>
                      <div className="text-[7.5px] text-slate-700 flex">
-                        <span className="font-bold w-12 flex-shrink-0">Mobile</span> 
+                        <span className="font-bold w-12 flex-shrink-0 text-slate-500 uppercase">Mobile</span> 
                         <span>: {member.phone || "N/A"}</span>
                      </div>
                      <div className="text-[7.5px] text-slate-700 flex">
-                        <span className="font-bold w-12 flex-shrink-0">Blood</span> 
-                        <span>: <span className="text-red-600 font-bold">{member.bloodGroup || "N/A"}</span></span>
+                        <span className="font-bold w-12 flex-shrink-0 text-slate-500 uppercase">Blood</span> 
+                        <span>: <span className="text-red-600 font-extrabold">{member.bloodGroup || "N/A"}</span></span>
                      </div>
                      <div className="text-[7.5px] text-slate-700 flex">
-                        <span className="font-bold w-12 flex-shrink-0">Union</span> 
+                        <span className="font-bold w-12 flex-shrink-0 text-slate-500 uppercase">Union</span> 
                         <span>: {member.union || "N/A"}</span>
                      </div>
                    </div>
                 </div>
+
+                {/* QR Code */}
+                <div className="absolute right-2 bottom-3 flex flex-col items-center">
+                    <div className="size-[12mm] border bg-white p-0.5 relative z-20">
+                      <img 
+                        src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`https://debhatasamiti.com/directory/${member.documentId}`)}`} 
+                        alt="Profile QR Code"
+                        className="w-full h-full"
+                      />
+                    </div>
+                    <span className="text-[5px] text-slate-400 mt-1 uppercase font-bold">Verify Profile</span>
+                </div>
             </div>
 
             {/* Footer */}
-            <div className="bg-[#124b3a] text-white px-3 py-1.5 flex justify-between items-center text-[7px] font-bold uppercase tracking-widest z-10">
+            <div className="bg-[#124b3a] text-white px-3 py-1.5 flex justify-between items-center text-[7.5px] font-black uppercase tracking-widest z-10">
                <span>{member.membershipType === 'Life' ? 'Life Member' : 'General Member'}</span>
-               <span>ID CARD</span>
+               <span>Official Identity Card</span>
             </div>
+        </div>
+
+        {/* Back of ID Card */}
+        <div className="w-[86mm] h-[54mm] border-[0.5mm] border-slate-200 rounded-xl overflow-hidden relative shadow-md bg-white flex flex-col shrink-0">
+           <div className="bg-[#124b3a] p-1.5 flex justify-center border-b border-white/10">
+              <img src="/images/logo.png" alt="Logo" className="h-6 w-auto bg-white rounded-full p-0.5" />
+           </div>
+           
+           <div className="flex-1 px-4 py-3 bg-[url('/noise.png')] bg-opacity-5">
+              <h4 className="text-[7px] font-black text-[#124b3a] uppercase tracking-widest border-b border-primary/20 pb-1 mb-2">Terms & Conditions</h4>
+              <ul className="list-disc pl-3 text-[5.5px] text-slate-600 space-y-1 font-medium leading-tight">
+                 <li>This card is property of Dhaka Debhata Upazila Samiti.</li>
+                 <li>If lost, please return to the office address mentioned below.</li>
+                 <li>This card is non-transferable and must be carried at all times.</li>
+                 <li>Any misuse of this card may result in membership cancellation.</li>
+                 <li>Verify membership status by scanning the QR code on the front.</li>
+              </ul>
+              
+              <div className="mt-4 pt-2 border-t border-slate-100 grid grid-cols-2 gap-2">
+                 <div>
+                    <h5 className="text-[5.5px] font-bold text-slate-400 uppercase mb-0.5">Office Address</h5>
+                    <p className="text-[5.5px] text-slate-700 leading-tight">House #10, Road #05, Block #A, Banasree, Rampura, Dhaka-1219.</p>
+                 </div>
+                 <div className="flex flex-col items-center justify-end pb-1 pr-2">
+                    <div className="border-b border-slate-800 w-full mb-1"></div>
+                    <span className="text-[5px] font-bold uppercase text-slate-500">Authorized Signature</span>
+                 </div>
+              </div>
+           </div>
+           
+           <div className="bg-primary px-3 py-1.5 text-center text-[6px] text-white/80 font-bold uppercase">
+              www.debhatasamity.org | Support: 01711-000000
+           </div>
         </div>
       </div>
     </div>

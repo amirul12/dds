@@ -21,6 +21,7 @@ export default function MemberDirectoryPage() {
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [union, setUnion] = useState<string>("all");
+  const [membershipType, setMembershipType] = useState<string>("all");
   const [page, setPage] = useState(1);
   const [meta, setMeta] = useState<any>(null);
   const [selectedMember, setSelectedMember] = useState<any>(null);
@@ -34,10 +35,15 @@ export default function MemberDirectoryPage() {
     fetchStats();
   }, []);
 
-  const fetchMembers = async (q = "", u = "", p = 1) => {
+  const fetchMembers = async (q = "", u = "", p = 1, mt = "all") => {
     setLoading(true);
     try {
-      const response = await getMemberDirectory(q, u === "all" ? "" : u, p);
+      const response = await getMemberDirectory(
+        q, 
+        u === "all" ? "" : u, 
+        p, 
+        mt === "all" ? "" : mt
+      );
       if (response && response.data) {
         setMembers(response.data);
         setMeta(response.meta || null);
@@ -55,13 +61,13 @@ export default function MemberDirectoryPage() {
   };
 
   useEffect(() => {
-    fetchMembers(query, union, page);
+    fetchMembers(query, union, page, membershipType);
   }, [page]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setPage(1);
-    fetchMembers(query, union, 1);
+    fetchMembers(query, union, 1, membershipType);
   };
 
   const handleCorrectionSubmit = async (data: any) => {
@@ -132,7 +138,7 @@ export default function MemberDirectoryPage() {
           <div className="max-w-4xl mx-auto">
             <div className="bg-white dark:bg-slate-800 p-3 rounded-[2rem] shadow-2xl border border-slate-200 dark:border-slate-700">
               <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-3">
-                <div className="flex-1 relative group">
+                <div className="flex-1 relative group min-w-0">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-slate-400 group-focus-within:text-primary transition-colors" />
                   <Input 
                     placeholder="নাম, পেশা বা আইডি দিয়ে খুঁজুন..." 
@@ -141,11 +147,17 @@ export default function MemberDirectoryPage() {
                     className="w-full h-14 pl-12 rounded-2xl border-none bg-slate-50 dark:bg-slate-900 focus-visible:ring-primary/20 text-lg font-medium"
                   />
                 </div>
-                <div className="w-full md:w-56 relative">
+                
+                {/* Union Selector */}
+                <div className="w-full md:w-48 relative shrink-0">
                   <Filter className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-slate-400 pointer-events-none" />
                   <select 
                     value={union} 
-                    onChange={(e) => setUnion(e.target.value)}
+                    onChange={(e) => {
+                      setUnion(e.target.value);
+                      setPage(1);
+                      fetchMembers(query, e.target.value, 1, membershipType);
+                    }}
                     className="w-full h-14 pl-10 pr-4 rounded-2xl border-none bg-slate-50 dark:bg-slate-900 text-sm font-bold focus:ring-2 focus:ring-primary/20 outline-none appearance-none cursor-pointer"
                   >
                     <option value="all">সব ইউনিয়ন</option>
@@ -154,7 +166,26 @@ export default function MemberDirectoryPage() {
                     ))}
                   </select>
                 </div>
-                <Button type="submit" className="h-14 px-8 rounded-2xl font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+
+                {/* Membership Type Selector */}
+                <div className="w-full md:w-36 relative shrink-0">
+                  <Users className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-slate-400 pointer-events-none" />
+                  <select 
+                    value={membershipType} 
+                    onChange={(e) => {
+                      setMembershipType(e.target.value);
+                      setPage(1);
+                      fetchMembers(query, union, 1, e.target.value);
+                    }}
+                    className="w-full h-14 pl-10 pr-4 rounded-2xl border-none bg-slate-50 dark:bg-slate-900 text-sm font-bold focus:ring-2 focus:ring-primary/20 outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="all">সব সদস্য</option>
+                    <option value="Life">আজীবন</option>
+                    <option value="General">সাধারণ</option>
+                  </select>
+                </div>
+
+                <Button type="submit" className="h-14 px-8 rounded-2xl font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform shrink-0">
                    খুঁজুন
                 </Button>
               </form>
