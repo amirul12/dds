@@ -1,102 +1,101 @@
 {
-  "kind": "collectionType",
-  "collectionName": "membership_applications",
-  "info": {
-    "singularName": "membership-application",
-    "pluralName": "membership-applications",
-    "displayName": "Membership Application",
-    "description": "Submissions for joining as Life/General members"
-  },
-  "options": {
-    "draftAndPublish": false
-  },
-  "pluginOptions": {},
-  "attributes": {
-    "membershipType": {
-      "type": "enumeration",
-      "enum": [
-        "Life",
-        "General"
-      ],
-      "required": true
+    "kind": "collectionType",
+    "collectionName": "membership_applications",
+    "info": {
+        "singularName": "membership-application",
+        "pluralName": "membership-applications",
+        "displayName": "Membership Application",
+        "description": "Submissions for joining as Life/General members"
     },
-    "name": {
-      "type": "string",
-      "required": true
+    "options": {
+        "draftAndPublish": false
     },
-    "fatherName": {
-      "type": "string"
-    },
-    "motherName": {
-      "type": "string"
-    },
-    "dob": {
-      "type": "date"
-    },
-    "village": {
-      "type": "string"
-    },
-    "union": {
-      "type": "enumeration",
-      "enum": [
-        "Debhata",
-        "Kulya",
-        "Parulia",
-        "Sakhra",
-        "Nalta",
-        "Debhata Sadar"
-      ],
-      "required": true
-    },
-    "permanentAddress": {
-      "type": "text"
-    },
-    "presentAddress": {
-      "type": "text"
-    },
-    "email": {
-      "type": "email"
-    },
-    "phone": {
-      "type": "string",
-      "required": true
-    },
-    "education": {
-      "type": "string"
-    },
-    "bloodGroup": {
-      "type": "string"
-    },
-    "nid": {
-      "type": "string"
-    },
-    "presentJob": {
-      "type": "string"
-    },
-    "presentWorkplace": {
-      "type": "string"
-    },
-    "designation": {
-      "type": "string"
-    },
-    "organizations": {
-      "type": "text"
-    },
-    "photo": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "status": {
-      "type": "enumeration",
-      "enum": [
-        "Pending",
-        "Approved",
-        "Rejected"
-      ],
-      "default": "Pending"
+    "pluginOptions": {},
+    "attributes": {
+        "membershipType": {
+            "type": "enumeration",
+            "enum": [
+                "Life",
+                "General"
+            ],
+            "required": true
+        },
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "fatherName": {
+            "type": "string"
+        },
+        "motherName": {
+            "type": "string"
+        },
+        "dob": {
+            "type": "date"
+        },
+        "village": {
+            "type": "string"
+        },
+        "union": {
+            "type": "enumeration",
+            "enum": [
+                "Debhata",
+                "Kulya",
+                "Parulia",
+                "Sakhipur",
+                "Nawapara"
+            ],
+            "required": true
+        },
+        "permanentAddress": {
+            "type": "text"
+        },
+        "presentAddress": {
+            "type": "text"
+        },
+        "email": {
+            "type": "email"
+        },
+        "phone": {
+            "type": "string",
+            "required": true
+        },
+        "education": {
+            "type": "string"
+        },
+        "bloodGroup": {
+            "type": "string"
+        },
+        "nid": {
+            "type": "string"
+        },
+        "presentJob": {
+            "type": "string"
+        },
+        "presentWorkplace": {
+            "type": "string"
+        },
+        "designation": {
+            "type": "string"
+        },
+        "organizations": {
+            "type": "text"
+        },
+        "photo": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "status": {
+            "type": "enumeration",
+            "enum": [
+                "Pending",
+                "Approved",
+                "Rejected"
+            ],
+            "default": "Pending"
+        }
     }
-  }
 }

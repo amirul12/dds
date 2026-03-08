@@ -7,16 +7,16 @@ import * as path from 'path';
 const UNION_MAP: Record<string, string> = {
   'দেবহাটা ইউনিয়ন': 'Debhata',
   'কুল্যা ইউনিয়ন': 'Kulya',
+  'কুলিয়া ইউনিয়ন': 'Kulya',
   'পারুলিয়া ইউনিয়ন': 'Parulia',
-  'সাকড়া ইউনিয়ন': 'Sakhra',
-  'নলতা ইউনিয়ন': 'Nalta',
-  'দেবহাটা সদর': 'Debhata Sadar',
+  'সখিপুর ইউনিয়ন': 'Sakhipur',
+  'নওয়াপাড়া ইউনিয়ন': 'Nawapara',
   'Debhata': 'Debhata',
   'Kulya': 'Kulya',
+  'Kulia': 'Kulya',
   'Parulia': 'Parulia',
-  'Sakhra': 'Sakhra',
-  'Nalta': 'Nalta',
-  'Debhata Sadar': 'Debhata Sadar',
+  'Sakhipur': 'Sakhipur',
+  'Nawapara': 'Nawapara',
 };
 
 export default ({ strapi }: { strapi: any }) => ({

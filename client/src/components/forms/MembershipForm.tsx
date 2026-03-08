@@ -8,12 +8,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { User, Phone, Mail, MapPin, Briefcase, Camera, CheckCircle, GraduationCap, Calendar, Heart, Fingerprint } from "lucide-react";
 
 const UNIONS = [
-  "Debhata",
-  "Kulya",
-  "Parulia",
-  "Sakhra",
-  "Nalta",
-  "Debhata Sadar"
+  { value: "Debhata", bn: "দেবহাটা" },
+  { value: "Kulya", bn: "কুল্যা" },
+  { value: "Parulia", bn: "পারুলিয়া" },
+  { value: "Sakhipur", bn: "সখিপুর" },
+  { value: "Nawapara", bn: "নওয়াপাড়া" }
 ];
 
 export function MembershipForm() {
@@ -258,7 +257,7 @@ export function MembershipForm() {
                 <Label className="font-bold text-slate-700 dark:text-slate-300">ইউনিয়ন *</Label>
                 <select name="union" required className="flex h-14 w-full rounded-2xl bg-slate-50 dark:bg-slate-800/50 border-transparent px-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 outline-none font-medium appearance-none">
                   <option value="">ইউনিয়ন নির্বাচন করুন</option>
-                  {UNIONS.map(u => <option key={u} value={u}>{u}</option>)}
+                  {UNIONS.map(u => <option key={u.value} value={u.value}>{u.bn} ইউনিয়ন</option>)}
                 </select>
               </div>
               <div className="space-y-3">

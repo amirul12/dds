@@ -857,7 +857,7 @@ export interface ApiMemberDirectoryMemberDirectory
     publishedAt: Schema.Attribute.DateTime;
     thanaSerial: Schema.Attribute.String;
     union: Schema.Attribute.Enumeration<
-      ['Debhata', 'Kulya', 'Parulia', 'Sakhra', 'Nalta', 'Debhata Sadar']
+      ['Debhata', 'Kulya', 'Parulia', 'Sakhipur', 'Nawapara']
     > &
       Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -911,7 +911,7 @@ export interface ApiMembershipApplicationMembershipApplication
     status: Schema.Attribute.Enumeration<['Pending', 'Approved', 'Rejected']> &
       Schema.Attribute.DefaultTo<'Pending'>;
     union: Schema.Attribute.Enumeration<
-      ['Debhata', 'Kulya', 'Parulia', 'Sakhra', 'Nalta', 'Debhata Sadar']
+      ['Debhata', 'Kulya', 'Parulia', 'Sakhipur', 'Nawapara']
     > &
       Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;

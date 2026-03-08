@@ -9,12 +9,11 @@ import { Button } from "@/components/ui/button";
 import { Search, Filter, Users, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const UNIONS = [
-  "Debhata",
-  "Kulya",
-  "Parulia",
-  "Sakhra",
-  "Nalta",
-  "Debhata Sadar"
+  { value: "Debhata", bn: "দেবহাটা" },
+  { value: "Kulya", bn: "কুল্যা" },
+  { value: "Parulia", bn: "পারুলিয়া" },
+  { value: "Sakhipur", bn: "সখিপুর" },
+  { value: "Nawapara", bn: "নওয়াপাড়া" }
 ];
 
 export default function MemberDirectoryPage() {
@@ -114,7 +113,7 @@ export default function MemberDirectoryPage() {
                   >
                     <option value="all">সব ইউনিয়ন</option>
                     {UNIONS.map((u) => (
-                      <option key={u} value={u}>{u} ইউনিয়ন</option>
+                      <option key={u.value} value={u.value}>{u.bn} ইউনিয়ন</option>
                     ))}
                   </select>
                 </div>
@@ -147,6 +146,18 @@ export default function MemberDirectoryPage() {
           </div>
         ) : (
           <>
+            {/* Show Total Union Count */}
+            {meta && meta.pagination && (
+              <div className="flex justify-between items-center mb-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-3xl shadow-sm">
+                <div className="text-slate-600 dark:text-slate-400 font-bold text-lg flex items-center gap-2">
+                  <Users className="size-5 text-primary" />
+                  {union !== "all" 
+                    ? <><span className="text-primary">{UNIONS.find(u => u.value === union)?.bn || union}</span> ইউনিয়নের সর্বমোট </> 
+                    : "সর্বমোট "} 
+                  <span className="text-3xl text-slate-900 dark:text-white mx-1 font-black">{meta.pagination.total}</span> জন সদস্য
+                </div>
+              </div>
+            )}
             {members && members.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {members.map((member) => (
@@ -181,12 +192,24 @@ export default function MemberDirectoryPage() {
                 >
                   <ChevronLeft className="size-6" />
                 </Button>
-                
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-black text-slate-400 uppercase tracking-widest">Page</span>
-                  <span className="text-2xl font-black text-primary">{page}</span>
-                  <span className="text-sm font-black text-slate-400">/</span>
-                  <span className="text-sm font-black text-slate-400">{meta.pagination.pageCount}</span>
+                <div className="flex items-center justify-center gap-2 flex-wrap max-w-2xl">
+                  {[...Array(meta.pagination.pageCount)].map((_, idx) => {
+                    const p = idx + 1;
+                    return (
+                      <Button
+                        key={p}
+                        variant={page === p ? "default" : "outline"}
+                        onClick={() => setPage(p)}
+                        className={`rounded-[14px] h-12 w-12 p-0 shadow-sm text-lg font-black transition-all hover:-translate-y-1 ${
+                          page === p 
+                            ? "bg-primary text-white shadow-primary/30" 
+                            : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-500 hover:text-primary hover:border-primary/50"
+                        }`}
+                      >
+                       {p}
+                      </Button>
+                    );
+                  })}
                 </div>
 
                 <Button 
