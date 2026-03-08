@@ -24,5 +24,11 @@ export default {
       handler: 'member-import.clean',
       config: { policies: [], middlewares: [], auth: false },
     },
+    {
+      method: 'POST',
+      path: '/member-import/upload-photos',
+      handler: 'member-import.uploadPhotos',
+      config: { policies: [], middlewares: [], auth: false },
+    },
   ],
 };

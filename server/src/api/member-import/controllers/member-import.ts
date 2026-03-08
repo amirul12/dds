@@ -1,6 +1,8 @@
 import { Core } from '@strapi/strapi';
 // @ts-ignore
 import * as XLSX from 'xlsx';
+import * as fs from 'fs';
+import * as path from 'path';
 
 const UNION_MAP: Record<string, string> = {
   'দেবহাটা ইউনিয়ন': 'Debhata',
@@ -325,6 +327,111 @@ export default ({ strapi }: { strapi: any }) => ({
     } catch (e: any) {
       console.error(e);
       return ctx.badRequest('Failed to delete members', { details: e.message });
+    }
+  },
+
+  async uploadPhotos(ctx: any) {
+    try {
+      const folderName = ctx.request.body?.folderName || "Kulia Union photo's_Done";
+      const dir = `/Volumes/Amirul/work/github/dds-debhata/server/public/members/${folderName}`;
+      if (!fs.existsSync(dir)) {
+        return ctx.badRequest('Directory not found');
+      }
+      
+      const files = fs.readdirSync(dir);
+      let successCount = 0;
+      let skipCount = 0;
+      let errorCount = 0;
+      const errorsList: string[] = [];
+
+      for (const file of files) {
+        if (file.endsWith('.pdf') || file.startsWith('.')) {
+          skipCount++;
+          continue;
+        }
+        
+        // Parse name like "D 01 01 ABDUL KADER.jpeg" or "K 103 09 Md. Mohsin.jpeg"
+        const match = file.match(/^[a-zA-Z]\s+(\d+)\s+(\d+)\s+(.*?)\.[a-zA-Z0-9]+$/i);
+        if (!match) {
+          errorsList.push(`Skipping unknown pattern: "${file}"`);
+          skipCount++;
+          continue;
+        }
+        
+        const overallSerial = parseInt(match[1], 10).toString();
+        
+        const existing = await strapi.documents('api::member-directory.member-directory').findFirst({
+          filters: { overallSerial },
+          populate: ['photo']
+        });
+        
+        if (!existing) {
+          errorsList.push(`Member not found for ID: ${overallSerial} - file: ${file}`);
+          errorCount++;
+          continue;
+        }
+
+        // Avoid re-uploading if they already have a photo
+        if (existing.photo && !ctx.request.body?.force) {
+          skipCount++;
+          continue;
+        }
+        const filePath = path.join(dir, file);
+        const stat = fs.statSync(filePath);
+        const buffer = fs.readFileSync(filePath);
+        let mimeType = 'image/jpeg';
+        if (file.toLowerCase().endsWith('.png')) mimeType = 'image/png';
+        else if (file.toLowerCase().endsWith('.heic')) mimeType = 'image/heic';
+        
+        try {
+          // Upload file using Strapi upload plugin
+          const uploadedFiles = await strapi.plugin('upload').service('upload').upload({
+            data: {},
+            files: {
+              buffer,
+              filepath: filePath,
+              path: filePath,
+              originalFilename: file,
+              name: file,
+              type: mimeType,
+              mimetype: mimeType,
+              size: stat.size,
+            },
+          });
+          
+          if (uploadedFiles && uploadedFiles.length > 0) {
+            // Using entityService to bypass Strapi 5 Document Service quirks for media relations
+            await strapi.entityService.update('api::member-directory.member-directory', existing.id, {
+              data: {
+                photo: uploadedFiles[0].id
+              }
+            });
+            
+            // Publish to ensure the newly attached media relation is visible instantly
+            await strapi.documents('api::member-directory.member-directory').publish({
+              documentId: existing.documentId
+            });
+            
+            successCount++;
+          } else {
+            throw new Error("Upload failed to return file");
+          }
+        } catch (err: any) {
+          errorsList.push(`Error uploading ${file}: ${err.message || err}`);
+          errorCount++;
+        }
+      }
+      
+      return ctx.send({
+        successCount,
+        skipCount,
+        errorCount,
+        errorsList
+      });
+      
+    } catch (e: any) {
+      console.error(e);
+      return ctx.badRequest('Upload process failed', { details: e.message });
     }
   },
 });
