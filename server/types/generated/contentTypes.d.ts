@@ -822,6 +822,7 @@ export interface ApiMemberDirectoryMemberDirectory
     draftAndPublish: true;
   };
   attributes: {
+    bloodGroup: Schema.Attribute.String;
     correction_requests: Schema.Attribute.Relation<
       'oneToMany',
       'api::correction-request.correction-request'
@@ -829,6 +830,10 @@ export interface ApiMemberDirectoryMemberDirectory
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    designation: Schema.Attribute.String;
+    dob: Schema.Attribute.Date;
+    education: Schema.Attribute.String;
+    email: Schema.Attribute.Email;
     fatherName: Schema.Attribute.String;
     isVerified: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -837,14 +842,19 @@ export interface ApiMemberDirectoryMemberDirectory
       'api::member-directory.member-directory'
     > &
       Schema.Attribute.Private;
-    location: Schema.Attribute.String;
+    motherName: Schema.Attribute.String;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+    nid: Schema.Attribute.String;
+    organizations: Schema.Attribute.Text;
+    overallSerial: Schema.Attribute.String & Schema.Attribute.Unique;
+    permanentAddress: Schema.Attribute.Text;
     phone: Schema.Attribute.String;
     photo: Schema.Attribute.Media<'images'>;
+    presentAddress: Schema.Attribute.Text;
     presentJob: Schema.Attribute.String;
+    presentWorkplace: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    role: Schema.Attribute.String;
-    serialNumber: Schema.Attribute.String & Schema.Attribute.Unique;
+    thanaSerial: Schema.Attribute.String;
     union: Schema.Attribute.Enumeration<
       ['Debhata', 'Kulya', 'Parulia', 'Sakhra', 'Nalta', 'Debhata Sadar']
     > &
@@ -852,6 +862,7 @@ export interface ApiMemberDirectoryMemberDirectory
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    village: Schema.Attribute.String;
   };
 }
 
@@ -877,8 +888,6 @@ export interface ApiMembershipApplicationMembershipApplication
     education: Schema.Attribute.String;
     email: Schema.Attribute.Email;
     fatherName: Schema.Attribute.String;
-    jobAddress: Schema.Attribute.Text;
-    jobName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -893,13 +902,21 @@ export interface ApiMembershipApplicationMembershipApplication
     organizations: Schema.Attribute.Text;
     permanentAddress: Schema.Attribute.Text;
     phone: Schema.Attribute.String & Schema.Attribute.Required;
+    photo: Schema.Attribute.Media<'images'>;
     presentAddress: Schema.Attribute.Text;
+    presentJob: Schema.Attribute.String;
+    presentWorkplace: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     status: Schema.Attribute.Enumeration<['Pending', 'Approved', 'Rejected']> &
       Schema.Attribute.DefaultTo<'Pending'>;
+    union: Schema.Attribute.Enumeration<
+      ['Debhata', 'Kulya', 'Parulia', 'Sakhra', 'Nalta', 'Debhata Sadar']
+    > &
+      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    village: Schema.Attribute.String;
   };
 }
 

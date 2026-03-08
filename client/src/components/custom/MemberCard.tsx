@@ -9,33 +9,47 @@ import { cn, getStrapiURL } from "@/lib/utils";
 interface Member {
   id: number;
   name: string;
+  overallSerial?: string;
+  thanaSerial?: string;
   fatherName?: string;
+  motherName?: string;
+  dob?: string;
+  village?: string;
   union: string;
+  permanentAddress?: string;
+  presentAddress?: string;
+  email?: string;
   phone?: string;
-  serialNumber?: string;
-  isVerified: boolean;
-  role?: string;
-  location?: string;
+  education?: string;
+  bloodGroup?: string;
+  nid?: string;
   presentJob?: string;
+  presentWorkplace?: string;
+  designation?: string;
+  organizations?: string;
+  isVerified: boolean;
   photo?: { url: string; alternativeText?: string };
 }
 
 export function MemberCard({ member, onCorrect }: { member: Member; onCorrect: (id: number) => void }) {
   return (
-    <div className="group relative bg-card text-card-foreground rounded-2xl border border-border/60 shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300 overflow-hidden flex flex-col">
+    <div className="group relative bg-card text-card-foreground rounded-2xl border border-border/60 shadow-sm hover:shadow-xl hover:border-primary/40 transition-all duration-500 overflow-hidden flex flex-col h-full bg-gradient-to-br from-white to-slate-50/50 dark:from-slate-900 dark:to-slate-900/50">
       
+      {/* Background patterns */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-primary/10 transition-colors" />
+
       {/* Verified badge */}
       {member.isVerified && (
-        <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-[10px] px-2 py-0.5 rounded-full font-bold">
-          <CheckCircle className="w-3 h-3" />
+        <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 bg-emerald-500/10 backdrop-blur-md border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-[10px] px-2.5 py-1 rounded-full font-bold shadow-sm">
+          <CheckCircle className="w-3.5 h-3.5" />
           যাচাইকৃত
         </div>
       )}
 
-      {/* Header with photo */}
-      <div className="p-5 pb-4 flex items-start gap-4">
+      {/* Header with photo & Basic Info */}
+      <div className="p-6 pb-4 flex items-start gap-4">
         {/* Avatar */}
-        <div className="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-muted border border-border/60 relative">
+        <div className="flex-shrink-0 w-20 h-20 rounded-2xl overflow-hidden bg-muted border-2 border-white dark:border-slate-800 shadow-lg relative group-hover:scale-105 transition-transform duration-500">
           {member.photo?.url ? (
             <StrapiImage
               src={member.photo.url}
@@ -45,69 +59,106 @@ export function MemberCard({ member, onCorrect }: { member: Member; onCorrect: (
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-primary/10">
-              <User className="w-8 h-8 text-primary/40" />
+              <User className="w-10 h-10 text-primary/40" />
             </div>
           )}
         </div>
 
         {/* Name block */}
         <div className="min-w-0 flex-1 pt-1">
-          <h3 className="text-lg font-bold text-primary font-serif leading-tight line-clamp-2">
+          <div className="flex flex-wrap gap-1.5 mb-1.5">
+             {member.overallSerial && (
+               <span className="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-md border border-primary/20">
+                 ID: {member.overallSerial}
+               </span>
+             )}
+             {member.thanaSerial && (
+               <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-bold px-2 py-0.5 rounded-md border border-slate-200 dark:border-slate-700">
+                 থানা সিরিয়াল: {member.thanaSerial}
+               </span>
+             )}
+          </div>
+          <h3 className="text-xl font-bold text-slate-900 dark:text-white font-serif leading-tight line-clamp-2 transition-colors group-hover:text-primary">
             {member.name}
           </h3>
-          {member.serialNumber && (
-            <p className="text-xs text-muted-foreground mt-0.5">সিরিয়াল নং: {member.serialNumber}</p>
+          {member.designation && (
+            <p className="text-sm font-medium text-primary/80 mt-1 line-clamp-1">{member.designation}</p>
           )}
         </div>
       </div>
 
-      {/* Details */}
-      <div className="px-5 space-y-2 text-sm flex-1">
+      {/* Details Grid */}
+      <div className="px-6 space-y-3.5 text-sm flex-1">
+        
+        {/* Father's Name */}
         {member.fatherName && (
-          <div className="flex items-start gap-2 text-muted-foreground">
-            <User className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-slate-400" />
-            <span><span className="font-semibold text-foreground/80">পিতা: </span>{member.fatherName}</span>
+          <div className="flex items-start gap-3 text-slate-600 dark:text-slate-400">
+            <User className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary/60" />
+            <div className="flex flex-col">
+              <span className="text-[10px] uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500">পিতার নাম</span>
+              <span className="font-medium text-slate-800 dark:text-slate-200">{member.fatherName}</span>
+            </div>
           </div>
         )}
 
-        {member.location && (
-          <div className="flex items-start gap-2 text-muted-foreground">
-            <MapPin className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-slate-400" />
-            <span>{member.location}{member.union ? `, ${member.union}` : ""}</span>
+        {/* Location / Village */}
+        {(member.village || member.union) && (
+          <div className="flex items-start gap-3 text-slate-600 dark:text-slate-400">
+            <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary/60" />
+            <div className="flex flex-col">
+              <span className="text-[10px] uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500">ঠিকানা</span>
+              <span className="font-medium text-slate-800 dark:text-slate-200">
+                {member.village && <span>{member.village}</span>}
+                {member.village && member.union && <span>, </span>}
+                {member.union && <span>{member.union} ইউনিয়ন</span>}
+              </span>
+            </div>
           </div>
         )}
 
-        {(member.presentJob || member.role) && (
-          <div className="flex items-start gap-2 text-muted-foreground">
-            <Briefcase className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-slate-400" />
-            <span className="line-clamp-2">
-              {member.role && <span className="font-medium text-foreground/80">{member.role}</span>}
-              {member.role && member.presentJob && " · "}
-              {member.presentJob && <span>{member.presentJob}</span>}
-            </span>
+        {/* Job / Company */}
+        {member.presentJob && (
+          <div className="flex items-start gap-3 text-slate-600 dark:text-slate-400">
+            <Briefcase className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary/60" />
+            <div className="flex flex-col">
+              <span className="text-[10px] uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500">কর্মস্থল</span>
+              <span className="font-medium text-slate-800 dark:text-slate-200 line-clamp-1">{member.presentJob}</span>
+            </div>
           </div>
         )}
+
+        {/* Blood Group & Phone (Mini row) */}
+        <div className="flex items-center gap-6 pt-1">
+          {member.bloodGroup && (
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                <span className="text-red-600 dark:text-red-400 text-xs font-black">{member.bloodGroup}</span>
+              </div>
+              <span className="text-xs font-bold text-slate-500">রক্তের গ্রুপ</span>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Actions */}
-      <div className="mt-5 px-5 pb-5 flex gap-2">
+      {/* Footer Actions */}
+      <div className="mt-6 p-6 pt-0 flex gap-3">
         <Button
           variant="outline"
           size="sm"
-          className="flex-1 text-xs border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+          className="flex-1 rounded-xl font-bold bg-white dark:bg-slate-900 border-primary/20 hover:border-primary hover:bg-primary/5 transition-all"
           onClick={() => onCorrect(member.id)}
         >
           সংশোধন করুন
         </Button>
         {member.phone && (
           <Button
-            variant="secondary"
+            variant="default"
             size="sm"
-            className="flex-1 text-xs"
+            className="flex-1 rounded-xl font-bold shadow-lg shadow-primary/20"
             asChild
           >
-            <a href={`tel:${member.phone}`} className="flex items-center gap-1.5">
-              <Phone className="w-3 h-3" />
+            <a href={`tel:${member.phone}`} className="flex items-center gap-2">
+              <Phone className="w-3.5 h-3.5" />
               কল করুন
             </a>
           </Button>

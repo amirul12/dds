@@ -16,7 +16,23 @@
             "type": "string",
             "required": true
         },
+        "overallSerial": {
+            "type": "string",
+            "unique": true
+        },
+        "thanaSerial": {
+            "type": "string"
+        },
         "fatherName": {
+            "type": "string"
+        },
+        "motherName": {
+            "type": "string"
+        },
+        "dob": {
+            "type": "date"
+        },
+        "village": {
             "type": "string"
         },
         "union": {
@@ -31,22 +47,38 @@
             ],
             "required": true
         },
+        "permanentAddress": {
+            "type": "text"
+        },
+        "presentAddress": {
+            "type": "text"
+        },
+        "email": {
+            "type": "email"
+        },
         "phone": {
             "type": "string"
         },
-        "serialNumber": {
-            "type": "string",
-            "unique": true
+        "education": {
+            "type": "string"
         },
-        "isVerified": {
-            "type": "boolean",
-            "default": false
+        "bloodGroup": {
+            "type": "string"
         },
-        "location": {
+        "nid": {
             "type": "string"
         },
         "presentJob": {
             "type": "string"
+        },
+        "presentWorkplace": {
+            "type": "string"
+        },
+        "designation": {
+            "type": "string"
+        },
+        "organizations": {
+            "type": "text"
         },
         "photo": {
             "type": "media",
@@ -55,8 +87,9 @@
                 "images"
             ]
         },
-        "role": {
-            "type": "string"
+        "isVerified": {
+            "type": "boolean",
+            "default": false
         },
         "correction_requests": {
             "type": "relation",

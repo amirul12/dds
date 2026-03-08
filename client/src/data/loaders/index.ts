@@ -314,7 +314,9 @@ export async function getMemberDirectory(query = "", union = "", page = 1) {
     filters.$or = [
       { name: { $containsi: query } },
       { fatherName: { $containsi: query } },
-      { serialNumber: { $containsi: query } },
+      { overallSerial: { $containsi: query } },
+      { thanaSerial: { $containsi: query } },
+      { phone: { $containsi: query } },
     ];
   }
   if (union) {
@@ -329,10 +331,10 @@ export async function getMemberDirectory(query = "", union = "", page = 1) {
       },
     },
     pagination: {
-      pageSize: 20,
+      pageSize: 21,
       page: page,
     },
-    sort: ["serialNumber:asc"],
+    sort: ["overallSerial:asc", "name:asc"],
   });
   return members;
 }

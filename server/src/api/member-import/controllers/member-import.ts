@@ -47,82 +47,120 @@ export default ({ strapi }: { strapi: any }) => ({
 
       for (const row of rows) {
         try {
-          // Support both Bengali and English column headers
-          const serialNumber = String(
-            row['ক্রমিক নং'] || row['Serial No'] || row['serialNumber'] || ''
+          // Mapping fields based on user request (Bengali and English fallback)
+          const overallSerial = String(
+            row['সামগ্রিক ক্রমিক নং'] || row['Overall Serial No'] || row['overallSerial'] || row['serialNumber'] || row['ক্রমিক নং'] || ''
           ).trim();
-          const name = String(
-            row['নাম'] || row['Name'] || row['name'] || ''
+          const thanaSerial = String(
+            row['থানা ভিত্তিক ক্রমিক নং'] || row['Thana Serial No'] || row['thanaSerial'] || ''
           ).trim();
-          const fatherName = String(
-            row['পিতার নাম'] || row["Father's Name"] || row['fatherName'] || ''
-          ).trim();
-          const location = String(
-            row['গ্রামের নাম'] || row['Village Name'] || row['location'] || ''
-          ).trim();
-          const unionRaw = String(
-            row['ইউনিয়নের নাম'] || row['Union Name'] || row['union'] || 'Debhata'
-          ).trim();
-          const presentJob = String(
-            row['বর্তমান চাকরি (কোম্পানি/সংস্থা)'] ||
-            row['Present Job (Company/Organization)'] ||
-            row['presentJob'] ||
-            row['company'] ||
-            ''
-          ).trim();
-          const role = String(
-            row['বর্তমান চাকরির পদ'] ||
-            row['Present Job Designation'] ||
-            row['role'] ||
-            ''
-          ).trim();
-          const phone = String(
-            row['মোবাইল নম্বর'] || row['Phone Number'] || row['phone'] || ''
-          ).trim();
-
+          
+          // Helper to find column value by partial match (since actual excel has newlines like "নাম \r\n(Name)")
+          const getColValue = (possibleNames: string[]) => {
+            for (const key of Object.keys(row)) {
+              for (const name of possibleNames) {
+                if (key.toLowerCase().includes(name.toLowerCase())) {
+                  return row[key];
+                }
+              }
+            }
+            return '';
+          };
+          
+          const name = String(getColValue(['নাম', 'Name'])).replace(/\r\n|\n/g, '').trim();
           if (!name) {
-            errors.push(`Row skipped: missing name`);
-            continue;
+             errors.push(`Row skipped: missing name`);
+             continue;
           }
+          const fatherName = String(getColValue(['পিতার নাম', "Father's Name"])).replace(/\r\n|\n/g, '').trim();
+          const motherName = String(getColValue(['মাতার নাম', "Mother's Name"])).replace(/\r\n|\n/g, '').trim();
+          const dobRaw = getColValue(['জন্ম তারিখ', 'Date of Birth', 'dob']);
+          const village = String(getColValue(['গ্রামের নাম', 'Village Name'])).replace(/\r\n|\n/g, '').trim();
+          const unionRaw = String(getColValue(['ইউনিয়নের নাম', 'ইউনিয়নের নাম', 'Union Name', 'union']) || 'Debhata').replace(/\r\n|\n/g, '').trim();
+          const permanentAddress = String(getColValue(['স্থায়ী ঠিকানা', 'Permanent Address'])).replace(/\r\n|\n/g, '').trim();
+          const presentAddress = String(getColValue(['বর্তমান ঠিকানা', 'Present Address'])).replace(/\r\n|\n/g, '').trim();
+          const email = String(getColValue(['ইমেইল আইডি', 'Email ID', 'email'])).replace(/\r\n|\n/g, '').trim();
+          
+          // Ensure phone has leading zero if it was parsed as number
+          let phoneRaw = String(getColValue(['মোবাইল নম্বর', 'Phone Number', 'phone'])).replace(/\r\n|\n/g, '').trim();
+          let phone = phoneRaw;
+          if (phoneRaw && !phoneRaw.startsWith('0') && phoneRaw.length >= 9) {
+             phone = '0' + phoneRaw;
+          }
+          
+          const education = String(getColValue(['শিক্ষাগত যোগ্যতা', 'Educational Qualification', 'education'])).replace(/\r\n|\n/g, '').trim();
+          const bloodGroup = String(getColValue(['রক্তের গ্রুপ', 'Blood Group', 'bloodGroup'])).replace(/\r\n|\n/g, '').trim();
+          const nid = String(getColValue(['এনআইডি নং', 'NID No', 'nid'])).replace(/\r\n|\n/g, '').trim();
+          const presentJob = String(getColValue(['বর্তমান চাকরি', 'Present Job', 'company'])).replace(/\r\n|\n/g, '').trim();
+          const presentWorkplace = String(getColValue(['বর্তমান কর্মস্থলের নাম', 'Present Workplace Name', 'presentWorkplace'])).replace(/\r\n|\n/g, '').trim();
+          const designation = String(getColValue(['বর্তমান চাকরির পদ', 'Present Job Designation', 'designation', 'role'])).replace(/\r\n|\n/g, '').trim();
+          const organizations = String(getColValue(['অন্যান্য সামাজিক প্রতিষ্ঠান', 'Other Social Organizations', 'organizations'])).replace(/\r\n|\n/g, '').trim();
 
           // Map union name
           const union = UNION_MAP[unionRaw] || 'Debhata';
 
-          // Check for duplicate by serial number if present, or by name+phone
+          // Format date if needed (Excel date can be a number or string)
+          let dob = null;
+          if (dobRaw) {
+            if (typeof dobRaw === 'number') {
+              // Convert Excel serial date to JS Date
+              const date = XLSX.utils.format_cell({ t: 'd', v: dobRaw });
+              dob = date;
+            } else {
+              dob = dobRaw;
+            }
+          }
+
+          // Check for duplicate by overallSerial if present, otherwise fallback to name+union+phone
           let existing = null;
-          if (serialNumber) {
+          if (overallSerial) {
             existing = await strapi.documents('api::member-directory.member-directory').findFirst({
-              filters: { serialNumber },
+              filters: { overallSerial },
+            });
+          } else if (name && phone) {
+            existing = await strapi.documents('api::member-directory.member-directory').findFirst({
+              filters: { 
+                name, 
+                phone,
+                union 
+              },
             });
           }
+
+          const data = {
+            name,
+            overallSerial: overallSerial || undefined,
+            thanaSerial,
+            fatherName,
+            motherName,
+            dob,
+            village,
+            union,
+            permanentAddress,
+            presentAddress,
+            email,
+            phone,
+            education,
+            bloodGroup,
+            nid,
+            presentJob,
+            presentWorkplace,
+            designation,
+            organizations,
+          };
 
           if (existing) {
             // Update existing record
             await strapi.documents('api::member-directory.member-directory').update({
               documentId: existing.documentId,
-              data: {
-                name,
-                fatherName,
-                union,
-                phone,
-                location,
-                presentJob,
-                role,
-              },
+              data,
               status: 'published',
             });
             skipped++;
           } else {
             await strapi.documents('api::member-directory.member-directory').create({
               data: {
-                name,
-                fatherName,
-                union,
-                phone,
-                serialNumber: serialNumber || undefined,
-                location,
-                presentJob,
-                role,
+                ...data,
                 isVerified: false,
               },
               status: 'published',
@@ -162,42 +200,39 @@ export default ({ strapi }: { strapi: any }) => ({
 
       for (const row of members) {
         try {
-          const serialNumber = String(row.serialNumber || '').trim();
+          const overallSerial = String(row.overallSerial || row.serialNumber || '').trim();
           const name = String(row.name || '').trim();
-          const fatherName = String(row.fatherName || '').trim();
-          const location = String(row.location || '').trim();
-          const unionRaw = String(row.union || 'Debhata').trim();
-          const presentJob = String(row.company || row.presentJob || '').trim();
-          const role = String(row.role || '').trim();
-          const phone = String(row.phone || '').trim();
-
           if (!name) {
             errors.push(`সারি এড়িয়ে গেছে: নাম নেই`);
             continue;
           }
 
-          const union = UNION_MAP[unionRaw] || 'Debhata';
+          const union = UNION_MAP[row.union] || 'Debhata';
 
           let existing = null;
-          if (serialNumber) {
+          if (overallSerial) {
             existing = await strapi.documents('api::member-directory.member-directory').findFirst({
-              filters: { serialNumber },
+              filters: { overallSerial },
             });
           }
+
+          const data = {
+            ...row,
+            union,
+            overallSerial: overallSerial || undefined,
+          };
 
           if (existing) {
             await strapi.documents('api::member-directory.member-directory').update({
               documentId: existing.documentId,
-              data: { name, fatherName, union, phone, location, presentJob, role },
+              data,
               status: 'published',
             });
             skipped++;
           } else {
             await strapi.documents('api::member-directory.member-directory').create({
               data: {
-                name, fatherName, union, phone,
-                serialNumber: serialNumber || undefined,
-                location, presentJob, role,
+                ...data,
                 isVerified: false,
               },
               status: 'published',
@@ -226,18 +261,29 @@ export default ({ strapi }: { strapi: any }) => ({
   async downloadTemplate(ctx: any) {
     // Create a template Excel file
     const headers = [
-      'ক্রমিক নং',
+      'সামগ্রিক ক্রমিক নং',
+      'থানা ভিত্তিক ক্রমিক নং',
       'নাম',
       'পিতার নাম',
+      'মাতার নাম',
+      'জন্ম তারিখ',
       'গ্রামের নাম',
-      'ইউনিয়নের নাম',
-      'বর্তমান চাকরি (কোম্পানি/সংস্থা)',
-      'বর্তমান চাকরির পদ',
+      'ইউনিয়নের নাম',
+      'স্থায়ী ঠিকানা',
+      'বর্তমান ঠিকানা',
+      'ইমেইল আইডি',
       'মোবাইল নম্বর',
+      'শিক্ষাগত যোগ্যতা',
+      'রক্তের গ্রুপ',
+      'এনআইডি নং',
+      'বর্তমান চাকরি (কোম্পানি/সংস্থা)',
+      'বর্তমান কর্মস্থলের নাম',
+      'বর্তমান চাকরির পদ / পদবি',
+      'অন্যান্য সামাজিক প্রতিষ্ঠানের সাথে জড়িত থাকলে তার নাম ও পদবি'
     ];
 
     const sampleData = [
-      ['১', 'মোঃ আব্দুল কাদের', 'মোঃ আব্দুল গাফফার', 'ভাতশালা', 'দেবহাটা ইউনিয়ন', 'এস এম সোর্সিং', 'সিনিয়র মার্চেন্ডাইজার', '01912406634'],
+      ['১', '১', 'মোঃ আব্দুল কাদের', 'মোঃ আব্দুল গাফফার', 'মোছাঃ আমেনা খাতুন', '1990-01-01', 'ভাতশালা', 'দেবহাটা ইউনিয়ন', 'ভাতশালা, দেবহাটা', 'উত্তরা, ঢাকা', 'test@example.com', '01912406634', 'মাঝার্স', 'B+', '1234567890', 'এস এম সোর্সিং', 'ঢাকা অফিস', 'সিনিয়র মার্চেন্ডাইজার', 'সদস্য, রোটারি ক্লাব'],
     ];
 
     const wb = XLSX.utils.book_new();

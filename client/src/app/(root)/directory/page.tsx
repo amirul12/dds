@@ -6,6 +6,7 @@ import { MemberCard } from "@/components/custom/MemberCard";
 import { CorrectionModal } from "@/components/custom/CorrectionModal";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Search, Filter, Users, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const UNIONS = [
   "Debhata",
@@ -70,87 +71,137 @@ export default function MemberDirectoryPage() {
   };
 
   return (
-    <div className="container py-10">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-serif font-bold text-primary mb-4">আমাদের সদস্য তালিকা</h1>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          ঢাকাস্থ দেবহাটা উপজেলা সমিতির সকল নিবন্ধিত সদস্যদের খুঁজুন এবং আপনার তথ্য সঠিক আছে কিনা যাচাই করুন।
-        </p>
-      </div>
-
-      <div className="bg-muted p-6 rounded-xl mb-10 shadow-inner">
-        <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1">
-            <Input 
-              placeholder="নাম, পিতার নাম বা সিরিয়াল দিয়ে খুঁজুন..." 
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="bg-background"
-            />
+    <div className="min-h-screen bg-slate-50/30 dark:bg-slate-950">
+      
+      {/* Hero Header Section */}
+      <div className="relative bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 pt-20 pb-16 overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full -mr-64 -mt-64 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary/5 rounded-full -ml-32 -mb-32 blur-3xl pointer-events-none" />
+        
+        <div className="container relative z-10">
+          <div className="text-center max-w-3xl mx-auto space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-black uppercase tracking-widest border border-primary/20">
+              <Users className="size-3" />
+              Member Directory
+            </div>
+            <h1 className="text-5xl md:text-6xl font-black text-slate-900 dark:text-white font-serif tracking-tight">
+              আমাদের সদস্য তালিকা
+            </h1>
+            <p className="text-xl text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+               ঢাকাস্থ দেবহাটা উপজেলা সমিতির সকল নিবন্ধিত সদস্যদের খুঁজুন এবং আমাদের ক্রমবর্ধমান পরিবারের সাথে যুক্ত থাকুন।
+            </p>
           </div>
-          <div className="w-full md:w-64">
-            <select 
-              value={union} 
-              onChange={(e) => setUnion(e.target.value)}
-              className="w-full h-10 px-3 py-2 rounded-md border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-            >
-              <option value="all">সব ইউনিয়ন</option>
-              {UNIONS.map((u) => (
-                <option key={u} value={u}>{u}</option>
-              ))}
-            </select>
-          </div>
-          <Button type="submit">খুঁজুন</Button>
-        </form>
-      </div>
 
-      {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="h-64 bg-muted animate-pulse rounded-lg" />
-          ))}
+          {/* Elegant Search Bar */}
+          <div className="mt-12 max-w-4xl mx-auto">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded-[2rem] shadow-2xl border border-slate-200 dark:border-slate-700">
+              <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-3">
+                <div className="flex-1 relative group">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-slate-400 group-focus-within:text-primary transition-colors" />
+                  <Input 
+                    placeholder="নাম, পেশা বা আইডি দিয়ে খুঁজুন..." 
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    className="w-full h-14 pl-12 rounded-2xl border-none bg-slate-50 dark:bg-slate-900 focus-visible:ring-primary/20 text-lg font-medium"
+                  />
+                </div>
+                <div className="w-full md:w-56 relative">
+                  <Filter className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-slate-400 pointer-events-none" />
+                  <select 
+                    value={union} 
+                    onChange={(e) => setUnion(e.target.value)}
+                    className="w-full h-14 pl-10 pr-4 rounded-2xl border-none bg-slate-50 dark:bg-slate-900 text-sm font-bold focus:ring-2 focus:ring-primary/20 outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="all">সব ইউনিয়ন</option>
+                    {UNIONS.map((u) => (
+                      <option key={u} value={u}>{u} ইউনিয়ন</option>
+                    ))}
+                  </select>
+                </div>
+                <Button type="submit" className="h-14 px-8 rounded-2xl font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+                   খুঁজুন
+                </Button>
+              </form>
+            </div>
+            
+            <div className="flex justify-center gap-8 mt-6">
+               <div className="flex items-center gap-2 text-sm text-slate-500 font-bold">
+                  <div className="size-2 rounded-full bg-emerald-500" />
+                  সঠিক তথ্য নিশ্চিত করুন
+               </div>
+               <div className="flex items-center gap-2 text-sm text-slate-500 font-bold">
+                  <div className="size-2 rounded-full bg-primary" />
+                  সদস্যপদ যাচাই করুন
+               </div>
+            </div>
+          </div>
         </div>
-      ) : (
-        <>
-          {members && members.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {members.map((member) => (
-                <MemberCard 
-                  key={member.id} 
-                  member={member} 
-                  onCorrect={(id) => setSelectedMember(member)}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-20 bg-muted rounded-xl">
-              <p className="text-muted-foreground italic">কোন সদস্য খুঁজে পাওয়া যায়নি।</p>
-            </div>
-          )}
+      </div>
 
-          {meta && meta.pagination && meta.pagination.pageCount > 1 && (
-            <div className="mt-10 flex justify-center gap-2">
-              <Button 
-                variant="outline" 
-                disabled={page === 1}
-                onClick={() => setPage(page - 1)}
-              >
-                পূর্ববর্তী
-              </Button>
-              <div className="flex items-center px-4 font-medium">
-                পৃষ্ঠা {page} / {meta.pagination.pageCount}
+      <div className="container py-20">
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="h-[400px] bg-white dark:bg-slate-900 animate-pulse rounded-[2rem] border border-slate-100 dark:border-slate-800" />
+            ))}
+          </div>
+        ) : (
+          <>
+            {members && members.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {members.map((member) => (
+                  <MemberCard 
+                    key={member.id} 
+                    member={member} 
+                    onCorrect={(id) => setSelectedMember(member)}
+                  />
+                ))}
               </div>
-              <Button 
-                variant="outline" 
-                disabled={page === meta.pagination.pageCount}
-                onClick={() => setPage(page + 1)}
-              >
-                পরবর্তী
-              </Button>
-            </div>
-          )}
-        </>
-      )}
+            ) : (
+              <div className="text-center py-32 bg-white dark:bg-slate-900 rounded-[3rem] border border-dashed border-slate-200 dark:border-slate-800">
+                <div className="size-20 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                   <Users className="size-10 text-slate-300" />
+                </div>
+                <h3 className="text-2xl font-black text-slate-800 dark:text-white mb-2">কোন সদস্য পাওয়া যায়নি</h3>
+                <p className="text-slate-500 font-medium italic">অনুগ্রহ করে ভিন্ন কিছু দিয়ে খুঁজুন।</p>
+                <Button variant="link" onClick={() => { setQuery(""); setUnion("all"); fetchMembers("", "all", 1); }} className="mt-4 text-primary font-bold">
+                   সব সদস্য দেখুন <ArrowRight className="size-4 ml-1" />
+                </Button>
+              </div>
+            )}
+
+            {/* Premium Pagination */}
+            {meta && meta.pagination && meta.pagination.pageCount > 1 && (
+              <div className="mt-20 flex justify-center items-center gap-6">
+                <Button 
+                  variant="outline" 
+                  disabled={page === 1}
+                  onClick={() => setPage(page - 1)}
+                  className="rounded-xl h-12 w-12 p-0 border-slate-200 dark:border-slate-800 hover:bg-primary hover:text-white transition-all shadow-sm"
+                >
+                  <ChevronLeft className="size-6" />
+                </Button>
+                
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-black text-slate-400 uppercase tracking-widest">Page</span>
+                  <span className="text-2xl font-black text-primary">{page}</span>
+                  <span className="text-sm font-black text-slate-400">/</span>
+                  <span className="text-sm font-black text-slate-400">{meta.pagination.pageCount}</span>
+                </div>
+
+                <Button 
+                  variant="outline" 
+                  disabled={page === meta.pagination.pageCount}
+                  onClick={() => setPage(page + 1)}
+                  className="rounded-xl h-12 w-12 p-0 border-slate-200 dark:border-slate-800 hover:bg-primary hover:text-white transition-all shadow-sm"
+                >
+                  <ChevronRight className="size-6" />
+                </Button>
+              </div>
+            )}
+          </>
+        )}
+      </div>
 
       {selectedMember && (
         <CorrectionModal 

@@ -24,14 +24,29 @@
       "type": "string",
       "required": true
     },
-    "dob": {
-      "type": "date"
-    },
     "fatherName": {
       "type": "string"
     },
     "motherName": {
       "type": "string"
+    },
+    "dob": {
+      "type": "date"
+    },
+    "village": {
+      "type": "string"
+    },
+    "union": {
+      "type": "enumeration",
+      "enum": [
+        "Debhata",
+        "Kulya",
+        "Parulia",
+        "Sakhra",
+        "Nalta",
+        "Debhata Sadar"
+      ],
+      "required": true
     },
     "permanentAddress": {
       "type": "text"
@@ -39,12 +54,12 @@
     "presentAddress": {
       "type": "text"
     },
+    "email": {
+      "type": "email"
+    },
     "phone": {
       "type": "string",
       "required": true
-    },
-    "email": {
-      "type": "email"
     },
     "education": {
       "type": "string"
@@ -55,17 +70,24 @@
     "nid": {
       "type": "string"
     },
-    "jobName": {
+    "presentJob": {
+      "type": "string"
+    },
+    "presentWorkplace": {
       "type": "string"
     },
     "designation": {
       "type": "string"
     },
-    "jobAddress": {
-      "type": "text"
-    },
     "organizations": {
       "type": "text"
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "status": {
       "type": "enumeration",
