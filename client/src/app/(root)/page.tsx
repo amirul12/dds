@@ -1,5 +1,6 @@
 import { getNotices, getLandingPage } from "@/data/loaders";
 import { LatestNotices } from "@/components/sections/LatestNotices";
+import { History } from "@/components/sections/History";
 import { BlockRenderer } from "@/components/block-renderer";
 
 import Link from "next/link";
@@ -17,6 +18,9 @@ export default async function Home() {
     <div className="flex flex-col w-full">
       {/* Dynamic Strapi Blocks (Hero, Stats, Quick Actions, etc) */}
       <BlockRenderer blocks={blocks} />
+
+      {/* History of Debhata Section */}
+      <History />
 
       {/* Keeps the LatestNotices section pulling from Strapi notice collection directly */}
       <LatestNotices notices={notices} />
