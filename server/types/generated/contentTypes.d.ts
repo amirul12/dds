@@ -551,7 +551,7 @@ export interface ApiCommitteeMemberCommitteeMember
   };
   attributes: {
     committeeType: Schema.Attribute.Enumeration<
-      ['Executive', 'Smaranika', 'Advisory', 'Ad-hoc']
+      ['Executive', 'Smaranika', 'Advisory', 'Ad-hoc', 'Sub-committee']
     > &
       Schema.Attribute.DefaultTo<'Executive'>;
     createdAt: Schema.Attribute.DateTime;

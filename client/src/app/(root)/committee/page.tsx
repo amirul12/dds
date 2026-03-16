@@ -4,7 +4,7 @@ import { getStrapiMedia } from "@/lib/utils";
 import Image from "next/image";
 
 export default async function CommitteePage() {
-  const committeeTypes = ["Executive", "Advisory", "Smaranika", "Ad-hoc"];
+  const committeeTypes = ["Executive", "Advisory", "Smaranika", "Ad-hoc", "Sub-committee"];
   const sections = await Promise.all(
     committeeTypes.map(async (type) => ({
       type,
@@ -29,7 +29,8 @@ export default async function CommitteePage() {
                 <h2 className="text-3xl font-serif font-bold text-primary whitespace-nowrap">
                   {section.type === "Executive" ? "কার্যনির্বাহী কমিটি" : 
                    section.type === "Advisory" ? "উপদেষ্টা মন্ডলী" :
-                   section.type === "Smaranika" ? "স্মরণিকা উপ-কমিটি" : "অন্যান্য কমিটি"}
+                   section.type === "Smaranika" ? "সম্পাদনা পরিষদ" : 
+                   section.type === "Ad-hoc" ? "আহবায়ক কমিটি" : "অন্যান্য উপকমিটি"}
                 </h2>
                 <div className="h-[2px] bg-primary/20 w-full" />
               </div>

@@ -1,0 +1,400 @@
+[
+  {
+    "committeeType": "Smaranika",
+    "designation": "পৃষ্ঠপোষক",
+    "name": "মো: খাইরুল ইসলাম",
+    "order": 1
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "পৃষ্ঠপোষক",
+    "name": "মো: তাহাজ্জাত হোসেন হিরু",
+    "order": 2
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সম্পাদক",
+    "name": "ড. নিমাই মন্ডল",
+    "order": 3
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সহ-সম্পাদক",
+    "name": "ড. শাহেদ মন্তাজ",
+    "order": 4
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সহ-সম্পাদক",
+    "name": "মো: আনোয়ার হোসেন",
+    "order": 5
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "মো: রিয়াজুল ইসলাম",
+    "order": 6
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "এস. এম. মাজাহারুল আনোয়ার",
+    "order": 7
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "মো: আজগর আলী",
+    "order": 8
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "মো: বাকি বিল্লাহ",
+    "order": 9
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "মো: রাশেদ আলী",
+    "order": 10
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "ইঞ্জিনিয়ার আল-মাহমুদ সুমন",
+    "order": 11
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "মো: সাইফুল্লাহ মির্জা শামিম",
+    "order": 12
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "মো: সুমন কবির",
+    "order": 13
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "মো: দেলোয়ার হোসেন",
+    "order": 14
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "মো: আল-ইমরান টগর",
+    "order": 15
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "মো: রাজু আহম্মেদ",
+    "order": 16
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "মো: ফারুক বিল্লাহ",
+    "order": 17
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "সদস্য",
+    "name": "মো: আফজাল হোসেন",
+    "order": 18
+  },
+  {
+    "committeeType": "Smaranika",
+    "designation": "প্রচ্ছদ",
+    "name": "মো: আরিফুজ্জামান আরিফ",
+    "order": 19
+  },
+  {
+    "committeeType": "Advisory",
+    "designation": "উপদেষ্টা",
+    "name": "মো: সফিকুল আহম্মদ",
+    "order": 1
+  },
+  {
+    "committeeType": "Advisory",
+    "designation": "উপদেষ্টা",
+    "name": "ড. এস এম খলিলুর রহমান",
+    "order": 2
+  },
+  {
+    "committeeType": "Advisory",
+    "designation": "উপদেষ্টা",
+    "name": "ড. মো: কামরুজ্জামান রিপন",
+    "order": 3
+  },
+  {
+    "committeeType": "Advisory",
+    "designation": "উপদেষ্টা",
+    "name": "আজিজ হাসান",
+    "order": 4
+  },
+  {
+    "committeeType": "Advisory",
+    "designation": "উপদেষ্টা",
+    "name": "মো: রফিকুল ইসলাম",
+    "order": 5
+  },
+  {
+    "committeeType": "Advisory",
+    "designation": "উপদেষ্টা",
+    "name": "মো: সালাহ উদ্দিন",
+    "order": 6
+  },
+  {
+    "committeeType": "Advisory",
+    "designation": "উপদেষ্টা",
+    "name": "ইকবাল মাসুদ",
+    "order": 7
+  },
+  {
+    "committeeType": "Advisory",
+    "designation": "উপদেষ্টা",
+    "name": "ড. নিমাই মন্ডল",
+    "order": 8
+  },
+  {
+    "committeeType": "Advisory",
+    "designation": "উপদেষ্টা",
+    "name": "প্রফেসর আফসার আহমেদ বাবলু",
+    "order": 9
+  },
+  {
+    "committeeType": "Advisory",
+    "designation": "উপদেষ্টা",
+    "name": "প্রফেসর ড. মোহাম্মদ আলী",
+    "order": 10
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "আহবায়ক",
+    "name": "মো: খাইরুল ইসলাম",
+    "order": 1
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "যুগ্ন-আহবায়ক",
+    "name": "এস. এম. মাজাহারুল আনোয়ার",
+    "order": 2
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "যুগ্ন-আহবায়ক",
+    "name": "মো: আনোয়ার হোসেন",
+    "order": 3
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "যুগ্ন-আহবায়ক",
+    "name": "মো: রিয়াজুল ইসলাম",
+    "order": 4
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "যুগ্ন-আহবায়ক",
+    "name": "মো: আজগার আলী",
+    "order": 5
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "যুগ্ন-আহবায়ক",
+    "name": "মো: বাকী বিল্লাহ",
+    "order": 6
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য সচিব",
+    "name": "মো: তাহাজ্জাত হোসেন হিরু",
+    "order": 7
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ আবুল কালাম",
+    "order": 8
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ রাজিব আহমেদ",
+    "order": 9
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ দেলওয়ার হোসেন",
+    "order": 10
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ মহিউদ্দিন",
+    "order": 11
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ রাজু আহমেদ",
+    "order": 12
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ সুমন কবির",
+    "order": 13
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ মাজনুর রহমান",
+    "order": 14
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ রাশেদ আলী",
+    "order": 15
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ ফারুক হোসেন",
+    "order": 16
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ আরিফুজ্জামান",
+    "order": 17
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ আসাবুর রহমান আসাদ",
+    "order": 18
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মো: শামীম আহমেদ সুমন",
+    "order": 19
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ জাহিদুল ইসলাম",
+    "order": 20
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ আল ইমরান টগর",
+    "order": 21
+  },
+  {
+    "committeeType": "Ad-hoc",
+    "designation": "সদস্য",
+    "name": "মোঃ মহাসিন আলী",
+    "order": 22
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "গঠনতন্ত্র বিষয়ক উপ-কমিটি",
+    "name": "মো: তাহাজ্জাত হোসেন হিরু",
+    "union": "আহবায়ক",
+    "order": 1
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "গঠনতন্ত্র বিষয়ক উপ-কমিটি",
+    "name": "এ্যাডভোকেট মাহমুদুল আলম শাহিন",
+    "order": 2
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "গঠনতন্ত্র বিষয়ক উপ-কমিটি",
+    "name": "মো: সাইফুল্লাহ মির্জা শামিম",
+    "order": 3
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "গঠনতন্ত্র বিষয়ক উপ-কমিটি",
+    "name": "মো: আরিফুল ইসলাম",
+    "order": 4
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "গঠনতন্ত্র বিষয়ক উপ-কমিটি",
+    "name": "মো: আলমগীর হোসেন",
+    "order": 5
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "গঠনতন্ত্র বিষয়ক উপ-কমিটি",
+    "name": "মো: খাইরুল বাশার",
+    "order": 6
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "সদস্য সংগ্রহ উপ-কমিটি",
+    "name": "মো: রিয়াজুল ইসলাম",
+    "union": "আহবায়ক",
+    "order": 7
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "সদস্য সংগ্রহ উপ-কমিটি",
+    "name": "মো: আনোয়ার হোসেন",
+    "order": 8
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "সদস্য সংগ্রহ উপ-কমিটি",
+    "name": "মোঃ মনজুর হাসান সুমন",
+    "order": 9
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "সদস্য সংগ্রহ উপ-কমিটি",
+    "name": "মোঃ শফিউল আহসান পলাশ",
+    "order": 10
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "সদস্য সংগ্রহ উপ-কমিটি",
+    "name": "মোঃ আসাদুজ্জামান মুকুল",
+    "order": 11
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "সদস্য সংগ্রহ উপ-কমিটি",
+    "name": "ইঞ্জিনিয়ার আল মাহমুদ সুমন",
+    "order": 12
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "সদস্য সংগ্রহ উপ-কমিটি",
+    "name": "মোঃ মাহবুব হোসেন",
+    "order": 13
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "সদস্য সংগ্রহ উপ-কমিটি",
+    "name": "মো: নজরুল ইসলাম",
+    "order": 14
+  },
+  {
+    "committeeType": "Sub-committee",
+    "designation": "সদস্য সংগ্রহ উপ-কমিটি",
+    "name": "মোঃ ওসমান ফারুক বকুল",
+    "order": 15
+  }
+]

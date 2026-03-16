@@ -14,15 +14,13 @@ export default {
       console.error("Bootstrap Error:", error);
     }
 
-    /*
     try {
-      console.log("Bootstrap: Importing Members from PDF Data...");
-      const importScriptPath = path.join(process.cwd(), 'scripts', 'import-members.js');
-      await require(importScriptPath)({ strapi });
-      console.log("Bootstrap: Member Import Complete.");
+      console.log("Bootstrap: Importing Committee Members...");
+      const committeeImportPath = path.join(process.cwd(), 'scripts', 'import-committees.js');
+      await require(committeeImportPath)({ strapi });
+      console.log("Bootstrap: Committee Import Complete.");
     } catch (error) {
-      console.error("Bootstrap Member Import Error:", error);
+      console.error("Bootstrap Committee Import Error:", error);
     }
-    */
   },
 };
