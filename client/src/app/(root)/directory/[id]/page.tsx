@@ -212,8 +212,8 @@ export default function MemberProfilePage() {
             
             {/* Header */}
             <div className="bg-[#124b3a] text-white p-2 text-center flex flex-col items-center justify-center relative">
-               <h2 className="text-[11px] font-black leading-tight tracking-wide">ঢাকাস্থ দেবহাটা উপজেলা সমিতি</h2>
-               <p className="text-[7px] text-white/80 uppercase tracking-widest mt-0.5">Dhaka Debhata Upazila Samiti</p>
+               <h2 className="text-[11px] font-black leading-tight tracking-wide">দেবহাটা উপজেলা সমিতি, ঢাকা</h2>
+               <p className="text-[7px] text-white/80 uppercase tracking-widest mt-0.5">Debhata Upazila Samiti, Dhaka</p>
             </div>
 
             {/* Body */}
@@ -285,7 +285,7 @@ export default function MemberProfilePage() {
            <div className="flex-1 px-4 py-3 bg-[url('/noise.png')] bg-opacity-5">
               <h4 className="text-[7px] font-black text-[#124b3a] uppercase tracking-widest border-b border-primary/20 pb-1 mb-2">Terms & Conditions</h4>
               <ul className="list-disc pl-3 text-[5.5px] text-slate-600 space-y-1 font-medium leading-tight">
-                 <li>This card is property of Dhaka Debhata Upazila Samiti.</li>
+                 <li>This card is property of Debhata Upazila Samiti, Dhaka.</li>
                  <li>If lost, please return to the office address mentioned below.</li>
                  <li>This card is non-transferable and must be carried at all times.</li>
                  <li>Any misuse of this card may result in membership cancellation.</li>

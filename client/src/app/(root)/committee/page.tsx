@@ -17,7 +17,7 @@ export default async function CommitteePage() {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-serif font-bold text-primary mb-4">আমাদের কমিটিসমূহ</h1>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          ঢাকাস্থ দেবহাটা উপজেলা সমিতির কার্যক্রম পরিচালনার দায়িত্বে নিয়োজিত বিজ্ঞ ব্যক্তিবর্গ।
+          দেবহাটা উপজেলা সমিতি, ঢাকা-এর কার্যক্রম পরিচালনার দায়িত্বে নিয়োজিত বিজ্ঞ ব্যক্তিবর্গ।
         </p>
       </div>
 

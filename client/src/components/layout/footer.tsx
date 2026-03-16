@@ -14,7 +14,7 @@ interface FooterProps {
 }
 
 export function Footer({ data }: Readonly<FooterProps>) {
-  const text = data?.text || "ঢাকাস্থ দেবহাটা উপজেলা সমিতি";
+  const text = data?.text || "দেবহাটা উপজেলা সমিতি, ঢাকা";
   const socialLinks = data?.socialLinks?.length ? data.socialLinks : [
     { text: "facebook", href: "https://facebook.com" },
     { text: "youtube", href: "https://youtube.com" },
@@ -34,10 +34,10 @@ export function Footer({ data }: Readonly<FooterProps>) {
                 height={56}
                 className="rounded-full bg-white p-1"
               />
-              <span className="text-2xl font-serif font-bold tracking-tight">ঢাকাস্থ দেবহাটা <br/>উপজেলা সমিতি</span>
+              <span className="text-2xl font-serif font-bold tracking-tight">দেবহাটা উপজেলা <br/>সমিতি, ঢাকা</span>
             </Link>
             <p className="text-white/70 leading-relaxed text-sm">
-              ঢাকাস্থ দেবহাটা উপজেলা সমিতি একটি অলাভজনক ও সেবামূলক সংগঠন। আমাদের মূল লক্ষ্য ঢাকাস্থ দেবহাটা প্রবাসীদের মধ্যে ভ্রাতৃত্বের বন্ধন সুদৃঢ় করা।
+              দেবহাটা উপজেলা সমিতি, ঢাকা একটি অলাভজনক ও সেবামূলক সংগঠন। আমাদের মূল লক্ষ্য ঢাকাস্থ দেবহাটা প্রবাসীদের মধ্যে ভ্রাতৃত্বের বন্ধন সুদৃঢ় করা।
             </p>
             <div className="flex gap-4">
               {socialLinks?.map((link) => (

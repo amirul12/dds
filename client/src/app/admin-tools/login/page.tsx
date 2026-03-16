@@ -70,7 +70,7 @@ export default function AdminLoginPage() {
             <img src="/images/logo.png" alt="দেবহাটা উপজেলা সমিতি লোগো" className="w-20 h-20 rounded-full object-contain" />
           </motion.div>
           <h1 className="text-3xl font-bold text-white">অ্যাডমিন প্যানেল</h1>
-          <p className="text-slate-400 mt-2 text-sm">ঢাকাস্থ দেবহাটা উপজেলা সমিতি</p>
+          <p className="text-slate-400 mt-2 text-sm">দেবহাটা উপজেলা সমিতি, ঢাকা</p>
         </div>
 
         {/* Card */}

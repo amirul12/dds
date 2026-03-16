@@ -15,7 +15,7 @@ interface HeaderProps {
 
 export function Header({ data }: Readonly<HeaderProps>) {  
   // Use organization defaults if Strapi data is not yet configured or generic
-  const logoText = data?.logoText || "ঢাকাস্থ দেবহাটা উপজেলা সমিতি";
+  const logoText = data?.logoText || "দেবহাটা উপজেলা সমিতি, ঢাকা";
   const navItems = data?.navItems?.length ? data.navItems : [
     { text: "হোম", href: "/", isExternal: false },
     { text: "পরিচিতি", href: "/about", isExternal: false },

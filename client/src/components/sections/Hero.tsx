@@ -28,7 +28,7 @@ export function Hero({ bannerImage }: { bannerImage: string }) {
             ঐতিহ্য ও ভ্রাতৃত্বের বন্ধন
           </span>
           <h1 className="text-3xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-tight drop-shadow-2xl">
-            ঢাকাস্থ দেবহাটা উপজেলা সমিতি
+            দেবহাটা উপজেলা সমিতি, ঢাকা
           </h1>
           <p className="max-w-3xl mx-auto text-base md:text-2xl text-white/80 mt-6 font-light drop-shadow-md">
             সাতক্ষীরা জেলার দেবহাটা উপজেলার ঢাকাস্থ বাসিন্দাদের এক মিলনমেলার ঠিকানা। সম্প্রীতি ও সেবার লক্ষ্যে আমরা অবিচল।

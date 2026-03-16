@@ -3,8 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { GalleryGrid } from "@/components/custom/gallery-grid";
 
 export const metadata = {
-  title: "ফটো গ্যালারি | ঢাকাস্থ দেবহাটা উপজেলা সমিতি",
-  description: "ঢাকাস্থ দেবহাটা উপজেলা সমিতির বিভিন্ন কার্যক্রম ও মিলনমেলার ছবি",
+  title: "ফটো গ্যালারি | দেবহাটা উপজেলা সমিতি, ঢাকা",
+  description: "দেবহাটা উপজেলা সমিতি, ঢাকা-এর বিভিন্ন কার্যক্রম ও মিলনমেলার ছবি",
 };
 
 export default async function GalleryPage() {

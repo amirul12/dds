@@ -19,15 +19,15 @@ const fontSerif = Noto_Serif_Bengali({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://debhatasamity.bmhbd.org"),
-  title: "ঢাকাস্থ দেবহাটা উপজেলা সমিতি",
-  description: "ঢাকাস্থ দেবহাটা উপজেলা সমিতির অফিসিয়াল ওয়েবসাইট",
+  title: "দেবহাটা উপজেলা সমিতি, ঢাকা",
+  description: "দেবহাটা উপজেলা সমিতি, ঢাকা-এর অফিসিয়াল ওয়েবসাইট",
   icons: {
     icon: "/images/logo.png",
     apple: "/images/apple-touch-icon.png",
   },
   openGraph: {
-    title: "ঢাকাস্থ দেবহাটা উপজেলা সমিতি",
-    description: "ঢাকাস্থ দেবহাটা উপজেলা সমিতির অফিসিয়াল ওয়েবসাইট",
+    title: "দেবহাটা উপজেলা সমিতি, ঢাকা",
+    description: "দেবহাটা উপজেলা সমিতি, ঢাকা-এর অফিসিয়াল ওয়েবসাইট",
     images: ["/images/logo.png"],
     type: "website",
   },

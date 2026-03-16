@@ -4,10 +4,10 @@ module.exports = async ({ strapi }) => {
     console.log("Updating Global Settings...");
 
     const globalData = {
-      title: "ঢাকাস্থ দেবহাটা উপজেলা সমিতি",
-      description: "ঢাকাস্থ দেবহাটা উপজেলা সমিতির অফিসিয়াল ওয়েবসাইট",
+      title: "দেবহাটা উপজেলা সমিতি, ঢাকা",
+      description: "দেবহাটা উপজেলা সমিতি, ঢাকা-এর অফিসিয়াল ওয়েবসাইট",
       topNav: {
-        logoText: "ঢাকাস্থ দেবহাটা উপজেলা সমিতি",
+        logoText: "দেবহাটা উপজেলা সমিতি, ঢাকা",
         navItems: [
           { text: "হোম", href: "/", isExternal: false },
           { text: "সদস্য তালিকা", href: "/directory", isExternal: false },
@@ -25,7 +25,7 @@ module.exports = async ({ strapi }) => {
         }
       },
       footer: {
-        text: "© ২০২৪ ঢাকাস্থ দেবহাটা উপজেলা সমিতি। সর্বস্বত্ব সংরক্ষিত।",
+        text: "© ২০২৪ দেবহাটা উপজেলা সমিতি, ঢাকা। সর্বস্বত্ব সংরক্ষিত।",
         socialLinks: []
       },
       publishedAt: new Date(),

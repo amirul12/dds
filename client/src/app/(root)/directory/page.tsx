@@ -99,10 +99,10 @@ export default function MemberDirectoryPage() {
               Member Directory
             </div>
             <h1 className="text-5xl md:text-6xl font-black text-slate-900 dark:text-white font-serif tracking-tight">
-              আমাদের সদস্য তালিকা
+              আমাদের নাগরিক তালিকা
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-               ঢাকাস্থ দেবহাটা উপজেলা সমিতির সকল নিবন্ধিত সদস্যদের খুঁজুন এবং আমাদের ক্রমবর্ধমান পরিবারের সাথে যুক্ত থাকুন।
+               দেবহাটা উপজেলা সমিতি, ঢাকা-এর সকল নিবন্ধিত সদস্যদের খুঁজুন এবং আমাদের ক্রমবর্ধমান পরিবারের সাথে যুক্ত থাকুন।
             </p>
           </div>
 
@@ -198,7 +198,7 @@ export default function MemberDirectoryPage() {
                </div>
                <div className="flex items-center gap-2 text-sm text-slate-500 font-bold">
                   <div className="size-2 rounded-full bg-primary" />
-                  সদস্যপদ যাচাই করুন
+                  নাগরিক যাচাই করুন
                </div>
             </div>
           </div>

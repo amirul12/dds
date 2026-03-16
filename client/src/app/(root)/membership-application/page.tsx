@@ -2,8 +2,8 @@ import React from "react";
 import { MembershipForm } from "@/components/forms/MembershipForm";
 
 export const metadata = {
-  title: "সদস্য পদের আবেদন | দেবহাটা উপজেলা সমিতি-ঢাকা",
-  description: "দেবহাটা উপজেলা সমিতি-ঢাকা এর আজীবন বা সাধারণ সদস্য হওয়ার জন্য অনলাইনে আবেদন করুন।",
+  title: "সদস্য পদের আবেদন | দেবহাটা উপজেলা সমিতি, ঢাকা",
+  description: "দেবহাটা উপজেলা সমিতি, ঢাকা এর আজীবন বা সাধারণ সদস্য হওয়ার জন্য অনলাইনে আবেদন করুন।",
 };
 
 export default function MembershipApplicationPage() {
@@ -19,7 +19,7 @@ export default function MembershipApplicationPage() {
                সমিতির সদস্যপদের আবেদন
              </h1>
              <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-               দেবহাটা উপজেলা সমিতি-ঢাকা এর অংশীদার হতে এবং আমাদের সামাজিক উন্নয়নমূলক কর্মকাণ্ডে যুক্ত হতে আজই সদস্য হওয়ার আবেদন করুন।
+               দেবহাটা উপজেলা সমিতি, ঢাকা এর অংশীদার হতে এবং আমাদের সামাজিক উন্নয়নমূলক কর্মকাণ্ডে যুক্ত হতে আজই সদস্য হওয়ার আবেদন করুন।
              </p>
           </div>
 
