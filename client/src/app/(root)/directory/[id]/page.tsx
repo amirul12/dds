@@ -295,7 +295,7 @@ export default function MemberProfilePage() {
               <div className="mt-4 pt-2 border-t border-slate-100 grid grid-cols-2 gap-2">
                  <div>
                     <h5 className="text-[5.5px] font-bold text-slate-400 uppercase mb-0.5">Office Address</h5>
-                    <p className="text-[5.5px] text-slate-700 leading-tight">House #10, Road #05, Block #A, Banasree, Rampura, Dhaka-1219.</p>
+                    <p className="text-[5.5px] text-slate-700 leading-tight">এম কে টাওয়ার (৫ম তলা), ১২ প্রগতি স্মরনি, ব্লক-জে, বারিধারা, ঢাকা।</p>
                  </div>
                  <div className="flex flex-col items-center justify-end pb-1 pr-2">
                     <div className="border-b border-slate-800 w-full mb-1"></div>
@@ -305,7 +305,7 @@ export default function MemberProfilePage() {
            </div>
            
            <div className="bg-primary px-3 py-1.5 text-center text-[6px] text-white/80 font-bold uppercase">
-              www.debhatasamity.org | Support: 01711-000000
+              www.debhatasamity.org | Support: ০১৭২৭-৬৯৬৮৬৯
            </div>
         </div>
       </div>

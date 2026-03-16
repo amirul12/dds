@@ -8,11 +8,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { User, Phone, Mail, MapPin, Briefcase, Camera, CheckCircle, GraduationCap, Calendar, Heart, Fingerprint } from "lucide-react";
 
 const UNIONS = [
-  { value: "Debhata", bn: "দেবহাটা" },
-  { value: "Kulya", bn: "কুল্যা" },
+  { value: "Kulya", bn: "কুলিয়া" },
   { value: "Parulia", bn: "পারুলিয়া" },
   { value: "Sakhipur", bn: "সখিপুর" },
-  { value: "Nawapara", bn: "নওয়াপাড়া" }
+  { value: "Nawapara", bn: "নওয়াপাড়া" },
+  { value: "Debhata", bn: "দেবহাটা" }
 ];
 
 export function MembershipForm() {

@@ -2,6 +2,7 @@ import { getNotices, getLandingPage } from "@/data/loaders";
 import { LatestNotices } from "@/components/sections/LatestNotices";
 import { History } from "@/components/sections/History";
 import { BlockRenderer } from "@/components/block-renderer";
+import { Slogan } from "@/components/sections/Slogan";
 
 import Link from "next/link";
 
@@ -17,7 +18,15 @@ export default async function Home() {
   return (
     <div className="flex flex-col w-full">
       {/* Dynamic Strapi Blocks (Hero, Stats, Quick Actions, etc) */}
-      <BlockRenderer blocks={blocks} />
+      {blocks.length > 0 ? (
+        <>
+          <BlockRenderer blocks={[blocks[0]]} />
+          <Slogan />
+          <BlockRenderer blocks={blocks.slice(1)} />
+        </>
+      ) : (
+        <BlockRenderer blocks={blocks} />
+      )}
 
       {/* History of Debhata Section */}
       <History />

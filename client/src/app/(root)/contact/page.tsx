@@ -51,8 +51,8 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-bold">ঢাকা অফিস:</p>
-                  <p className="text-sm opacity-90">হাউস #১০, রোড #০৫, ব্লক #এ, বনশ্রী, রামপুরা, ঢাকা-১২১৯।</p>
+                  <p className="font-bold">অস্থায়ী ঠিকানা:</p>
+                  <p className="text-sm opacity-90">এম কে টাওয়ার (৫ম তলা), ১২ প্রগতি স্মরনি, ব্লক-জে, বারিধারা, ঢাকা।</p>
                 </div>
               </div>
               
@@ -62,12 +62,34 @@ export default function ContactPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
-                <div>
+                <div className="space-y-3">
                   <p className="font-bold">জরুরী যোগাযোগ:</p>
-                  <div className="space-y-1 mt-1">
-                    <a href="tel:01711000000" className="block text-sm hover:underline">সভাপতি: 01711-000000</a>
-                    <a href="tel:01711111111" className="block text-sm hover:underline">সাধারণ সম্পাদক: 01711-111111</a>
+                  <div className="space-y-2 mt-1">
+                    <div>
+                      <p className="text-xs opacity-70">আহবাহক</p>
+                      <a href="tel:01727696869" className="block text-sm font-bold hover:underline">মোঃ খাইরুল ইসলাম: ০১৭২৭-৬৯৬৮৬৯</a>
+                    </div>
+                    <div>
+                      <p className="text-xs opacity-70">যুগ্ম আহবায়ক</p>
+                      <a href="tel:01617012498" className="block text-sm font-bold hover:underline">মোঃ আনোয়ার হোসেন: ০১৬১৭-০১২৪৯৮</a>
+                    </div>
+                    <div>
+                      <p className="text-xs opacity-70">সদস্য সচিব</p>
+                      <a href="tel:01711321055" className="block text-sm font-bold hover:underline">তাহাজ্জত হোসেন হিরু: ০১৭১১-৩২১০৫৫</a>
+                    </div>
                   </div>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="size-10 bg-white/10 rounded-full flex items-center justify-center shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-bold">ইমেইল:</p>
+                  <a href="mailto:debhata.samity2022@gmail.com" className="text-sm opacity-90 hover:underline">debhata.samity2022@gmail.com</a>
                 </div>
               </div>
             </div>

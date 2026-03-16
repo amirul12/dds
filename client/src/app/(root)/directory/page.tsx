@@ -9,11 +9,11 @@ import { Button } from "@/components/ui/button";
 import { Search, Filter, Users, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const UNIONS = [
-  { value: "Debhata", bn: "দেবহাটা" },
-  { value: "Kulya", bn: "কুল্যা" },
+  { value: "Kulya", bn: "কুলিয়া" },
   { value: "Parulia", bn: "পারুলিয়া" },
   { value: "Sakhipur", bn: "সখিপুর" },
-  { value: "Nawapara", bn: "নওয়াপাড়া" }
+  { value: "Nawapara", bn: "নওয়াপাড়া" },
+  { value: "Debhata", bn: "দেবহাটা" }
 ];
 
 export default function MemberDirectoryPage() {

@@ -43,23 +43,23 @@ export default async function SmaranikaPage() {
             )}
           </div>
 
-          <div className="mt-12 bg-primary/5 p-8 rounded-2xl border-2 border-primary/10">
-            <h3 className="text-xl font-bold mb-4 font-serif text-primary">বিজ্ঞপ্তি ও সময়সীমা</h3>
-            <ul className="space-y-4 text-sm">
-              <li className="flex gap-3">
-                <span className="text-primary font-bold">লেখা জমার শেষ তারিখ:</span>
-                <span>৩০শে মে, ২০২৪</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-primary font-bold">বিজ্ঞাপন জমার শেষ তারিখ:</span>
-                <span>১৫ই জুন, ২০২৪</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-primary font-bold">প্রকাশনা উৎসব:</span>
-                <span>আগস্ট ২০২৪</span>
-              </li>
-            </ul>
-          </div>
+        <div className="mt-12 bg-primary/5 p-8 rounded-2xl border-2 border-primary/10">
+          <h3 className="text-xl font-bold mb-4 font-serif text-primary">বিজ্ঞপ্তি ও সময়সীমা</h3>
+          <ul className="space-y-4 text-sm">
+            <li className="flex gap-3">
+              <span className="text-primary font-bold">লেখা জমার শেষ তারিখ:</span>
+              <span>০৮ ফেব্রুয়ারি, ২০২৭</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-primary font-bold">বিজ্ঞাপন জমার শেষ তারিখ:</span>
+              <span>০৮ ফেব্রুয়ারি, ২০২৭</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-primary font-bold">প্রকাশনা উৎসব:</span>
+              <span>ফেব্রুয়ারি ২০২৭</span>
+            </li>
+          </ul>
+        </div>
         </div>
 
         {/* Ad Submission Form */}

@@ -48,7 +48,7 @@ export default function MembershipApplicationPage() {
                 </li>
                 <li className="flex gap-4">
                   <div className="size-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                  <span>সদস্যপদ ফি এবং অন্যান্য তথ্যের জন্য আমাদের হেল্পলাইন নম্বরে যোগাযোগ করুন।</span>
+                  <span>সদস্যপদ ফি এবং অন্যান্য তথ্যের জন্য আমাদের হেল্পলাইন নম্বরে (০১৭২৭-৬৯৬৮৬৯, ০১৭১১-৩২১০৫৫) যোগাযোগ করুন।</span>
                 </li>
              </ul>
           </div>
