@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "donors",
+  "info": {
+    "singularName": "donor",
+    "pluralName": "donors",
+    "displayName": "Donor",
+    "description": "Donors for Bonvojon 2026"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "designation": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "integer",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "isAnonymous": {
+      "type": "boolean",
+      "default": false
+    },
+    "message": {
+      "type": "text"
+    }
+  }
+}

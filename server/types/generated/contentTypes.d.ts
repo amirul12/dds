@@ -618,6 +618,38 @@ export interface ApiCorrectionRequestCorrectionRequest
   };
 }
 
+export interface ApiDonorDonor extends Struct.CollectionTypeSchema {
+  collectionName: 'donors';
+  info: {
+    description: 'Donors for Bonvojon 2026';
+    displayName: 'Donor';
+    pluralName: 'donors';
+    singularName: 'donor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    amount: Schema.Attribute.Integer & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    designation: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    isAnonymous: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::donor.donor'> &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    message: Schema.Attribute.Text;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEventRegistrationEventRegistration
   extends Struct.CollectionTypeSchema {
   collectionName: 'event_registrations';
@@ -1589,6 +1621,7 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::committee-member.committee-member': ApiCommitteeMemberCommitteeMember;
       'api::correction-request.correction-request': ApiCorrectionRequestCorrectionRequest;
+      'api::donor.donor': ApiDonorDonor;
       'api::event-registration.event-registration': ApiEventRegistrationEventRegistration;
       'api::event.event': ApiEventEvent;
       'api::gallery.gallery': ApiGalleryGallery;

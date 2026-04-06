@@ -25,11 +25,12 @@ export function Header({ data }: Readonly<HeaderProps>) {
     { text: "কমিটি", href: "/committee", isExternal: false },
     { text: "গ্যালারি", href: "/gallery", isExternal: false },
     { text: "সোশ্যাল কাজ", href: "/social-work", isExternal: false },
+    { text: "বনভোজন ২০২৬", href: "/bonvojon-2026", isExternal: false },
     { text: "স্মরণিকা", href: "/smaranika", isExternal: false },
     { text: "সদস্য আবেদন", href: "/membership-application", isExternal: false },
     { text: "যোগাযোগ", href: "/contact", isExternal: false },
   ];
-  const cta = data?.cta || { text: "সদস্য আবেদন", href: "/membership-application", isExternal: false };
+  const cta = data?.cta || { text: "অনুদান দিন", href: "/membership-application", isExternal: false };
   if (cta.href === "/contact#form" || cta.text === "সদস্য আবেদন") {
     cta.href = "/membership-application";
   }

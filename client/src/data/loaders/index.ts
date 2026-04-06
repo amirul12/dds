@@ -436,3 +436,15 @@ export async function getSocialWorkGalleries(category?: string, limit?: number) 
   });
   return response;
 }
+
+export async function getDonors() {
+  const donors = await sdk.collection("donors").find({
+    populate: {
+      image: {
+        fields: ["url", "alternativeText"],
+      },
+    },
+    sort: ["amount:desc", "createdAt:desc"],
+  });
+  return donors;
+}
