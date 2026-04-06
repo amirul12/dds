@@ -24,6 +24,7 @@ export function Header({ data }: Readonly<HeaderProps>) {
     { text: "ইভেন্ট", href: "/events", isExternal: false },
     { text: "কমিটি", href: "/committee", isExternal: false },
     { text: "গ্যালারি", href: "/gallery", isExternal: false },
+    { text: "সোশ্যাল কাজ", href: "/social-work", isExternal: false },
     { text: "স্মরণিকা", href: "/smaranika", isExternal: false },
     { text: "সদস্য আবেদন", href: "/membership-application", isExternal: false },
     { text: "যোগাযোগ", href: "/contact", isExternal: false },

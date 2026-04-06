@@ -1,11 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "galleries",
+  "collectionName": "social_work_galleries",
   "info": {
-    "singularName": "gallery",
-    "pluralName": "galleries",
-    "displayName": "Gallery",
-    "description": "Photo gallery items"
+    "singularName": "social-work-gallery",
+    "pluralName": "social-work-galleries",
+    "displayName": "Social Work Gallery",
+    "description": "Gallery for social work activities"
   },
   "options": {
     "draftAndPublish": true
@@ -29,14 +29,19 @@
     "date": {
       "type": "date"
     },
+    "context": {
+      "type": "enumeration",
+      "enum": [
+        "Help People",
+        "Medical Support",
+        "Education Support",
+        "Disaster Relief",
+        "Other"
+      ]
+    },
     "isActive": {
       "type": "boolean",
       "default": true
-    },
-    "category": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
     }
   }
 }

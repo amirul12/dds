@@ -711,6 +711,7 @@ export interface ApiGalleryGallery extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1024,6 +1025,49 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     seo: Schema.Attribute.Component<'shared.seo', false>;
     slug: Schema.Attribute.UID<'title'>;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSocialWorkGallerySocialWorkGallery
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'social_work_galleries';
+  info: {
+    description: 'Gallery for social work activities';
+    displayName: 'Social Work Gallery';
+    pluralName: 'social-work-galleries';
+    singularName: 'social-work-gallery';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    context: Schema.Attribute.Enumeration<
+      [
+        'Help People',
+        'Medical Support',
+        'Education Support',
+        'Disaster Relief',
+        'Other',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::social-work-gallery.social-work-gallery'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1555,6 +1599,7 @@ declare module '@strapi/strapi' {
       'api::notice.notice': ApiNoticeNotice;
       'api::page.page': ApiPagePage;
       'api::post.post': ApiPostPost;
+      'api::social-work-gallery.social-work-gallery': ApiSocialWorkGallerySocialWorkGallery;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

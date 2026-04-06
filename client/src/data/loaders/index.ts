@@ -389,17 +389,50 @@ export async function getUnionStats(unions: string[]) {
   }
 }
 
-export async function getGalleries() {
+export async function getGalleries(category?: string, limit?: number) {
+  const filters: any = {
+    isActive: true,
+  };
+  if (category) {
+    filters.category = { text: { $eq: category } };
+  }
+
   const galleries = await sdk.collection("galleries").find({
-    filters: {
-      isActive: true,
+    filters,
+    populate: {
+      image: {
+        fields: ["url", "alternativeText", "name"],
+      },
+      category: {
+        fields: ["text"],
+      },
     },
+    pagination: {
+      pageSize: limit || 100,
+    },
+    sort: ["date:desc", "createdAt:desc"],
+  });
+  return galleries;
+}
+export async function getSocialWorkGalleries(category?: string, limit?: number) {
+  const filters: any = {
+    isActive: true,
+  };
+  if (category) {
+    filters.context = { $eq: category };
+  }
+
+  const response = await sdk.collection("social-work-galleries").find({
+    filters,
     populate: {
       image: {
         fields: ["url", "alternativeText", "name"],
       },
     },
+    pagination: {
+      pageSize: limit || 100,
+    },
     sort: ["date:desc", "createdAt:desc"],
   });
-  return galleries;
+  return response;
 }

@@ -4,12 +4,25 @@ import { getStrapiMedia } from "@/lib/utils";
 import Image from "next/image";
 
 export default async function CommitteePage() {
-  const committeeTypes = ["Executive", "Advisory", "Smaranika", "Ad-hoc", "Sub-committee"];
+  const committeeGroups = [
+    { types: ["Advisory"], title: "উপদেষ্টা পরিষদ" },
+    { types: ["Ad-hoc", "Executive"], title: "আহবায়ক কমিটি বা নির্বাহী কমিটি" },
+    { types: ["Sub-committee"], title: "উপ-কমিটি" },
+    { types: ["Smaranika"], title: "সম্পাদনা পরিষদ" }
+  ];
+
   const sections = await Promise.all(
-    committeeTypes.map(async (type) => ({
-      type,
-      members: (await getCommitteeMembers(type)).data,
-    }))
+    committeeGroups.map(async (group) => {
+      const members = [];
+      for (const type of group.types) {
+        const res = await getCommitteeMembers(type);
+        if (res.data) members.push(...res.data);
+      }
+      return {
+        title: group.title,
+        members,
+      };
+    })
   );
 
   return (
@@ -22,15 +35,12 @@ export default async function CommitteePage() {
       </div>
 
       <div className="space-y-20">
-        {sections.map((section) => (
+        {sections.map((section, index) => (
           section.members.length > 0 && (
-            <div key={section.type}>
+            <div key={index}>
               <div className="flex items-center gap-4 mb-10">
                 <h2 className="text-3xl font-serif font-bold text-primary whitespace-nowrap">
-                  {section.type === "Executive" ? "কার্যনির্বাহী কমিটি" : 
-                   section.type === "Advisory" ? "উপদেষ্টা মন্ডলী" :
-                   section.type === "Smaranika" ? "সম্পাদনা পরিষদ" : 
-                   section.type === "Ad-hoc" ? "আহবায়ক কমিটি" : "অন্যান্য উপকমিটি"}
+                  {section.title}
                 </h2>
                 <div className="h-[2px] bg-primary/20 w-full" />
               </div>
