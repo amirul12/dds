@@ -635,8 +635,10 @@ export interface ApiDonorDonor extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     designation: Schema.Attribute.String;
+    facebookUrl: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
     isAnonymous: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    linkedinUrl: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::donor.donor'> &
       Schema.Attribute.Private;

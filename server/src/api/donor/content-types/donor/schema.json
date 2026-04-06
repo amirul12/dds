@@ -37,6 +37,12 @@
     },
     "message": {
       "type": "text"
+    },
+    "facebookUrl": {
+      "type": "string"
+    },
+    "linkedinUrl": {
+      "type": "string"
     }
   }
 }

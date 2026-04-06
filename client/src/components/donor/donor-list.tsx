@@ -23,7 +23,10 @@ export async function DonorList() {
   const toBnNumber = (n: number | string) => 
     n.toString().replace(/\d/g, d => bnDigits[parseInt(d)]);
 
-  const totalAmount = donors.reduce((sum, donor) => sum + (donor.amount || 0), 0);
+  const totalAmount = donors.reduce((sum, donor) => {
+    const amount = donor.attributes?.amount ?? donor.amount ?? 0;
+    return sum + amount;
+  }, 0);
   const topDonors = donors.slice(0, 3);
   const remainingDonors = donors.slice(3);
 
@@ -53,13 +56,16 @@ export async function DonorList() {
           <div className="h-[2px] bg-primary/20 w-full" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {topDonors.map((donor, idx) => (
-            <DonorCard 
-              key={donor.id} 
-              {...donor.attributes}
-              rank={idx + 1} 
-            />
-          ))}
+          {topDonors.map((donor, idx) => {
+            const props = donor.attributes || donor;
+            return (
+              <DonorCard 
+                key={donor.id} 
+                {...props}
+                rank={idx + 1} 
+              />
+            );
+          })}
         </div>
       </div>
 
@@ -71,9 +77,12 @@ export async function DonorList() {
             <div className="h-[2px] bg-primary/20 w-full" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {remainingDonors.map((donor) => (
-              <DonorCard key={donor.id} {...donor.attributes} />
-            ))}
+            {remainingDonors.map((donor) => {
+              const props = donor.attributes || donor;
+              return (
+                <DonorCard key={donor.id} {...props} />
+              );
+            })}
           </div>
         </div>
       )}

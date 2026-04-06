@@ -1,7 +1,7 @@
-# Project Implementation Plan: ঢাকাস্থ দেবহাটা উপজেলা সমিতি Website
+# Project Implementation Plan: দেবহাটা উপজেলা সমিতি, ঢাকা Website
 
 ## 🎯 Goal
-Build a dynamic, content-heavy community website for "ঢাকাস্থ দেবহাটা উপজেলা সমিতি" focusing on transparency, member management, and event organization.
+Build a dynamic, content-heavy community website for "দেবহাটা উপজেলা সমিতি, ঢাকা" focusing on transparency, member management, and event organization.
 
 ---
 

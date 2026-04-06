@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Users, UserPlus, Bell, Phone, Info, MoreHorizontal, X, MessageSquare, Newspaper, Calendar } from "lucide-react";
+import { Home, Users, UserPlus, Bell, Phone, Info, MoreHorizontal, X, MessageSquare, Newspaper, Calendar, Image as ImageIcon, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,19 +15,19 @@ const primaryItems = [
     href: "/",
   },
   {
-    icon: Info,
-    label: "পরিচিতি",
-    href: "/about",
-  },
-  {
     icon: Users,
     label: "ডিরেক্টরি",
     href: "/directory",
   },
   {
-    icon: UserPlus,
-    label: "আবেদন",
-    href: "/membership-application",
+    icon: ImageIcon,
+    label: "গ্যালারি",
+    href: "/gallery",
+  },
+  {
+    icon: Heart,
+    label: "সোশ্যাল কাজ",
+    href: "/social-work",
   },
 ];
 
@@ -38,14 +38,24 @@ const secondaryItems = [
     href: "/notices",
   },
   {
+    icon: Calendar,
+    label: "ইভেন্ট",
+    href: "/events",
+  },
+  {
     icon: Phone,
     label: "যোগাযোগ",
     href: "/contact",
   },
   {
-    icon: Calendar,
-    label: "ইভেন্ট",
-    href: "/events",
+    icon: UserPlus,
+    label: "আবেদন",
+    href: "/membership-application",
+  },
+  {
+    icon: Info,
+    label: "পরিচিতি",
+    href: "/about",
   },
 ];
 

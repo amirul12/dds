@@ -75,20 +75,20 @@ export function GalleryGrid({ items }: { items: any[] }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-10"
+            className="fixed inset-0 z-[5000] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-10"
             onClick={() => setSelectedImage(null)}
           >
             {/* Close Button */}
             <motion.button
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="absolute top-6 right-6 z-[110] bg-white/10 hover:bg-white/20 p-3 rounded-full border border-white/20 transition-colors"
+              className="absolute top-8 right-8 z-[5100] bg-white/20 hover:bg-white/40 p-4 rounded-full border border-white/30 transition-all shadow-2xl active:scale-95"
               onClick={(e) => {
                 e.stopPropagation();
                 setSelectedImage(null);
               }}
             >
-              <X className="w-8 h-8 text-white" />
+              <X className="w-10 h-10 text-white" />
             </motion.button>
 
             {/* Image Container */}
@@ -107,8 +107,8 @@ export function GalleryGrid({ items }: { items: any[] }) {
               />
               
               {/* Info Overlay in Full Screen */}
-              <div className="absolute bottom-0 inset-x-0 p-8 text-center bg-gradient-to-t from-black/60 to-transparent">
-                <h2 className="text-white text-2xl font-bold mb-2">{selectedImage.title}</h2>
+              <div className="absolute bottom-0 inset-x-0 p-8 text-center bg-gradient-to-t from-black/80 to-transparent z-[5100]">
+                <h2 className="text-white text-3xl font-bold mb-2 drop-shadow-md">{selectedImage.title}</h2>
                 {selectedImage.date && (
                   <p className="text-white/70">
                     {new Date(selectedImage.date).toLocaleDateString("bn-BD", {

@@ -61,12 +61,12 @@ export function Footer({ data }: Readonly<FooterProps>) {
           <div className="space-y-6 lg:ml-12">
             <h4 className="text-xl font-bold font-serif border-b-2 border-secondary inline-block pb-1">গুরুত্বপূর্ণ লিঙ্ক</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/about" className="hover:text-secondary hover:pl-2 transition-all">সমিতি পরিচিতি</Link></li>
+              <li><Link href="/gallery" className="hover:text-secondary hover:pl-2 transition-all">গ্যালারি</Link></li>
+              <li><Link href="/social-work" className="hover:text-secondary hover:pl-2 transition-all">সোশ্যাল কাজ</Link></li>
               <li><Link href="/directory" className="hover:text-secondary hover:pl-2 transition-all">সদস্য ডিরেক্টরি</Link></li>
               <li><Link href="/notices" className="hover:text-secondary hover:pl-2 transition-all">বিজ্ঞপ্তি বোর্ড</Link></li>
               <li><Link href="/events" className="hover:text-secondary hover:pl-2 transition-all">আসন্ন ইভেন্ট</Link></li>
               <li><Link href="/committee" className="hover:text-secondary hover:pl-2 transition-all">কার্যনির্বাহী কমিটি</Link></li>
-              <li><Link href="/membership-application" className="hover:text-secondary hover:pl-2 transition-all">সদস্য আবেদন ফরম</Link></li>
               <li><Link href="/smaranika" className="hover:text-secondary hover:pl-2 transition-all">স্মরণিকা প্রকল্প</Link></li>
             </ul>
           </div>
@@ -118,7 +118,31 @@ export function Footer({ data }: Readonly<FooterProps>) {
             <a href="#" className="hover:text-white transition-colors">প্রাইভেসি পলিসি</a>
             <a href="#" className="hover:text-white transition-colors">টার্মস এন্ড কন্ডিশন</a>
           </div>
-          <p>Created with ❤️ for Debhata</p>
+          <div className="text-right space-y-1">
+            <p className="flex items-center gap-1 justify-center md:justify-end">
+              🚀 Developed by{" "}
+              <a 
+                href="https://www.linkedin.com/in/amirulcs/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-white hover:text-secondary font-semibold transition-colors"
+              >
+                Amirul Islam
+              </a>{" "}
+              | Software Engineer
+            </p>
+            <p className="flex items-center gap-1 justify-center md:justify-end">
+              Founder and CEO{" "}
+              <a 
+                href="https://bmhbd.org" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-white hover:text-secondary font-semibold transition-colors"
+              >
+                bmhbd.org
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
