@@ -92,11 +92,6 @@ export function DonorCard({ name, designation, location, amount, image, message,
               </h3>
             )}
             
-            <div className="mt-4 pt-2 border-t border-primary/10">
-              <span className="text-md font-bold text-primary bg-primary/5 px-3 py-1 rounded-full">
-                {toBnNumber(amount)} টাকা
-              </span>
-            </div>
 
             {message && !isAnonymous && (
               <p className="text-xs italic text-muted-foreground mt-2 line-clamp-2">
@@ -171,9 +166,6 @@ export function DonorCard({ name, designation, location, amount, image, message,
                       {finalName}
                     </h2>
                   )}
-                  <div className="mt-4 text-2xl font-bold text-primary">
-                    {toBnNumber(amount)} টাকা
-                  </div>
                 </div>
 
                 {message && !isAnonymous && (

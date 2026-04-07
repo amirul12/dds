@@ -309,7 +309,13 @@ export async function getEvents() {
 }
 
 export async function getMemberDirectory(query = "", union = "", page = 1, membershipType = "") {
-  const filters: any = {};
+  const filters: any = {
+    $and: [
+      { overallSerial: { $ne: "1" } }, // Exclude member with ID "1"
+      { overallSerial: { $ne: "10" } }, // Exclude member with ID "10"
+      { thanaSerial: { $ne: "3" } } // Exclude member with thanaSerial "3"
+    ]
+  };
   if (query) {
     filters.$or = [
       { name: { $containsi: query } },

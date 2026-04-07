@@ -20,13 +20,9 @@ export async function DonorList() {
   }
 
   const bnDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
-  const toBnNumber = (n: number | string) => 
+  const toBnNumber = (n: number | string) =>
     n.toString().replace(/\d/g, d => bnDigits[parseInt(d)]);
 
-  const totalAmount = donors.reduce((sum, donor) => {
-    const amount = donor.attributes?.amount ?? donor.amount ?? 0;
-    return sum + amount;
-  }, 0);
   const topDonors = donors.slice(0, 3);
   const remainingDonors = donors.slice(3);
 
@@ -36,13 +32,13 @@ export async function DonorList() {
       <div className="bg-primary/5 rounded-3xl p-8 md:p-12 text-center border border-primary/10 shadow-sm relative overflow-hidden group">
         {/* Background Decorative Element */}
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 size-64 bg-primary/10 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
-        
+
         <div className="relative z-10">
-          <h2 className="text-2xl font-serif font-bold text-primary mb-6">মোট অনুদান সংগৃহীত</h2>
-          <div className="text-5xl md:text-6xl font-bold text-primary tracking-tight mb-8">
-            {toBnNumber(totalAmount)} <span className="text-2xl md:text-3xl font-serif">টাকা</span>
-          </div>
-          
+          <h2 className="text-2xl font-serif font-bold text-primary mb-6">আমাদের সম্মানিত দাতাগণ</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            বনভোজন ২০২৬ উপলক্ষে আমাদের সমাপনী অনুষ্ঠানের জন্য যারা অনুদান প্রদান করেছেন
+          </p>
+
           <Button asChild size="lg" className="rounded-full px-12 h-14 text-lg font-bold shadow-xl hover:scale-105 transition-transform active:scale-95">
             <Link href="/membership-application">আপনিও অনুদান দিন</Link>
           </Button>

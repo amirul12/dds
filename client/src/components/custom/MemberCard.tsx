@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { StrapiImage } from "@/components/custom/strapi-image";
 import { CheckCircle, Phone, MapPin, Briefcase, User } from "lucide-react";
 import Link from "next/link";
-import { cn, getStrapiURL } from "@/lib/utils";
+import { cn, getStrapiURL, getUnionNameInBangla } from "@/lib/utils";
 
 interface Member {
   id: number;
@@ -123,7 +123,7 @@ export function MemberCard({ member, onCorrect }: { member: Member; onCorrect: (
               <span className="font-medium text-slate-800 dark:text-slate-200">
                 {member.village && <span>{member.village}</span>}
                 {member.village && member.union && <span>, </span>}
-                {member.union && <span>{member.union} ইউনিয়ন</span>}
+                {member.union && <span>{getUnionNameInBangla(member.union)} ইউনিয়ন</span>}
               </span>
             </div>
           </div>

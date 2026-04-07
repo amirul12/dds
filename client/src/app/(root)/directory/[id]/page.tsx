@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { getUnionNameInBangla } from "@/lib/utils";
 
 export default function MemberProfilePage() {
   const params = useParams();
@@ -54,10 +55,42 @@ export default function MemberProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50/50 dark:bg-slate-950 print:bg-white pt-24 pb-20">
-      
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-green-50/50 to-slate-50/50 dark:from-emerald-950/30 dark:via-green-950/20 dark:to-slate-950 print:bg-white pt-24 pb-20 relative overflow-hidden">
+
+      {/* River Wave Decoration at Top */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0">
+        <svg
+          className="relative block w-[calc(100%+1.3px)] h-[100px] md:h-[150px]"
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+            className="fill-emerald-200/50 dark:fill-emerald-900/20"
+          ></path>
+        </svg>
+      </div>
+
+      {/* Second Wave Layer */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0 opacity-60">
+        <svg
+          className="relative block w-[calc(100%+1.3px)] h-[80px] md:h-[120px] mt-1"
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+            className="fill-emerald-100/40 dark:fill-emerald-900/10"
+          ></path>
+        </svg>
+      </div>
+
       {/* --- WEB VIEW --- */}
-      <div className="container max-w-5xl print:hidden">
+      <div className="container max-w-5xl print:hidden relative z-10">
         
         {/* Navigation & Actions */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
@@ -121,7 +154,7 @@ export default function MemberProfilePage() {
                   )}
                   {member.union && (
                     <span className="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 font-bold px-3 py-1 rounded-lg border border-emerald-200 dark:border-emerald-800 text-sm">
-                      {member.union}
+                      {getUnionNameInBangla(member.union)}
                     </span>
                   )}
                 </div>
@@ -250,8 +283,8 @@ export default function MemberProfilePage() {
                         <span>: <span className="text-red-600 font-extrabold">{member.bloodGroup || "N/A"}</span></span>
                      </div>
                      <div className="text-[7.5px] text-slate-700 flex">
-                        <span className="font-bold w-12 flex-shrink-0 text-slate-500 uppercase">Union</span> 
-                        <span>: {member.union || "N/A"}</span>
+                        <span className="font-bold w-12 flex-shrink-0 text-slate-500 uppercase">Union</span>
+                        <span>: {getUnionNameInBangla(member.union) || "N/A"}</span>
                      </div>
                    </div>
                 </div>

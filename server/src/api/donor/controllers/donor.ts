@@ -4,18 +4,22 @@ export default factories.createCoreController('api::donor.donor', ({ strapi }) =
   async find(ctx) {
     // Calling the default core action
     const { data, meta } = await super.find(ctx);
-    
+
     if (!data) return { data, meta };
 
     const sanitizedData = data.map((item: any) => {
       // Handle both Strapi v4 and v5 data structures
       const attributes = item.attributes || item;
+
+      // Remove amount field from public API response
+      const { amount, ...restAttributes } = attributes;
+
       if (attributes.isAnonymous) {
         if (item.attributes) {
           return {
             ...item,
             attributes: {
-              ...attributes,
+              ...restAttributes,
               name: "একজন শুভানুধ্যায়ী",
               designation: "",
               location: attributes.location || ""
@@ -24,13 +28,26 @@ export default factories.createCoreController('api::donor.donor', ({ strapi }) =
         } else {
           return {
             ...item,
+            ...restAttributes,
             name: "একজন শুভানুধ্যায়ী",
             designation: "",
             location: item.location || ""
           };
         }
       }
-      return item;
+
+      // Return item without amount field
+      if (item.attributes) {
+        return {
+          ...item,
+          attributes: restAttributes
+        };
+      } else {
+        return {
+          ...item,
+          ...restAttributes
+        };
+      }
     });
 
     return { data: sanitizedData, meta };
@@ -43,6 +60,9 @@ export default factories.createCoreController('api::donor.donor', ({ strapi }) =
     const { data } = response;
     const attributes = data.attributes || data;
 
+    // Remove amount field from public API response
+    const { amount, ...restAttributes } = attributes;
+
     if (attributes.isAnonymous) {
       if (data.attributes) {
         return {
@@ -50,7 +70,7 @@ export default factories.createCoreController('api::donor.donor', ({ strapi }) =
           data: {
             ...data,
             attributes: {
-              ...attributes,
+              ...restAttributes,
               name: "একজন শুভানুধ্যায়ী",
               designation: "",
               location: attributes.location || ""
@@ -62,6 +82,7 @@ export default factories.createCoreController('api::donor.donor', ({ strapi }) =
           ...response,
           data: {
             ...data,
+            ...restAttributes,
             name: "একজন শুভানুধ্যায়ী",
             designation: "",
             location: data.location || ""
@@ -70,6 +91,23 @@ export default factories.createCoreController('api::donor.donor', ({ strapi }) =
       }
     }
 
-    return response;
+    // Return response without amount field
+    if (data.attributes) {
+      return {
+        ...response,
+        data: {
+          ...data,
+          attributes: restAttributes
+        }
+      };
+    } else {
+      return {
+        ...response,
+        data: {
+          ...data,
+          ...restAttributes
+        }
+      };
+    }
   }
 }));

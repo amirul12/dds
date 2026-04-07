@@ -21,3 +21,16 @@ export function formatDate(dateString: string) {
   const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString('en-US', options);
 }
+
+// Union name mapping from English to Bangla
+export function getUnionNameInBangla(union: string): string {
+  const unionMap: Record<string, string> = {
+    "Debhata": "দেবহাটা",
+    "Kulya": "কুলিয়া",
+    "Parulia": "পারুলিয়া",
+    "Sakhipur": "সখিপুর",
+    "Nawapara": "নওয়াপাড়া"
+  };
+  return unionMap[union] || union;
+}
+
