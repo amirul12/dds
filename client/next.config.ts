@@ -1,10 +1,8 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  // Explicitly set the root directory to avoid lockfile conflicts
-  turbopack: {
-    root: __dirname,
-  },
+  // Explicitly set turbopack config to avoid workspace root detection issues
+  turbopack: {},
   // cacheComponents: true,
   images: {
     ...(process.env.NODE_ENV === 'development' && {
